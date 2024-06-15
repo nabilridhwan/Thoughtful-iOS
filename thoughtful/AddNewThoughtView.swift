@@ -17,6 +17,8 @@ struct AddNewThoughtView: View {
     @State private var response: String = "";
     @State var emotion: Emotion?
     
+    @State var showModal: Bool = false;
+    
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?;
     
@@ -24,11 +26,8 @@ struct AddNewThoughtView: View {
         prompt.isEmpty || response.isEmpty
     }
     
-    
     var body: some View {
         VStack{
-            
-            
             // Form
             VStack{
                 HStack{
@@ -42,6 +41,29 @@ struct AddNewThoughtView: View {
                         }label: {
                             Label("Select", systemImage: "multiply.circle.fill").labelStyle(.iconOnly)
                         }
+                    }else{
+                        Button{
+                            showModal = true
+                        } label: {
+                             Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
+                        }
+                        
+//                        Menu {
+//                            ForEach(gratitudeQuestions, id: \.self) {
+//                                q in
+//                                Button{
+//                                    withAnimation{
+//                                        prompt = q
+//                                        focusedField = .response
+//                                    }
+//                                }label: {
+//                                    Text(q)
+//                                }
+//                            }
+//                            
+//                        }label: {
+//                            Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
+//                        }
                     }
                 }
                 .foregroundStyle(.white.opacity(0.5))
@@ -72,6 +94,15 @@ struct AddNewThoughtView: View {
                 //                            .background(.accent,
                 //                                        in: RoundedRectangle(cornerRadius: 24))
                 //                    }
+            }
+            
+            .sheet(isPresented: $showModal){
+                ZStack{
+                    Color.background.ignoresSafeArea()
+                    ChoosePromptView(prompt: $prompt)
+                    .padding()
+                    .presentationDetents([.medium])
+                }.ignoresSafeArea(edges: .bottom)
             }
             
             ToolbarView(

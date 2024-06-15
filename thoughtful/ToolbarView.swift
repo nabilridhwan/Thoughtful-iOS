@@ -35,25 +35,6 @@ struct ToolbarView: View {
 //            }
 //            .frame(maxWidth: .infinity)
             
-            Menu {
-                ForEach(gratitudeQuestions, id: \.self) {
-                    q in
-                    Button{
-                        withAnimation{
-                            prompt = q
-                            focusedField = .response
-                        }
-                    }label: {
-                        Text(q)
-                    }
-                }
-                
-            }label: {
-                Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
-            }
-                .frame(maxWidth: .infinity)
-
-            
             Menu{
                 ForEach(Emotion.allCases, id: \Emotion.hashValue){
                     e in
