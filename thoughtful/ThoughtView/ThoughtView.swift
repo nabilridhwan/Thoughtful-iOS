@@ -34,8 +34,9 @@ struct ThoughtView: View {
                 .opacity(0.5)
                 .fontWeight(.bold)
                 .font(.callout)
-            Text(thought.thought_response)
+            Text(LocalizedStringKey(thought.thought_response))
                 .font(.callout)
+                .lineLimit(2)
 
             HStack{
                 
@@ -69,7 +70,7 @@ struct ThoughtView: View {
     }
 }
 
-//#Preview {
-//    ThoughtView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, Nazrul for checking up on me, The movie night on Discord", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
-//
-//}
+#Preview {
+    ThoughtView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
+
+}
