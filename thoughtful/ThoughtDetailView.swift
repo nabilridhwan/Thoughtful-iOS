@@ -11,8 +11,8 @@ struct ThoughtDetailView: View {
     @Bindable var thought: Thought;
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
-   
-//    State for showing the confirm delete option
+    
+    //    State for showing the confirm delete option
     @State var isPresentingConfirm: Bool = false
     
     var emotionExists: Bool {
@@ -24,34 +24,38 @@ struct ThoughtDetailView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10){
-            Text(thought.thought_prompt)
-                .font(.title)
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
+        ScrollView{
             
-            Text(thought.thought_response)
-                .frame(maxWidth: .infinity, alignment: .leading)
             
-            Divider()
-            
-            //            https://developer.apple.com/documentation/foundation/date/relativeformatstyle
-            
-            if (emotionExists) {
-                Text("Emotion")
-                    .font(.caption2)
-                    .foregroundStyle(.white.opacity(0.5))
+            VStack(alignment: .leading, spacing: 10){
+                Text(thought.thought_prompt)
+                    .font(.title)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ThoughtAttributeView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
-            }
-            
-             Text("Created")
+                Text(LocalizedStringKey(thought.thought_response))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Divider()
+                
+                //            https://developer.apple.com/documentation/foundation/date/relativeformatstyle
+                
+                if (emotionExists) {
+                    Text("Emotion")
+                        .font(.caption2)
+                        .foregroundStyle(.white.opacity(0.5))
+                    
+                    ThoughtAttributeView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
+                }
+                
+                Text("Created")
                     .font(.caption2)
                     .foregroundStyle(.white.opacity(0.5))
-            Label(relativeDateCreated, systemImage: "clock")
-                .foregroundStyle(.white.opacity(0.6))
-                .font(.caption)
-            Spacer()
+                Label(relativeDateCreated, systemImage: "clock")
+                    .foregroundStyle(.white.opacity(0.6))
+                    .font(.caption)
+                Spacer()
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -61,18 +65,19 @@ struct ThoughtDetailView: View {
             ToolbarItem(placement: .primaryAction){
                 Button("Delete"){
                     isPresentingConfirm = true
-
+                    
                 }.foregroundStyle(.red)
             }
         }
         .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm){
             Button("Delete", role: .destructive) {
-                    dismiss()
-                    context.delete(thought) 
+                dismiss()
+                context.delete(thought)
             }
         } message: {
             Text("Are you sure? You cannot undo this action")
         }
+        
     }
 }
 
