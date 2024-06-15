@@ -8,203 +8,136 @@
 import SwiftUI
 import SwiftData
 
+enum Field {
+    case prompt;
+    case response;
+}
+
+let gratitudeQuestions = [
+    "What are three things you are grateful for today?",
+    "Who is someone you feel especially grateful to have in your life? Why?",
+    "What is a recent experience that made you feel grateful?",
+    "What is something you are grateful for that you usually take for granted?",
+    "What is a personal quality or ability you are grateful for?",
+    "What is a place you feel grateful for and why?",
+    "What is a challenge you faced that you are now grateful for?",
+    "What is something beautiful you saw recently that you are thankful for?",
+    "What are you grateful for in your current job or daily routine?",
+    "What technology or modern convenience are you grateful for?"
+]
+
 struct ContentView: View {
     
-    enum Field {
-        case prompt;
-        case response;
-    }
+    @Environment(\.modelContext) private var context: ModelContext;
+    @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
+    
+    @State var filteredDate: Date = Date.now;
+    
+    //    Present modal on pressing "Add Thought"
+    @State var isPresented = false
+    
+    @State private var newThought: Thought?
     
     @State private var prompt: String = "";
     @State private var response: String = "";
-    @State private var sample_thoughts: [Thought] = []
     
-//    Bases on focusedField in onChange to have animations
+    //    Bases on focusedField in onChange to have animations
     @State private var isFormActive: Bool = false;
     
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?;
     
-    
+    @State var emotion: Emotion?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Home")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.largeTitle)
-            
-            HorizontalCalendarView()
-                .padding(.vertical, 10)
-            
-            if(sample_thoughts.isEmpty){
-                NoThoughtsView()
-                    .padding(.horizontal, 40)
-                    .padding(.top, 80)
-            }
-            
-            if(!sample_thoughts.isEmpty){
+        NavigationStack {
+            VStack(alignment: .leading) {
+                
+                HStack{
+                    Text("Home")
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                    Spacer()
+                    
+                    Button{
+                        print("Add pressed")
+                        isPresented.toggle()
+                    }label: {
+                        Label("Add Thought", systemImage: "plus.circle")
+                    }
+                }
+                
+                //                Text(filteredDate.formatted(.relative(presentation: .named)))
+                
+                //                HorizontalCalendarView(selectedDate: $filteredDate)
+                //                    .padding(.vertical, 10)
+                
                 ScrollView{
-                    ForEach(sample_thoughts, id: \.thought_response) {
-                        thought in
-                        ThoughtView(thought: thought)
+                    if(thoughts.isEmpty){
+                        VStack{
+                            EmptyThoughtsView()
+                                .padding(.horizontal, 40)
+                                .padding(.top, 80)
+                                .padding(.bottom, 20)
+                        }
+                    }else{
+                        ForEach(thoughts){ thought in
+                            NavigationLink{
+                                ThoughtDetailView(thought: thought)
+                            }label:{
+                                ThoughtView(thought: thought)
+                            }
+                            
+                        }
+                        
                     }
                 }
                 .scrollDismissesKeyboard(.interactively)
+                
+                Spacer()
             }
-            
-            Spacer()
-            
-            
-            VStack{
-                
-                //                Show toolbar when text field is active
-                if(isFormActive){
-                    HStack{
-                        Button{
-                            print("Location")
-                        }   label: {
-                            Label("Location", systemImage: "location.fill")
-                                .labelStyle(.iconOnly)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Button{
-                            print("Music")
-                        }   label: {
-                            Label("Music", systemImage: "music.note")
-                                .labelStyle(.iconOnly)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Button{
-                            print("Emotion")
-                        }   label: {
-                            Label("Emotion", systemImage: "face.smiling")
-                                .labelStyle(.iconOnly)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Button{
-                            print("Open Camera")
-                        }   label: {
-                            Label("Open Camera", systemImage: "camera.fill")
-                                .labelStyle(.iconOnly)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Button{
-                            print("Open Photos")
-                        }   label: {
-                            Label("Open Photos", systemImage: "photo.fill")
-                                .labelStyle(.iconOnly)
-                        }
-                        .frame(maxWidth: .infinity)
+            //            .toolbar{
+            //                ToolbarItem(placement: .confirmationAction){
+            //                    Button("Add"){
+            //                        print("Add pressed")
+            //                    }
+            //                }
+            //            }
+            .onChange(of: isFormActive, { oldValue, newValue in
+                print("isFormActive changed \(isFormActive)")
+            })
+            .onChange(of: focusedField, { oldValue, newValue in
+                withAnimation(.easeOut(duration: 0.3)){
+                    if(newValue == nil){
+                        isFormActive = false
+                    }else{
+                        isFormActive = true
                     }
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                                        .animation(.easeInOut, value: isFormActive)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.white.opacity(0.5))
-                    
-                    Divider()
-                        .padding(.vertical, 3)
                 }
-                
-                
-                //                Form
-                HStack{
-                    VStack(spacing: 10){
-                        TextField("Write your prompt here", text: $prompt)
-                            .focused($focusedField, equals: .prompt)
-                            .submitLabel(.next)
-                            .foregroundStyle(.white.opacity(0.5))
-                        
-                        if(isFormActive){
-                            TextField("Write your thoughts here", text: $response, axis: .vertical)
-                                .submitLabel(.done)
-                                .lineLimit(8)
-                                .focused($focusedField, equals: .response)
-                        }
-                    }
-                    .onSubmit{
-                        switch focusedField {
-                        case .prompt:
-                            focusedField = .response
-                        case .response:
-                            focusedField = nil
-                            handleSubmit()
-                        default:
-                            print("Creating account…")
-                        }
-                    }
-                    
-                    Button{
-                        handleSubmit()
-                    } label: {
-                        Label("Add", systemImage: "plus").labelStyle(.iconOnly)
-                    }.disabled(response.isEmpty || prompt.isEmpty)
-                    
-                }
-            }
+                print("focusedField changed:")
+                print(newValue != nil ? newValue! : "nil")
+            })
             .padding()
-            .background{
-                RoundedRectangle(cornerRadius: 24)
-                    .padding(5)
-                    .foregroundStyle(.cardAttribute)
-                    .overlay{
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(.white.opacity(0.1), lineWidth: 1)
-                            .padding(5)
-                        
+            .ignoresSafeArea(.all, edges: .bottom)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .sheet(isPresented: $isPresented){
+                NavigationStack{
+                    
+                    ZStack {
+                        Color.background.edgesIgnoringSafeArea(.all)
+                        AddNewThoughtView()
                     }
-            }
-            
-        }
-        .onChange(of: isFormActive, { oldValue, newValue in
-            print("isFormActive changed \(isFormActive)")
-        })
-        .onChange(of: focusedField, { oldValue, newValue in
-            withAnimation(.easeOut(duration: 0.3)){
-                if(newValue == nil){
-                    isFormActive = false
-                }else{
-                    isFormActive = true
+                    
                 }
+                .presentationDetents([.medium])
             }
-            print("focusedField changed:")
-            print(newValue != nil ? newValue! : "nil")
-        })
-        .padding()
-        .foregroundStyle(.white)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.background)
-    }
-}
-
-// MARK: Helper Function Declarations
-extension ContentView {
-    func clearInputs(){
-        prompt = "";
-        response = "";
-    }
-    
-    func handleSubmit(){
-        if(prompt.isEmpty || response.isEmpty){
-            return
+            .foregroundStyle(.white)
+            .background(Color.background)
         }
-        
-        let newThought = Thought(thought_prompt: prompt, thought_response: response, date_created: Date.now)
-        
-        clearInputs()
-        
-        withAnimation(.easeOut){
-            focusedField = nil
-            sample_thoughts.append(newThought)
-        }
-        
-        
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(SampleData.shared.modelContainer)
 }

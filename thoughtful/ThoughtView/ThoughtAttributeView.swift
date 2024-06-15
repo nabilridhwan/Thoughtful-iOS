@@ -42,9 +42,6 @@ struct ThoughtAttributeView: View {
                 .foregroundStyle(backgroundColor ?? .cardAttribute)
         }
         .shadow(color: (shadowColor!).opacity(0.3), radius: 5)
-        .padding(.vertical, 2)
-            .padding(.top, 5)
-        
     }
 }
 

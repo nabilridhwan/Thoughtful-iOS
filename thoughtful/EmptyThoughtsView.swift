@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NoThoughtsView: View {
+struct EmptyThoughtsView: View {
     var body: some View {
         VStack(spacing: 10){
             Image(systemName: "face.smiling")
@@ -18,7 +18,7 @@ struct NoThoughtsView: View {
             Text("Uh oh, we found zero thoughts!")
                 .font(.title3)
                 .bold()
-            Text("Get started by writing your first thought below")
+            Text("Get started by writing your first thought. Just press the \'Add Thought\' button above!")
                 .foregroundStyle(.white.opacity(0.5))
         }
         .multilineTextAlignment(.center)
@@ -28,5 +28,5 @@ struct NoThoughtsView: View {
 }
 
 #Preview {
-    NoThoughtsView()
+    EmptyThoughtsView()
 }

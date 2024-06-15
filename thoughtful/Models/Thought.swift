@@ -8,16 +8,31 @@
 import SwiftUI
 import SwiftData
 
+@Model
 class Thought {
+
     let thought_prompt: String;
     let thought_response: String;
     let date_created: Date;
     
     let location: String?;
     let music: String?;
-    let emotion: String?;
+    var emotion: Emotion?;
+
+    var emotionExists: Bool {
+        emotion != nil
+    }
     
-    init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: String? = nil) {
+    var locationExists: Bool {
+        location != nil
+    }
+    
+    var musicExists: Bool {
+        music != nil
+    }
+    
+    
+    init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
         self.thought_prompt = thought_prompt
         self.thought_response = thought_response
         self.date_created = date_created

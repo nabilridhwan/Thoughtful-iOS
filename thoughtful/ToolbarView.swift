@@ -1,0 +1,139 @@
+//
+//  ToolbarView.swift
+//  Thoughtful
+//
+//  Created by Nabil Ridhwan on 15/6/24.
+//
+
+import SwiftUI
+
+struct ToolbarView: View {
+    @Binding var emotion: Emotion?
+    @FocusState var focusedField: Field?
+    @Binding var prompt: String;
+    
+    var emotionExists: Bool {
+        emotion != nil
+    }
+    
+    var body: some View {
+        
+        HStack{
+            Button{
+                print("Location")
+            }   label: {
+                Label("Location", systemImage: "location.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .frame(maxWidth: .infinity)
+            
+//            Button{
+//                print("Music")
+//            }   label: {
+//                Label("Music", systemImage: "music.note")
+//                    .labelStyle(.iconOnly)
+//            }
+//            .frame(maxWidth: .infinity)
+            
+            Menu {
+                ForEach(gratitudeQuestions, id: \.self) {
+                    q in
+                    Button{
+                        withAnimation{
+                            prompt = q
+                            focusedField = .response
+                        }
+                    }label: {
+                        Text(q)
+                    }
+                }
+                
+            }label: {
+                Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
+            }
+                .frame(maxWidth: .infinity)
+
+            
+            Menu{
+                ForEach(Emotion.allCases, id: \Emotion.hashValue){
+                    e in
+                    Button{
+                        handleAddEmotion(e)
+                    }label: {
+                        if e == emotion {
+                            Label(e.description.capitalized, systemImage: "checkmark")
+                        }else{
+                            Text(e.description.capitalized)
+                        }
+                    }
+                }
+                
+            } label: {
+                Label("Emotion", systemImage: "face.smiling")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(.white.opacity(emotionExists ? 1.0 : 0.5))
+            }
+            .frame(maxWidth: .infinity)
+            
+            Button{
+                print("Open Camera")
+            }   label: {
+                Label("Open Camera", systemImage: "camera.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .frame(maxWidth: .infinity)
+            
+            Button{
+                print("Open Photos")
+            }   label: {
+                Label("Open Photos", systemImage: "photo.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity)
+        .foregroundStyle(.white.opacity(0.5))
+    }
+}
+
+enum Emotion: Codable, CaseIterable {
+    case scared
+    case sad
+    case angry
+    case embarassed
+    case neutral
+    case playful
+    case loved
+    case happy
+    
+    var description: String {
+        switch self {
+        case .scared: return "scared"
+        case .sad: return "sad"
+        case .angry: return "angry"
+        case .embarassed: return "embarassed"
+        case .neutral: return "neutral"
+        case .playful: return "playful"
+        case .loved: return "loved"
+        case .happy: return "happy"
+        }
+    }
+}
+
+extension ToolbarView {
+    func handleAddEmotion(_ e: Emotion){
+        
+        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
+        if(emotion == e){
+            emotion = nil;
+            return;
+        }
+        //        set the emotion 'binding' to the value passed
+        emotion = e
+    }
+}
+
+//#Preview {
+//    ToolbarView()
+//        .background(Color.background)
+//}

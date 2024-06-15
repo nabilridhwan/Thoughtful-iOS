@@ -7,15 +7,26 @@
 
 import SwiftUI
 
+let emotionColors: [Emotion: Color] = [
+    .scared: Color.purple,
+    .sad: Color.blue,
+    .angry: Color.red,
+    .embarassed: Color.pink,
+    .neutral: Color.gray,
+    .playful: Color.orange,
+    .loved: Color.red,
+    .happy: Color.yellow,
+]
+
 struct ThoughtView: View {
     
     let thought: Thought;
     
+    var emotionExists: Bool {
+        thought.emotion != nil
+    }
+    
     var body: some View {
-        Button {
-            print("Clicked on \(thought.thought_response)")
-        } label: {
-            
         VStack(alignment: .leading, spacing: 5){
             Text(thought.thought_prompt)
                 .opacity(0.5)
@@ -34,13 +45,12 @@ struct ThoughtView: View {
                     ThoughtAttributeView(icon: "music.note", text: "The Backseat Lovers - Pool House")
                 }
                 
-                if (thought.emotion != nil) {
-                    ThoughtAttributeView(icon: "smiley.fill", text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
+                if (emotionExists) {
+                    ThoughtAttributeView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
                 }
-                
-                
-                
             }
+                   .padding(.vertical, 2)
+                   .padding(.top, 8)
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,11 +64,10 @@ struct ThoughtView: View {
             RoundedRectangle(cornerRadius: 24)
                 .stroke(.white.opacity(0.1), lineWidth: 1)
         )
-        }
     }
 }
 
-#Preview {
-    ThoughtView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, Nazrul for checking up on me, The movie night on Discord", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: "Neutral"))
-
-}
+//#Preview {
+//    ThoughtView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, Nazrul for checking up on me, The movie night on Discord", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
+//
+//}

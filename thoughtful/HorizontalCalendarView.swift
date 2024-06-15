@@ -37,8 +37,7 @@ func isToday(_ date1: Date, _ date2: Date) -> Bool {
 }
 
 struct HorizontalCalendarView: View {
-    
-    @State var selectedDate: Date = Date.now;
+    @Binding var selectedDate: Date;
 
     var body: some View {
         ZStack{
@@ -68,6 +67,9 @@ struct HorizontalCalendarView: View {
     }
 }
 
-#Preview {
-    HorizontalCalendarView()
-}
+//
+//#Preview {
+//    Group{
+//        HorizontalCalendarView(selectedDate: $selectedDate)
+//    }
+//}

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD0B9B952C1B06EB00C811E8 /* ThoughtAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */; };
-		BD0B9B972C1B07CF00C811E8 /* NoThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* NoThoughtsView.swift */; };
+		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */; };
 		BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC92C1A07A200B9A85A /* ContentView.swift */; };
 		BDD6ACCC2C1A07A300B9A85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */; };
@@ -19,6 +19,10 @@
 		BDD6ACF22C1A07BC00B9A85A /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF12C1A07BC00B9A85A /* Thought.swift */; };
 		BDD6ACF42C1A095200B9A85A /* ThoughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF32C1A095200B9A85A /* ThoughtView.swift */; };
 		BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */; };
+		BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */; };
+		BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843AB2C1D7D750046C2A4 /* SampleData.swift */; };
+		BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */; };
+		BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtAttributeView.swift; sourceTree = "<group>"; };
-		BD0B9B962C1B07CF00C811E8 /* NoThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoThoughtsView.swift; sourceTree = "<group>"; };
+		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thoughtful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulApp.swift; sourceTree = "<group>"; };
 		BDD6ACC92C1A07A200B9A85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +58,10 @@
 		BDD6ACF12C1A07BC00B9A85A /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		BDD6ACF32C1A095200B9A85A /* ThoughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtView.swift; sourceTree = "<group>"; };
 		BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCalendarView.swift; sourceTree = "<group>"; };
+		BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailView.swift; sourceTree = "<group>"; };
+		BDE843AB2C1D7D750046C2A4 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewThoughtView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,14 +121,18 @@
 		BDD6ACC62C1A07A200B9A85A /* thoughtful */ = {
 			isa = PBXGroup;
 			children = (
+				BDE843AD2C1D98800046C2A4 /* Models */,
 				BD0B9B932C1B06CE00C811E8 /* ThoughtView */,
 				BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */,
 				BDD6ACC92C1A07A200B9A85A /* ContentView.swift */,
 				BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */,
 				BDD6ACCD2C1A07A300B9A85A /* Preview Content */,
-				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
 				BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */,
-				BD0B9B962C1B07CF00C811E8 /* NoThoughtsView.swift */,
+				BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */,
+				BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */,
+				BDE843AB2C1D7D750046C2A4 /* SampleData.swift */,
+				BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */,
+				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
 			);
 			path = thoughtful;
 			sourceTree = "<group>";
@@ -148,6 +160,14 @@
 				BDD6ACE42C1A07A300B9A85A /* thoughtfulUITestsLaunchTests.swift */,
 			);
 			path = thoughtfulUITests;
+			sourceTree = "<group>";
+		};
+		BDE843AD2C1D98800046C2A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,10 +302,14 @@
 			files = (
 				BDD6ACF22C1A07BC00B9A85A /* Thought.swift in Sources */,
 				BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */,
+				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtAttributeView.swift in Sources */,
+				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
 				BDD6ACF42C1A095200B9A85A /* ThoughtView.swift in Sources */,
-				BD0B9B972C1B07CF00C811E8 /* NoThoughtsView.swift in Sources */,
+				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
+				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
+				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,
 				BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
