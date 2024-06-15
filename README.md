@@ -1,7 +1,7 @@
 <div align="center">
-<img src="./docs/icon.png" width="100" style="" alt="Thoughtful Logo">
+<img src="./docs/Promo iOS.png" style="" alt="Thoughtful Logo">
 
-<h1>Thoughtful</h1>
+<h1>Thoughtful (Beta)</h1>
 
 <p>
 A gratitude-focused mobile app that prompts users to reflect on and appreciate daily moments of positivity
@@ -39,3 +39,5 @@ is NOT YET available in the Apple App Store.
 ## Technology Used
 
 - Swift
+- SwiftUI
+- SwiftData

@@ -4,10 +4,4 @@
     <option name="show" value="ASK" />
     <option name="description" value="" />
   </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myAllFileTypesSelected" value="true" />
-    <option name="mySelectedFileTypes">
-      <set />
-    </option>
-  </component>
 </project>
