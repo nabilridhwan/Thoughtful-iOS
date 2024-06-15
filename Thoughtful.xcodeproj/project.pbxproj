@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD0B9B952C1B06EB00C811E8 /* ThoughtAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
+		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */; };
 		BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC92C1A07A200B9A85A /* ContentView.swift */; };
 		BDD6ACCC2C1A07A300B9A85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtAttributeView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
+		BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thoughtful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulApp.swift; sourceTree = "<group>"; };
 		BDD6ACC92C1A07A200B9A85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
+				BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
 				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,
 				BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */,
+				BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
