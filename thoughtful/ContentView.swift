@@ -28,6 +28,11 @@ let gratitudeQuestions = [
 
 struct ContentView: View {
     
+    @StateObject var qa = QuickActionsManager.instance
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    @Environment(\.scenePhase) var phase
+
     @Environment(\.modelContext) private var context: ModelContext;
     @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
     
@@ -103,20 +108,7 @@ struct ContentView: View {
             //                    }
             //                }
             //            }
-            .onChange(of: isFormActive, { oldValue, newValue in
-                print("isFormActive changed \(isFormActive)")
-            })
-            .onChange(of: focusedField, { oldValue, newValue in
-                withAnimation(.easeOut(duration: 0.3)){
-                    if(newValue == nil){
-                        isFormActive = false
-                    }else{
-                        isFormActive = true
-                    }
-                }
-                print("focusedField changed:")
-                print(newValue != nil ? newValue! : "nil")
-            })
+            
             .padding()
             .ignoresSafeArea(.all, edges: .bottom)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -133,6 +125,26 @@ struct ContentView: View {
             }
             .foregroundStyle(.white)
             .background(Color.background)
+            .onChange(of: isFormActive, { oldValue, newValue in
+                print("isFormActive changed \(isFormActive)")
+            })
+            .onChange(of: focusedField, { oldValue, newValue in
+                withAnimation(.easeOut(duration: 0.3)){
+                    if(newValue == nil){
+                        isFormActive = false
+                    }else{
+                        isFormActive = true
+                    }
+                }
+                print("focusedField changed:")
+                print(newValue != nil ? newValue! : "nil")
+            })
+            .onChange(of: qa.quickAction){_, _ in
+                print("QUICK ACTION!!")
+            }.onAppear{
+                print(qa.quickAction)
+            }
+            
         }
     }
 }
