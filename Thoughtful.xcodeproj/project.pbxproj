@@ -11,6 +11,7 @@
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
+		BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */; };
 		BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */; };
 		BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC92C1A07A200B9A85A /* ContentView.swift */; };
 		BDD6ACCC2C1A07A300B9A85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePromptView.swift; sourceTree = "<group>"; };
+		BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseEmotionView.swift; sourceTree = "<group>"; };
 		BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thoughtful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulApp.swift; sourceTree = "<group>"; };
 		BDD6ACC92C1A07A200B9A85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */,
 				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
 				BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */,
+				BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */,
 			);
 			path = thoughtful;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
 				BDD6ACF42C1A095200B9A85A /* ThoughtView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
+				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
 				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,
 				BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */,

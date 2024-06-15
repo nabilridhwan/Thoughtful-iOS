@@ -9,13 +9,15 @@ import SwiftUI
 
 let emotionColors: [Emotion: Color] = [
     .scared: Color.purple,
-    .sad: Color.blue,
+    .sad: Color.indigo,
     .angry: Color.red,
-    .embarassed: Color.pink,
+    .embarassed: Color.orange,
     .neutral: Color.gray,
-    .playful: Color.orange,
-    .loved: Color.red,
-    .happy: Color.yellow,
+    .playful: Color.yellow,
+    .loved: Color.pink,
+    .happy: Color.green,
+    .excited: Color.blue,
+    .grateful: Color.purple,
 ]
 
 struct ThoughtView: View {

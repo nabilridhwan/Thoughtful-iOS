@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ToolbarView: View {
-    @Binding var emotion: Emotion?
+    @Binding var emotion: Emotion?;
+    @Binding var showEmotionModal: Bool;
     @FocusState var focusedField: Field?
     @Binding var prompt: String;
     
@@ -35,27 +36,16 @@ struct ToolbarView: View {
 //            }
 //            .frame(maxWidth: .infinity)
             
-            Menu{
-                ForEach(Emotion.allCases, id: \Emotion.hashValue){
-                    e in
-                    Button{
-                        handleAddEmotion(e)
-                    }label: {
-                        if e == emotion {
-                            Label(e.description.capitalized, systemImage: "checkmark")
-                        }else{
-                            Text(e.description.capitalized)
-                        }
-                    }
-                }
-                
+            
+            Button {
+                showEmotionModal = true
             } label: {
                 Label("Emotion", systemImage: "face.smiling")
                     .labelStyle(.iconOnly)
                     .foregroundStyle(.white.opacity(emotionExists ? 1.0 : 0.5))
             }
-            .frame(maxWidth: .infinity)
-            
+                .frame(maxWidth: .infinity)
+
             Button{
                 print("Open Camera")
             }   label: {
@@ -79,16 +69,16 @@ struct ToolbarView: View {
 
 
 extension ToolbarView {
-    func handleAddEmotion(_ e: Emotion){
-        
-        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
-        if(emotion == e){
-            emotion = nil;
-            return;
-        }
-        //        set the emotion 'binding' to the value passed
-        emotion = e
-    }
+//    func handleAddEmotion(_ e: Emotion){
+//        
+//        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
+//        if(emotion == e){
+//            emotion = nil;
+//            return;
+//        }
+//        //        set the emotion 'binding' to the value passed
+//        emotion = e
+//    }
 }
 
 //#Preview {

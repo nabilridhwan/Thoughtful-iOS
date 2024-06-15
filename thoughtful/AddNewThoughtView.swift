@@ -17,8 +17,9 @@ struct AddNewThoughtView: View {
     @State private var response: String = "";
     @State var emotion: Emotion?
     
-    @State var showModal: Bool = false;
-    
+    @State var showPromptModal: Bool = false;
+    @State var showEmotionModal: Bool = false;
+
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?;
     
@@ -43,27 +44,10 @@ struct AddNewThoughtView: View {
                         }
                     }else{
                         Button{
-                            showModal = true
+                            showPromptModal = true
                         } label: {
                              Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
                         }
-                        
-//                        Menu {
-//                            ForEach(gratitudeQuestions, id: \.self) {
-//                                q in
-//                                Button{
-//                                    withAnimation{
-//                                        prompt = q
-//                                        focusedField = .response
-//                                    }
-//                                }label: {
-//                                    Text(q)
-//                                }
-//                            }
-//                            
-//                        }label: {
-//                            Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
-//                        }
                     }
                 }
                 .foregroundStyle(.white.opacity(0.5))
@@ -72,7 +56,6 @@ struct AddNewThoughtView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(.cardAttribute)
                 }
-                
                 
                 TextField("Type your reply...", text: $response, axis: .vertical)
                     .submitLabel(.done)
@@ -96,7 +79,7 @@ struct AddNewThoughtView: View {
                 //                    }
             }
             
-            .sheet(isPresented: $showModal){
+            .sheet(isPresented: $showPromptModal){
                 ZStack{
                     Color.background.ignoresSafeArea()
                     ChoosePromptView(prompt: $prompt)
@@ -104,9 +87,21 @@ struct AddNewThoughtView: View {
                     .presentationDetents([.medium])
                 }.ignoresSafeArea(edges: .bottom)
             }
+            .sheet(isPresented: $showEmotionModal){
+                ZStack{
+                    Color.background.ignoresSafeArea()
+                    ChooseEmotionView(
+                        emotion: $emotion
+                    )
+                    .padding()
+                    .presentationDetents([.medium])
+                }.ignoresSafeArea(edges: .bottom)
+            }
             
+            // Toolbar !
             ToolbarView(
                 emotion: $emotion,
+                showEmotionModal: $showEmotionModal,
                 focusedField: _focusedField,
                 prompt: $prompt
             )

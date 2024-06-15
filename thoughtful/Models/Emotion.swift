@@ -16,6 +16,8 @@ enum Emotion: Codable, CaseIterable {
     case playful
     case loved
     case happy
+    case excited
+    case grateful
     
     var description: String {
         switch self {
@@ -27,6 +29,8 @@ enum Emotion: Codable, CaseIterable {
         case .playful: return "playful"
         case .loved: return "loved"
         case .happy: return "happy"
+        case .excited: return "excited"
+        case .grateful: return "grateful"
         }
     }
 }
