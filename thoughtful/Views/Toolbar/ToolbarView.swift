@@ -13,6 +13,8 @@ struct ToolbarView: View {
     @FocusState var focusedField: Field?
     @Binding var prompt: String;
     
+    let addEmotionTip = AddEmotionTip()
+    
     var emotionExists: Bool {
         emotion != nil
     }
@@ -41,12 +43,14 @@ struct ToolbarView: View {
                 withAnimation{
                     showEmotionModal = true
                 }
+                addEmotionTip.invalidate(reason: .actionPerformed)
             } label: {
                 Label("Emotion", systemImage: "face.smiling")
                     .labelStyle(.iconOnly)
                     .foregroundStyle(.white.opacity(emotionExists ? 1.0 : 0.5))
             }
                 .frame(maxWidth: .infinity)
+                .popoverTip(addEmotionTip)
 
             Button{
                 print("Open Camera")

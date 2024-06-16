@@ -9,14 +9,16 @@
 /* Begin PBXBuildFile section */
 		BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
+		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
+		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
+		BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
 		BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */; };
 		BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3670A2C1E85CE00B1BBE7 /* HomeView.swift */; };
 		BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3670C2C1E86FD00B1BBE7 /* SettingsView.swift */; };
 		BDD367162C1E934B00B1BBE7 /* GratitudeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367152C1E934B00B1BBE7 /* GratitudeQuestions.swift */; };
-		BDD367212C1E961000B1BBE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
-		BDD367232C1E961000B1BBE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BDD367262C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367252C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift */; };
 		BDD367282C1E961000B1BBE7 /* ThoughtfulWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367272C1E961000B1BBE7 /* ThoughtfulWidget.swift */; };
 		BDD3672A2C1E961200B1BBE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD367292C1E961200B1BBE7 /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
+		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
+		BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmotionTip.swift; sourceTree = "<group>"; };
 		BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePromptView.swift; sourceTree = "<group>"; };
 		BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseEmotionView.swift; sourceTree = "<group>"; };
@@ -116,8 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDD367232C1E961000B1BBE7 /* SwiftUI.framework in Frameworks */,
-				BDD367212C1E961000B1BBE7 /* WidgetKit.framework in Frameworks */,
+				BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */,
+				BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BDA72AA62C1F42A800856810 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */,
+				BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */,
+			);
+			path = Tips;
+			sourceTree = "<group>";
+		};
 		BDD3670E2C1E926300B1BBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,13 +224,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		BDD367172C1E93AD00B1BBE7 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		BDD3671F2C1E961000B1BBE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +271,7 @@
 		BDD6ACC62C1A07A200B9A85A /* thoughtful */ = {
 			isa = PBXGroup;
 			children = (
-				BDD367172C1E93AD00B1BBE7 /* Widgets */,
+				BDA72AA62C1F42A800856810 /* Tips */,
 				BDD3670E2C1E926300B1BBE7 /* Views */,
 				BDE843AD2C1D98800046C2A4 /* Models */,
 				BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */,
@@ -484,6 +490,7 @@
 			files = (
 				BDD6ACF22C1A07BC00B9A85A /* Thought.swift in Sources */,
 				BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */,
+				BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */,
 				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
@@ -495,6 +502,7 @@
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
 				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
+				BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */,
 				BDD367162C1E934B00B1BBE7 /* GratitudeQuestions.swift in Sources */,
 				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,
 				BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */,
@@ -729,8 +737,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -760,8 +768,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

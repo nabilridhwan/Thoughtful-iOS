@@ -12,6 +12,17 @@ struct ChooseEmotionView: View {
     @Binding var emotion: Emotion?;
     @Environment(\.dismiss) var dismiss;
     
+    func handleAddEmotion(_ e: Emotion){
+        
+        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
+        if(emotion == e){
+            emotion = nil;
+            return;
+        }
+        //        set the emotion 'binding' to the value passed
+        emotion = e
+    }
+    
     var body: some View {
         VStack(alignment: .leading){
             Text("Choose an Emotion")
@@ -22,7 +33,7 @@ struct ChooseEmotionView: View {
                 ForEach(Emotion.allCases, id: \.self){
                     e in
                     Button{
-                        emotion = e
+                        handleAddEmotion(e)
                         dismiss()
                     }label: {
                         if e == emotion {

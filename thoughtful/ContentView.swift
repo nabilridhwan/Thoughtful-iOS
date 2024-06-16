@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     var body: some View {
@@ -30,4 +31,10 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .modelContainer(SampleData.shared.modelContainer)
+        .preferredColorScheme(.dark)
+        .task {
+            try? Tips.configure([
+                .datastoreLocation(.applicationDefault)
+            ])
+        }
 }

@@ -9,14 +9,14 @@ import SwiftUI
 
 struct AddNewThoughtView: View {
     
+    @Binding var prompt: String;
     @Binding var date: Date;
-    
+
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
     
     //    Form fields
-    @State private var prompt: String = "";
     @State private var response: String = "";
     @State var emotion: Emotion?
     
@@ -33,38 +33,41 @@ struct AddNewThoughtView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            Text("Add Thought")
-                .font(.title)
-                .bold()
+//            Text("Add Thought")
+//                .font(.title)
+//                .bold()
             
             // Form
-            VStack{
-                HStack{
-                    TextField("Type your prompt here...", text: $prompt)
-                        .focused($focusedField, equals: .prompt)
-                        .submitLabel(.next)
-                        .lineLimit(2)
-                    
-                    if !prompt.isEmpty {
-                        Button{
-                            prompt = ""
-                        }label: {
-                            Label("Select", systemImage: "multiply.circle.fill").labelStyle(.iconOnly)
-                        }
-                    }else{
-                        Button{
-                            showPromptModal = true
-                        } label: {
-                            Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
-                        }
-                    }
-                }
-                .foregroundStyle(.white.opacity(0.5))
-                .padding()
-                .background{
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundStyle(.cardAttribute)
-                }
+            VStack(alignment: .leading){
+                Text(prompt)
+                    .font(.title3)
+                    .bold()
+//                HStack{
+//                    TextField("Type your prompt here...", text: $prompt)
+//                        .focused($focusedField, equals: .prompt)
+//                        .submitLabel(.next)
+//                        .lineLimit(2)
+//                    
+//                    if !prompt.isEmpty {
+//                        Button{
+//                            prompt = ""
+//                        }label: {
+//                            Label("Select", systemImage: "multiply.circle.fill").labelStyle(.iconOnly)
+//                        }
+//                    }else{
+//                        Button{
+//                            showPromptModal = true
+//                        } label: {
+//                            Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
+//                        }
+//                    }
+//                }
+//                .foregroundStyle(.white.opacity(0.5))
+//                .padding()
+//                .background{
+//                    RoundedRectangle(cornerRadius: 20)
+//                        .foregroundStyle(.cardAttribute)
+//                }
                 
                 TextField("Type your reply...", text: $response, axis: .vertical)
                     .submitLabel(.done)
@@ -123,7 +126,6 @@ struct AddNewThoughtView: View {
             
             Spacer()
         }
-        .padding()
         .toolbar{
             
             ToolbarItem(placement: .topBarLeading){
@@ -141,7 +143,6 @@ struct AddNewThoughtView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundStyle(.white)
         .background(Color.background)
-        
         .onAppear{
             focusedField = .prompt
         }

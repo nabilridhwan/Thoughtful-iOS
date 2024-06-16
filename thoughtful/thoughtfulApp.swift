@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct thoughtfulApp: App {
@@ -28,6 +29,11 @@ struct thoughtfulApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
+                .task {
+                    try? Tips.configure([
+                        .datastoreLocation(.applicationDefault)
+                    ])
+                }
         }
     }
 }

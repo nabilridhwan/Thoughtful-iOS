@@ -39,6 +39,8 @@ struct HomeView: View {
     
     @State var emotion: Emotion?
     
+    let addThoughtTip = AddThoughtTip()
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -52,10 +54,13 @@ struct HomeView: View {
                     withAnimation{
                         isPresented.toggle()
                     }
+                    
+                    addThoughtTip.invalidate(reason: .actionPerformed)
+                    
                 }label: {
                     Label("Add Thought", systemImage: "plus")
                         .labelStyle(.iconOnly)
-                }
+                }.popoverTip(addThoughtTip)
             }
             
             HorizontalCalendarView(selectedDate: $filteredDate)
@@ -114,9 +119,12 @@ struct HomeView: View {
             NavigationStack{
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
-                    AddNewThoughtView(
-                        date: $filteredDate
-                    )
+                    ChoosePromptView(
+                        prompt: $prompt
+                    ).padding()
+//                    AddNewThoughtView(
+//                        date: $filteredDate
+//                    )
                 }
                 
             }

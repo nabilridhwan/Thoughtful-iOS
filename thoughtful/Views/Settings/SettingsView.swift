@@ -41,50 +41,58 @@ struct SettingsView: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
-            Form {
+        VStack(alignment: .leading, spacing: 20){
+            Text("Settings")
+                .fontWeight(.bold)
+                .font(.largeTitle)
+            
+            Section(header: Text("About You")){
+                TextField("Name", text: $name)
+            }
+            
+            Section(header: Text("Reminders"), footer: Text(displayReminderString())){
+                Toggle("Enable Reminders", isOn: $isRemindersEnabled)
                 
-                Section(header: Text("About You")){
-                    TextField("Name", text: $name)
-                }
-                
-                Section(header: Text("Reminders"), footer: Text(displayReminderString())){
-                    Toggle("Enable Reminders", isOn: $isRemindersEnabled)
+                if isRemindersEnabled {
                     
-                    if isRemindersEnabled {
-                        
-                        
-                        HStack(alignment: .center){
-                            ForEach(Day.allCases, id: \.self) { day in
-                                Text(String(day.rawValue.first!))
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .frame(width: 30, height: 30)
-                                    .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
-                                    .onTapGesture {
-                                        withAnimation{
-                                            
-                                            if selectedDays.contains(day) {
-                                                selectedDays.removeAll(where: {$0 == day})
-                                            } else {
-                                                selectedDays.append(day)
-                                            }
-                                            
+                    
+                    HStack(alignment: .center){
+                        ForEach(Day.allCases, id: \.self) { day in
+                            Text(String(day.rawValue.first!))
+                                .bold()
+                                .foregroundColor(.white)
+                                .frame(width: 30, height: 30)
+                                .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
+                                .onTapGesture {
+                                    withAnimation{
+                                        
+                                        if selectedDays.contains(day) {
+                                            selectedDays.removeAll(where: {$0 == day})
+                                        } else {
+                                            selectedDays.append(day)
                                         }
+                                        
                                     }
-                            }
-                            
+                                }
                         }
                         
-                        DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
-                            .onAppear{
-                                UIDatePicker.appearance().minuteInterval = 15
-                                
-                            }
                     }
+                    
+                    DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
+                        .onAppear{
+                            UIDatePicker.appearance().minuteInterval = 15
+                            
+                        }
                 }
             }
+            
+            Spacer()
+            
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .foregroundStyle(.white)
+        .background(Color.background)
     }
 }
 
