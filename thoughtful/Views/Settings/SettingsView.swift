@@ -84,11 +84,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundStyle(.white)
-        .background(Color.background)
     }
 }
 

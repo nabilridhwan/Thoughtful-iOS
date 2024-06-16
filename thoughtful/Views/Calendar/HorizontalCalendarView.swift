@@ -39,6 +39,8 @@ func isToday(_ date1: Date, _ date2: Date) -> Bool {
 struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date;
     
+    @Namespace var rectNs;
+    
     var body: some View {
         ZStack{
             HStack{
@@ -54,17 +56,17 @@ struct HorizontalCalendarView: View {
                                 RoundedRectangle(cornerRadius: 24)
                                     .frame(width: 55, height: 74)
                                     .foregroundStyle(.cardAttribute)
-                                
+                                    .matchedGeometryEffect(id: "Rect", in: rectNs)
                             }
                             
                             
-//                            if isToday(date, Date()){
-//                                RoundedRectangle(cornerRadius: 24)
-//                                    .position(x:4, y:-25)
-//                                    .frame(width: 5, height: 5)
-//                                    .foregroundStyle(.white)
-//                                
-//                            }
+                            //                            if isToday(date, Date()){
+                            //                                RoundedRectangle(cornerRadius: 24)
+                            //                                    .position(x:4, y:-25)
+                            //                                    .frame(width: 5, height: 5)
+                            //                                    .foregroundStyle(.white)
+                            //
+                            //                            }
                             
                             VStack{
                                 Text("\(getDayOfWeekFromDate(date: date))")

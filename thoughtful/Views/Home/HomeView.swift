@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Charts
 
 enum Field {
     case prompt;
@@ -56,8 +57,6 @@ struct HomeView: View {
                         .labelStyle(.iconOnly)
                 }
             }
-            
-            //            Text(filteredDate.formatted(.relative(presentation: .named)))
             
             HorizontalCalendarView(selectedDate: $filteredDate)
                 .padding(.vertical, 10)
