@@ -9,24 +9,27 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+    
+    @State var person: String = "3";
+    
+    func placeholder(in context: Context) -> ThoughtfulWidgetEntry {
+        ThoughtfulWidgetEntry(date: Date())
     }
     
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+    func getSnapshot(in context: Context, completion: @escaping (ThoughtfulWidgetEntry) -> ()) {
+        let entry = ThoughtfulWidgetEntry(date: Date())
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
-        let entries: [SimpleEntry] = [SimpleEntry(date: currentDate)]
+        let entries: [ThoughtfulWidgetEntry] = [ThoughtfulWidgetEntry(date: currentDate)]
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ThoughtfulWidgetEntry: TimelineEntry {
     var date: Date
 }
 
@@ -39,20 +42,30 @@ struct ThoughtfulWidgetEntryView : View {
             Image(systemName: "plus.circle.fill")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .foregroundStyle(.tint)
+                .foregroundStyle(.black)
             
             Text("Add Thought")
+                .font(.headline)
                 .bold()
             Text("Be grateful for today!")
                 .foregroundStyle(.secondary)
             
-            //            Text(entry.date, style: .time)
+            Spacer()
             
-            //            Text("Emoji:")
-            //            Text(entry.emoji)
-            
+            HStack {
+                
+                Text("Today's thoughts")
+                    .font(.caption2)
+                    .bold()
+                
+                Spacer()
+                
+                Text("3")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .bold()
+            }
         }
-        //            .widgetURL(URL(string: "com.nabilridhwan.thoughtful://add"))
         .widgetURL(URL(string: "thoughtful://add"))
     }
 }
@@ -64,20 +77,25 @@ struct ThoughtfulWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 ThoughtfulWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .containerBackground(for: .widget){
+                        LinearGradient(gradient: Gradient(colors: [.accent, .accent.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
+                        
+                    }
+                    .foregroundStyle(.black)
             } else {
                 ThoughtfulWidgetEntryView(entry: entry)
                     .padding()
-                    .background()
+                    .background(.accent)
+                    .foregroundStyle(.black)
             }
         }
         .configurationDisplayName("Add Thought")
-        .description("A widget to add thought from your home screen!")
+        .description("A widget to add a Thought from your home screen!")
     }
 }
 
 #Preview(as: .systemSmall) {
     ThoughtfulWidget()
 } timeline: {
-    SimpleEntry(date: .now)
+    ThoughtfulWidgetEntry(date: .now)
 }
