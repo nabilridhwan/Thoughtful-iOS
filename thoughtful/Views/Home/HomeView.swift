@@ -18,6 +18,8 @@ struct HomeView: View {
     @Environment(\.modelContext) private var context: ModelContext;
     @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
     
+    @State var filteredThoughts: [Thought] = []
+    
     @State var filteredDate: Date = Date.now;
     
     //    Present modal on pressing "Add Thought"
@@ -50,17 +52,18 @@ struct HomeView: View {
                         isPresented.toggle()
                     }
                 }label: {
-                    Label("Add Thought", systemImage: "plus.circle")
+                    Label("Add Thought", systemImage: "plus")
+                        .labelStyle(.iconOnly)
                 }
             }
             
-            //                Text(filteredDate.formatted(.relative(presentation: .named)))
+            //            Text(filteredDate.formatted(.relative(presentation: .named)))
             
             HorizontalCalendarView(selectedDate: $filteredDate)
                 .padding(.vertical, 10)
             
             ScrollView{
-                if(thoughts.isEmpty){
+                if(filteredThoughts.isEmpty){
                     VStack{
                         EmptyThoughtsView()
                             .padding(.horizontal, 40)
@@ -68,7 +71,7 @@ struct HomeView: View {
                             .padding(.bottom, 20)
                     }
                 }else{
-                    ForEach(thoughts){ thought in
+                    ForEach(filteredThoughts){ thought in
                         NavigationLink{
                             ThoughtDetailView(thought: thought)
                         }label:{
@@ -120,7 +123,44 @@ struct HomeView: View {
         }
         .foregroundStyle(.white)
         .background(Color.background)
+        .onAppear{
+            // Filter the thoughts
+            let filtered = thoughts.filter{
+                Calendar.current.compare($0.date_created, to: Date.now, toGranularity: .day) == .orderedSame
+            }
+            
+            withAnimation{
+                filteredThoughts = filtered
+            }
+        }
+        
+        .onChange(of: thoughts, { oldValue, newValue in
+            
+            print("Thoughts changed")
+            // Filter the thoughts
+            let filtered = thoughts.filter{
+                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
+            }
+            
+            withAnimation{
+                filteredThoughts = filtered
+            }
+        })
+        
+        .onChange(of: filteredDate, { oldValue, newValue in
+            
+            print("Filtered date changed")
+            // Filter the thoughts
+            let filtered = thoughts.filter{
+                Calendar.current.compare($0.date_created, to: newValue, toGranularity: .day) == .orderedSame
+            }
+            
+            withAnimation{
+                filteredThoughts = filtered
+            }
+        })
         .onOpenURL { url in
+#warning("Any deeplink to the app will open the Add Thought modal")
             
             if url != nil {
                 isPresented = true
