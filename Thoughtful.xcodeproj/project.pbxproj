@@ -108,11 +108,73 @@
 			path = ThoughtView;
 			sourceTree = "<group>";
 		};
-		BDD6ACBB2C1A07A200B9A85A = {
+		BDD3670E2C1E926300B1BBE7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDD367142C1E929700B1BBE7 /* Home */,
+				BDD367132C1E929200B1BBE7 /* Settings */,
+				BDD367122C1E928E00B1BBE7 /* Toolbar */,
+				BDD367112C1E928700B1BBE7 /* Prompts */,
+				BDD367102C1E927D00B1BBE7 /* Calendar */,
+				BDD3670F2C1E927800B1BBE7 /* Thoughts */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BDD3670F2C1E927800B1BBE7 /* Thoughts */ = {
+			isa = PBXGroup;
+			children = (
+				BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */,
+				BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */,
+				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
+			);
+			path = Thoughts;
+			sourceTree = "<group>";
+		};
+		BDD367102C1E927D00B1BBE7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		BDD367112C1E928700B1BBE7 /* Prompts */ = {
+			isa = PBXGroup;
+			children = (
+				BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */,
+				BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */,
+			);
+			path = Prompts;
+			sourceTree = "<group>";
+		};
+		BDD367122C1E928E00B1BBE7 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		BDD367132C1E929200B1BBE7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				BDD3670C2C1E86FD00B1BBE7 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BDD367142C1E929700B1BBE7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
 				BDD3670A2C1E85CE00B1BBE7 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BDD6ACBB2C1A07A200B9A85A = {
+			isa = PBXGroup;
+			children = (
 				BDD6ACC62C1A07A200B9A85A /* thoughtful */,
 				BDD6ACD72C1A07A300B9A85A /* thoughtfulTests */,
 				BDD6ACE12C1A07A300B9A85A /* thoughtfulUITests */,
@@ -133,20 +195,13 @@
 		BDD6ACC62C1A07A200B9A85A /* thoughtful */ = {
 			isa = PBXGroup;
 			children = (
+				BDD3670E2C1E926300B1BBE7 /* Views */,
 				BDE843AD2C1D98800046C2A4 /* Models */,
 				BD0B9B932C1B06CE00C811E8 /* ThoughtView */,
 				BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */,
 				BDD6ACC92C1A07A200B9A85A /* ContentView.swift */,
 				BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */,
 				BDD6ACCD2C1A07A300B9A85A /* Preview Content */,
-				BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */,
-				BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */,
-				BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */,
-				BDE843AB2C1D7D750046C2A4 /* SampleData.swift */,
-				BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */,
-				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
-				BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */,
-				BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */,
 			);
 			path = thoughtful;
 			sourceTree = "<group>";
@@ -179,6 +234,7 @@
 		BDE843AD2C1D98800046C2A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BDE843AB2C1D7D750046C2A4 /* SampleData.swift */,
 				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
 				BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */,
 			);
