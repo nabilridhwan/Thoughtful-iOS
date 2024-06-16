@@ -8,6 +8,11 @@
 import SwiftUI
 import SwiftData
 
+enum Field {
+    case prompt;
+    case response;
+}
+
 struct HomeView: View {
     
     @Environment(\.modelContext) private var context: ModelContext;
