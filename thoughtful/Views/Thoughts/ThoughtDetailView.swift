@@ -45,7 +45,7 @@ struct ThoughtDetailView: View {
                         .font(.caption2)
                         .foregroundStyle(.white.opacity(0.5))
                     
-                    ThoughtAttributeView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
+                    ThoughtCardAttrbuteView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
                 }
                 
                 Text("Created")

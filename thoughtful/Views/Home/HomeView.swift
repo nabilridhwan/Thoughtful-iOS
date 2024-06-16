@@ -72,7 +72,7 @@ struct HomeView: View {
                             NavigationLink{
                                 ThoughtDetailView(thought: thought)
                             }label:{
-                                ThoughtView(thought: thought)
+                                ThoughtCardView(thought: thought)
                             }
                             
                         }

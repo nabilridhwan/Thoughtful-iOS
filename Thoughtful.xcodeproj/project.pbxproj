@@ -167,6 +167,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		BDD367172C1E93AD00B1BBE7 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		BDD6ACBB2C1A07A200B9A85A = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +197,7 @@
 		BDD6ACC62C1A07A200B9A85A /* thoughtful */ = {
 			isa = PBXGroup;
 			children = (
+				BDD367172C1E93AD00B1BBE7 /* Widgets */,
 				BDD3670E2C1E926300B1BBE7 /* Views */,
 				BDE843AD2C1D98800046C2A4 /* Models */,
 				BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */,

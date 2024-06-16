@@ -1,5 +1,5 @@
 //
-//  ThoughtView.swift
+//  ThoughtCardView.swift
 //  thoughtful
 //
 //  Created by Nabil Ridhwan on 13/6/24.
