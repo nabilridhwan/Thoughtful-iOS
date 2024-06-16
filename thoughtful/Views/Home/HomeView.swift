@@ -37,96 +37,96 @@ struct HomeView: View {
     @State var emotion: Emotion?
     
     var body: some View {
-            VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
+            
+            HStack{
+                Text("Home")
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                Spacer()
                 
-                HStack{
-                    Text("Home")
-                        .fontWeight(.bold)
-                        .font(.largeTitle)
-                    Spacer()
-                    
-                    Button{
-                        withAnimation{
-                            isPresented.toggle()
-                        }
-                    }label: {
-                        Label("Add Thought", systemImage: "plus.circle")
+                Button{
+                    withAnimation{
+                        isPresented.toggle()
                     }
+                }label: {
+                    Label("Add Thought", systemImage: "plus.circle")
                 }
-                
-                //                Text(filteredDate.formatted(.relative(presentation: .named)))
-                
-                //                HorizontalCalendarView(selectedDate: $filteredDate)
-                //                    .padding(.vertical, 10)
-                
-                ScrollView{
-                    if(thoughts.isEmpty){
-                        VStack{
-                            EmptyThoughtsView()
-                                .padding(.horizontal, 40)
-                                .padding(.top, 80)
-                                .padding(.bottom, 20)
-                        }
-                    }else{
-                        ForEach(thoughts){ thought in
-                            NavigationLink{
-                                ThoughtDetailView(thought: thought)
-                            }label:{
-                                ThoughtCardView(thought: thought)
-                            }
-                            
+            }
+            
+            //                Text(filteredDate.formatted(.relative(presentation: .named)))
+            
+            HorizontalCalendarView(selectedDate: $filteredDate)
+                .padding(.vertical, 10)
+            
+            ScrollView{
+                if(thoughts.isEmpty){
+                    VStack{
+                        EmptyThoughtsView()
+                            .padding(.horizontal, 40)
+                            .padding(.top, 80)
+                            .padding(.bottom, 20)
+                    }
+                }else{
+                    ForEach(thoughts){ thought in
+                        NavigationLink{
+                            ThoughtDetailView(thought: thought)
+                        }label:{
+                            ThoughtCardView(thought: thought)
                         }
                         
                     }
-                }
-                .scrollDismissesKeyboard(.interactively)
-                
-                Spacer()
-            }
-            //            .toolbar{
-            //                ToolbarItem(placement: .confirmationAction){
-            //                    Button("Add"){
-            //                        print("Add pressed")
-            //                    }
-            //                }
-            //            }
-            .onChange(of: isFormActive, { oldValue, newValue in
-                print("isFormActive changed \(isFormActive)")
-            })
-            .onChange(of: focusedField, { oldValue, newValue in
-                withAnimation(.easeOut(duration: 0.3)){
-                    if(newValue == nil){
-                        isFormActive = false
-                    }else{
-                        isFormActive = true
-                    }
-                }
-                print("focusedField changed:")
-                print(newValue != nil ? newValue! : "nil")
-            })
-            .padding()
-            .ignoresSafeArea(.all, edges: .bottom)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .sheet(isPresented: $isPresented){
-                NavigationStack{
-                    
-                    ZStack {
-                        Color.background.edgesIgnoringSafeArea(.all)
-                        AddNewThoughtView()
-                    }
                     
                 }
-                .presentationDetents([.medium])
             }
-            .foregroundStyle(.white)
-            .background(Color.background)
-            .onOpenURL { url in
-                
-                if url != nil {
-                    isPresented = true
+            .scrollDismissesKeyboard(.interactively)
+            
+            Spacer()
+        }
+        //            .toolbar{
+        //                ToolbarItem(placement: .confirmationAction){
+        //                    Button("Add"){
+        //                        print("Add pressed")
+        //                    }
+        //                }
+        //            }
+        .onChange(of: isFormActive, { oldValue, newValue in
+            print("isFormActive changed \(isFormActive)")
+        })
+        .onChange(of: focusedField, { oldValue, newValue in
+            withAnimation(.easeOut(duration: 0.3)){
+                if(newValue == nil){
+                    isFormActive = false
+                }else{
+                    isFormActive = true
                 }
-                print("Received deeplink \(url) \(url.lastPathComponent)")
             }
+            print("focusedField changed:")
+            print(newValue != nil ? newValue! : "nil")
+        })
+        .padding()
+        .ignoresSafeArea(.all, edges: .bottom)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $isPresented){
+            NavigationStack{
+                
+                ZStack {
+                    Color.background.edgesIgnoringSafeArea(.all)
+                    AddNewThoughtView()
+                }
+                
+            }
+            .presentationDetents([.medium])
+        }
+        .foregroundStyle(.white)
+        .background(Color.background)
+        .onOpenURL { url in
+            
+            if url != nil {
+                isPresented = true
+            }
+            print("Received deeplink \(url) \(url.lastPathComponent)")
+        }
         
         
     }

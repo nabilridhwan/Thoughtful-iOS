@@ -38,7 +38,7 @@ func isToday(_ date1: Date, _ date2: Date) -> Bool {
 
 struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date;
-
+    
     var body: some View {
         ZStack{
             HStack{
@@ -49,16 +49,24 @@ struct HorizontalCalendarView: View {
                             selectedDate = date;
                         }
                     } label: {
-                      VStack{
-                        Text("\(getDayOfWeekFromDate(date: date))")
-                              .font(.headline)
-                              .bold(false)
-                          
-                        Text("\(getDayFromDate(date: date))")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                    }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .foregroundStyle(.white.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
+                        ZStack {
+                            if isToday(selectedDate, date) {
+                                RoundedRectangle(cornerRadius: 24)
+                                    .frame(width: 55, height: 72)
+                                .foregroundStyle(.cardAttribute)
+                                
+                            }
+
+                            VStack{
+                                Text("\(getDayOfWeekFromDate(date: date))")
+                                
+                                Text("\(getDayFromDate(date: date))")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                
+                            }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                .foregroundStyle(.white.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
+                        }
                     }
                     
                 }
