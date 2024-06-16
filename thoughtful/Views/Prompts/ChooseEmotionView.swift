@@ -19,7 +19,7 @@ struct ChooseEmotionView: View {
                 .bold()
             
             ScrollView{
-                ForEach(Emotion.allCases, id: \Emotion.hashValue){
+                ForEach(Emotion.allCases, id: \.self){
                     e in
                     Button{
                         emotion = e
@@ -34,9 +34,7 @@ struct ChooseEmotionView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(.black.opacity(0.7))
-                    .background(emotionColors[e]!, in: RoundedRectangle(cornerRadius: 24)
-                        
-                    )
+                    .background(emotionColors[e]!, in: RoundedRectangle(cornerRadius: 24))
                 }
             }
             

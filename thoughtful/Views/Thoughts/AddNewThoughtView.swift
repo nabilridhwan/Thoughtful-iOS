@@ -33,6 +33,7 @@ struct AddNewThoughtView: View {
             VStack{
                 HStack{
                     TextField("Type your prompt here...", text: $prompt)
+                        .focused($focusedField, equals: .prompt)
                         .submitLabel(.next)
                         .lineLimit(2)
                     
@@ -128,6 +129,10 @@ struct AddNewThoughtView: View {
         .foregroundStyle(.white)
         .background(Color.background)
         
+        .onAppear{
+            focusedField = .prompt
+        }
+
     }
 }
 

@@ -11,12 +11,12 @@ import SwiftData
 @main
 struct thoughtfulApp: App {
     
-        var sharedModelContainer: ModelContainer = {
+    var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Thought.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {

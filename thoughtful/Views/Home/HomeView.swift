@@ -120,6 +120,13 @@ struct HomeView: View {
             }
             .foregroundStyle(.white)
             .background(Color.background)
+            .onOpenURL { url in
+                
+                if url != nil {
+                    isPresented = true
+                }
+                print("Received deeplink \(url) \(url.lastPathComponent)")
+            }
         
         
     }

@@ -15,6 +15,12 @@
 		BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3670A2C1E85CE00B1BBE7 /* HomeView.swift */; };
 		BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3670C2C1E86FD00B1BBE7 /* SettingsView.swift */; };
 		BDD367162C1E934B00B1BBE7 /* GratitudeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367152C1E934B00B1BBE7 /* GratitudeQuestions.swift */; };
+		BDD367212C1E961000B1BBE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BDD367232C1E961000B1BBE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
+		BDD367262C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367252C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift */; };
+		BDD367282C1E961000B1BBE7 /* ThoughtfulWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD367272C1E961000B1BBE7 /* ThoughtfulWidget.swift */; };
+		BDD3672A2C1E961200B1BBE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD367292C1E961200B1BBE7 /* Assets.xcassets */; };
+		BDD3672E2C1E961200B1BBE7 /* ThoughtfulWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BDD3671E2C1E961000B1BBE7 /* ThoughtfulWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BDD6ACC82C1A07A200B9A85A /* thoughtfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */; };
 		BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACC92C1A07A200B9A85A /* ContentView.swift */; };
 		BDD6ACCC2C1A07A300B9A85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */; };
@@ -32,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BDD3672C2C1E961200B1BBE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDD6ACBC2C1A07A200B9A85A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDD3671D2C1E961000B1BBE7;
+			remoteInfo = ThoughtfulWidgetExtension;
+		};
 		BDD6ACD52C1A07A300B9A85A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BDD6ACBC2C1A07A200B9A85A /* Project object */;
@@ -48,6 +61,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BDD3672F2C1E961200B1BBE7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BDD3672E2C1E961200B1BBE7 /* ThoughtfulWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
@@ -57,6 +84,14 @@
 		BDD3670A2C1E85CE00B1BBE7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BDD3670C2C1E86FD00B1BBE7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BDD367152C1E934B00B1BBE7 /* GratitudeQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GratitudeQuestions.swift; sourceTree = "<group>"; };
+		BDD3671E2C1E961000B1BBE7 /* ThoughtfulWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ThoughtfulWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDD367202C1E961000B1BBE7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BDD367222C1E961000B1BBE7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BDD367252C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtfulWidgetBundle.swift; sourceTree = "<group>"; };
+		BDD367272C1E961000B1BBE7 /* ThoughtfulWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtfulWidget.swift; sourceTree = "<group>"; };
+		BDD367292C1E961200B1BBE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BDD3672B2C1E961200B1BBE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDD367332C1EA63600B1BBE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Thoughtful/Info.plist; sourceTree = "<group>"; };
 		BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thoughtful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulApp.swift; sourceTree = "<group>"; };
 		BDD6ACC92C1A07A200B9A85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +112,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BDD3671B2C1E961000B1BBE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD367232C1E961000B1BBE7 /* SwiftUI.framework in Frameworks */,
+				BDD367212C1E961000B1BBE7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDD6ACC12C1A07A200B9A85A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,12 +218,35 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		BDD3671F2C1E961000B1BBE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDD367202C1E961000B1BBE7 /* WidgetKit.framework */,
+				BDD367222C1E961000B1BBE7 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDD367242C1E961000B1BBE7 /* ThoughtfulWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BDD367252C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift */,
+				BDD367272C1E961000B1BBE7 /* ThoughtfulWidget.swift */,
+				BDD367292C1E961200B1BBE7 /* Assets.xcassets */,
+				BDD3672B2C1E961200B1BBE7 /* Info.plist */,
+			);
+			path = ThoughtfulWidget;
+			sourceTree = "<group>";
+		};
 		BDD6ACBB2C1A07A200B9A85A = {
 			isa = PBXGroup;
 			children = (
+				BDD367332C1EA63600B1BBE7 /* Info.plist */,
 				BDD6ACC62C1A07A200B9A85A /* thoughtful */,
 				BDD6ACD72C1A07A300B9A85A /* thoughtfulTests */,
 				BDD6ACE12C1A07A300B9A85A /* thoughtfulUITests */,
+				BDD367242C1E961000B1BBE7 /* ThoughtfulWidget */,
+				BDD3671F2C1E961000B1BBE7 /* Frameworks */,
 				BDD6ACC52C1A07A200B9A85A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -190,6 +257,7 @@
 				BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */,
 				BDD6ACD42C1A07A300B9A85A /* ThoughtfulTests.xctest */,
 				BDD6ACDE2C1A07A300B9A85A /* ThoughtfulUITests.xctest */,
+				BDD3671E2C1E961000B1BBE7 /* ThoughtfulWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +315,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BDD3671D2C1E961000B1BBE7 /* ThoughtfulWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDD367322C1E961200B1BBE7 /* Build configuration list for PBXNativeTarget "ThoughtfulWidgetExtension" */;
+			buildPhases = (
+				BDD3671A2C1E961000B1BBE7 /* Sources */,
+				BDD3671B2C1E961000B1BBE7 /* Frameworks */,
+				BDD3671C2C1E961000B1BBE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ThoughtfulWidgetExtension;
+			productName = ThoughtfulWidgetExtension;
+			productReference = BDD3671E2C1E961000B1BBE7 /* ThoughtfulWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BDD6ACC32C1A07A200B9A85A /* Thoughtful */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDD6ACE82C1A07A300B9A85A /* Build configuration list for PBXNativeTarget "Thoughtful" */;
@@ -254,10 +339,12 @@
 				BDD6ACC02C1A07A200B9A85A /* Sources */,
 				BDD6ACC12C1A07A200B9A85A /* Frameworks */,
 				BDD6ACC22C1A07A200B9A85A /* Resources */,
+				BDD3672F2C1E961200B1BBE7 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BDD3672D2C1E961200B1BBE7 /* PBXTargetDependency */,
 			);
 			name = Thoughtful;
 			productName = thoughtful;
@@ -310,6 +397,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					BDD3671D2C1E961000B1BBE7 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					BDD6ACC32C1A07A200B9A85A = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -339,11 +429,20 @@
 				BDD6ACC32C1A07A200B9A85A /* Thoughtful */,
 				BDD6ACD32C1A07A300B9A85A /* ThoughtfulTests */,
 				BDD6ACDD2C1A07A300B9A85A /* ThoughtfulUITests */,
+				BDD3671D2C1E961000B1BBE7 /* ThoughtfulWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BDD3671C2C1E961000B1BBE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD3672A2C1E961200B1BBE7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDD6ACC22C1A07A200B9A85A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +469,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BDD3671A2C1E961000B1BBE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD367262C1E961000B1BBE7 /* ThoughtfulWidgetBundle.swift in Sources */,
+				BDD367282C1E961000B1BBE7 /* ThoughtfulWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDD6ACC02C1A07A200B9A85A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +522,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BDD3672D2C1E961200B1BBE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDD3671D2C1E961000B1BBE7 /* ThoughtfulWidgetExtension */;
+			targetProxy = BDD3672C2C1E961200B1BBE7 /* PBXContainerItemProxy */;
+		};
 		BDD6ACD62C1A07A300B9A85A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BDD6ACC32C1A07A200B9A85A /* Thoughtful */;
@@ -427,6 +540,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		BDD367302C1E961200B1BBE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WB66W4QJ7C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThoughtfulWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThoughtfulWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nabilridhwan.thoughtful.ThoughtfulWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BDD367312C1E961200B1BBE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WB66W4QJ7C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThoughtfulWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThoughtfulWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nabilridhwan.thoughtful.ThoughtfulWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BDD6ACE62C1A07A300B9A85A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -549,6 +716,7 @@
 		BDD6ACE92C1A07A300B9A85A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -557,6 +725,7 @@
 				DEVELOPMENT_TEAM = WB66W4QJ7C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thoughtful/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -578,6 +747,7 @@
 		BDD6ACEA2C1A07A300B9A85A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -586,6 +756,7 @@
 				DEVELOPMENT_TEAM = WB66W4QJ7C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thoughtful/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -683,6 +854,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BDD367322C1E961200B1BBE7 /* Build configuration list for PBXNativeTarget "ThoughtfulWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDD367302C1E961200B1BBE7 /* Debug */,
+				BDD367312C1E961200B1BBE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BDD6ACBF2C1A07A200B9A85A /* Build configuration list for PBXProject "Thoughtful" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
