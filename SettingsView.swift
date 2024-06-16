@@ -42,6 +42,11 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(alignment: .leading){
+            
+            Text("Settings")
+                .fontWeight(.bold)
+                .font(.largeTitle)
+            
             Form {
                 
                 Section(header: Text("About You")){
@@ -84,16 +89,17 @@ struct SettingsView: View {
                     }
                 }
             }
-            
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundStyle(.white)
-        .background(Color.background)
     }
 }
 
 
 
 #Preview {
-    SettingsView()
+    NavigationStack{
+        SettingsView()
+    }
 }

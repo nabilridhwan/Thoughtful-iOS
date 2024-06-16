@@ -35,6 +35,17 @@ struct ContentView: View {
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }
+                
+                HomeView()
+                    .tabItem {
+                        Label("Calendar", systemImage: "calendar")
+                    }
+                
+                HomeView()
+                    .tabItem {
+                        Label("Stats", systemImage: "chart.bar")
+                    }
+                
                 SettingsView()
                     .tabItem {
                         Label("Settings", systemImage: "gear")
