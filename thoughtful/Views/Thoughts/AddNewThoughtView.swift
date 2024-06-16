@@ -19,7 +19,7 @@ struct AddNewThoughtView: View {
     
     @State var showPromptModal: Bool = false;
     @State var showEmotionModal: Bool = false;
-
+    
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?;
     
@@ -28,7 +28,12 @@ struct AddNewThoughtView: View {
     }
     
     var body: some View {
-        VStack{
+        
+        VStack(alignment: .leading){
+            Text("Add Thought")
+                .font(.title)
+                .bold()
+            
             // Form
             VStack{
                 HStack{
@@ -47,7 +52,7 @@ struct AddNewThoughtView: View {
                         Button{
                             showPromptModal = true
                         } label: {
-                             Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
+                            Label("Select", systemImage: "wand.and.stars").labelStyle(.iconOnly)
                         }
                     }
                 }
@@ -84,8 +89,8 @@ struct AddNewThoughtView: View {
                 ZStack{
                     Color.background.ignoresSafeArea()
                     ChoosePromptView(prompt: $prompt)
-                    .padding()
-                    .presentationDetents([.medium])
+                        .padding()
+                        .presentationDetents([.medium])
                 }.ignoresSafeArea(edges: .bottom)
             }
             .sheet(isPresented: $showEmotionModal){
@@ -98,6 +103,11 @@ struct AddNewThoughtView: View {
                     .presentationDetents([.medium])
                 }.ignoresSafeArea(edges: .bottom)
             }
+            
+            if (emotion != nil) {
+                ThoughtCardAttrbuteView(icon: "smiley.fill", text: emotion!.description.capitalized, backgroundColor: emotionColors[emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[emotion!])
+            }
+            
             
             // Toolbar !
             ToolbarView(
@@ -132,8 +142,11 @@ struct AddNewThoughtView: View {
         .onAppear{
             focusedField = .prompt
         }
-
+        
     }
+    
+    
+    
 }
 
 extension AddNewThoughtView {
@@ -153,6 +166,8 @@ extension AddNewThoughtView {
 
 #Preview {
     NavigationStack{
+        
         AddNewThoughtView()
     }
+    
 }

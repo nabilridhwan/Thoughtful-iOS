@@ -52,11 +52,20 @@ struct HorizontalCalendarView: View {
                         ZStack {
                             if isToday(selectedDate, date) {
                                 RoundedRectangle(cornerRadius: 24)
-                                    .frame(width: 55, height: 72)
-                                .foregroundStyle(.cardAttribute)
+                                    .frame(width: 55, height: 74)
+                                    .foregroundStyle(.cardAttribute)
                                 
                             }
-
+                            
+                            
+//                            if isToday(date, Date()){
+//                                RoundedRectangle(cornerRadius: 24)
+//                                    .position(x:4, y:-25)
+//                                    .frame(width: 5, height: 5)
+//                                    .foregroundStyle(.white)
+//                                
+//                            }
+                            
                             VStack{
                                 Text("\(getDayOfWeekFromDate(date: date))")
                                 
@@ -64,10 +73,13 @@ struct HorizontalCalendarView: View {
                                     .font(.title3)
                                     .fontWeight(.bold)
                                 
-                            }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                            }.frame(maxWidth: .infinity)
                                 .foregroundStyle(.white.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
+                            
                         }
-                    }
+                    }.scaleEffect(
+                        isToday(selectedDate, date) ? 1.1 : 1.0
+                    )
                     
                 }
             }

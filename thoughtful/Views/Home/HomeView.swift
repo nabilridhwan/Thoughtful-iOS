@@ -61,6 +61,7 @@ struct HomeView: View {
             
             HorizontalCalendarView(selectedDate: $filteredDate)
                 .padding(.vertical, 10)
+                .padding(.bottom, 20)
             
             ScrollView{
                 if(filteredThoughts.isEmpty){
