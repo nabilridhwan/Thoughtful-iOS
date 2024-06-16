@@ -28,7 +28,21 @@ let gratitudeQuestions = [
 
 struct ContentView: View {
     var body: some View {
-        HomeView()
+        NavigationStack{
+            
+            TabView{
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+                
+            }
+            
+        }
     }
 }
 

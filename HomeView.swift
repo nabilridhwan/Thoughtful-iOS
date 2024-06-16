@@ -32,8 +32,6 @@ struct HomeView: View {
     @State var emotion: Emotion?
     
     var body: some View {
-        
-        NavigationStack {
             VStack(alignment: .leading) {
                 
                 HStack{
@@ -117,7 +115,7 @@ struct HomeView: View {
             }
             .foregroundStyle(.white)
             .background(Color.background)
-        }
+        
         
     }
 }
