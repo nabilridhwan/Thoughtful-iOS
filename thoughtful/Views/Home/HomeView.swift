@@ -112,10 +112,11 @@ struct HomeView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $isPresented){
             NavigationStack{
-                
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
-                    AddNewThoughtView()
+                    AddNewThoughtView(
+                        date: $filteredDate
+                    )
                 }
                 
             }

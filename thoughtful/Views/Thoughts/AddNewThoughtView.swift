@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddNewThoughtView: View {
+    
+    @Binding var date: Date;
+    
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
@@ -151,7 +154,7 @@ struct AddNewThoughtView: View {
 
 extension AddNewThoughtView {
     func handleAdd(){
-        let newThought = Thought(thought_prompt: prompt.localizedCapitalized, thought_response: response.localizedCapitalized, date_created:Date.now)
+        let newThought = Thought(thought_prompt: prompt.localizedCapitalized, thought_response: response.localizedCapitalized, date_created: date)
         
         if emotion != nil {
             newThought.emotion = emotion
@@ -164,10 +167,10 @@ extension AddNewThoughtView {
     }
 }
 
-#Preview {
-    NavigationStack{
-        
-        AddNewThoughtView()
-    }
-    
-}
+//#Preview {
+//    NavigationStack{
+//        
+//        AddNewThoughtView(date: $filteredDate)
+//    }
+//    
+//}
