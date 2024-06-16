@@ -60,8 +60,9 @@ struct ContentView: View {
                     Spacer()
                     
                     Button{
-                        print("Add pressed")
-                        isPresented.toggle()
+                        withAnimation{
+                            isPresented.toggle()
+                        }
                     }label: {
                         Label("Add Thought", systemImage: "plus.circle")
                     }

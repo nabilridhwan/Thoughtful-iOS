@@ -38,7 +38,9 @@ struct ToolbarView: View {
             
             
             Button {
-                showEmotionModal = true
+                withAnimation{
+                    showEmotionModal = true
+                }
             } label: {
                 Label("Emotion", systemImage: "face.smiling")
                     .labelStyle(.iconOnly)
