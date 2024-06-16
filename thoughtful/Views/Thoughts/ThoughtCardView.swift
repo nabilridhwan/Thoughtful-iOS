@@ -20,7 +20,7 @@ let emotionColors: [Emotion: Color] = [
     .grateful: Color.purple,
 ]
 
-struct ThoughtView: View {
+struct ThoughtCardView: View {
     
     let thought: Thought;
     
@@ -41,15 +41,15 @@ struct ThoughtView: View {
             HStack{
                 
                 if (thought.location != nil) {
-                    ThoughtAttributeView(icon: "location.fill", text: "Eunos")
+                    ThoughtCardAttrbuteView(icon: "location.fill", text: "Eunos")
                 }
                 
                 if (thought.music != nil) {
-                    ThoughtAttributeView(icon: "music.note", text: "The Backseat Lovers - Pool House")
+                    ThoughtCardAttrbuteView(icon: "music.note", text: "The Backseat Lovers - Pool House")
                 }
                 
                 if (emotionExists) {
-                    ThoughtAttributeView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
+                    ThoughtCardAttrbuteView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
                 }
             }
                    .padding(.vertical, 2)
@@ -71,6 +71,6 @@ struct ThoughtView: View {
 }
 
 #Preview {
-    ThoughtView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
+    ThoughtCardView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
 
 }

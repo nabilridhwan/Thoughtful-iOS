@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ThoughtAttributeView: View {
+struct ThoughtCardAttrbuteView: View {
     
     let icon: String;
     let text: String;
@@ -46,5 +46,5 @@ struct ThoughtAttributeView: View {
 }
 
 #Preview {
-    ThoughtAttributeView(icon: "smiley.fill", text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
+    ThoughtCardAttrbuteView(icon: "smiley.fill", text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
 }

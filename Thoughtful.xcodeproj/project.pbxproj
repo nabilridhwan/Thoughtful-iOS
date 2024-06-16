@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD0B9B952C1B06EB00C811E8 /* ThoughtAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */; };
+		BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
@@ -22,7 +22,7 @@
 		BDD6ACE32C1A07A300B9A85A /* thoughtfulUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACE22C1A07A300B9A85A /* thoughtfulUITests.swift */; };
 		BDD6ACE52C1A07A300B9A85A /* thoughtfulUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACE42C1A07A300B9A85A /* thoughtfulUITestsLaunchTests.swift */; };
 		BDD6ACF22C1A07BC00B9A85A /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF12C1A07BC00B9A85A /* Thought.swift */; };
-		BDD6ACF42C1A095200B9A85A /* ThoughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF32C1A095200B9A85A /* ThoughtView.swift */; };
+		BDD6ACF42C1A095200B9A85A /* ThoughtCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF32C1A095200B9A85A /* ThoughtCardView.swift */; };
 		BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */; };
 		BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */; };
 		BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843AB2C1D7D750046C2A4 /* SampleData.swift */; };
@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtAttributeView.swift; sourceTree = "<group>"; };
+		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePromptView.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		BDD6ACE22C1A07A300B9A85A /* thoughtfulUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulUITests.swift; sourceTree = "<group>"; };
 		BDD6ACE42C1A07A300B9A85A /* thoughtfulUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thoughtfulUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BDD6ACF12C1A07BC00B9A85A /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
-		BDD6ACF32C1A095200B9A85A /* ThoughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtView.swift; sourceTree = "<group>"; };
+		BDD6ACF32C1A095200B9A85A /* ThoughtCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardView.swift; sourceTree = "<group>"; };
 		BDD6ACF52C1A885B00B9A85A /* HorizontalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCalendarView.swift; sourceTree = "<group>"; };
 		BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailView.swift; sourceTree = "<group>"; };
 		BDE843AB2C1D7D750046C2A4 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
@@ -99,15 +99,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BD0B9B932C1B06CE00C811E8 /* ThoughtView */ = {
-			isa = PBXGroup;
-			children = (
-				BDD6ACF32C1A095200B9A85A /* ThoughtView.swift */,
-				BD0B9B942C1B06EB00C811E8 /* ThoughtAttributeView.swift */,
-			);
-			path = ThoughtView;
-			sourceTree = "<group>";
-		};
 		BDD3670E2C1E926300B1BBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +115,8 @@
 		BDD3670F2C1E927800B1BBE7 /* Thoughts */ = {
 			isa = PBXGroup;
 			children = (
+				BDD6ACF32C1A095200B9A85A /* ThoughtCardView.swift */,
+				BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */,
 				BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */,
 				BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */,
 				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
@@ -197,7 +190,6 @@
 			children = (
 				BDD3670E2C1E926300B1BBE7 /* Views */,
 				BDE843AD2C1D98800046C2A4 /* Models */,
-				BD0B9B932C1B06CE00C811E8 /* ThoughtView */,
 				BDD6ACC72C1A07A200B9A85A /* thoughtfulApp.swift */,
 				BDD6ACC92C1A07A200B9A85A /* ContentView.swift */,
 				BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */,
@@ -376,10 +368,10 @@
 				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
-				BD0B9B952C1B06EB00C811E8 /* ThoughtAttributeView.swift in Sources */,
+				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
-				BDD6ACF42C1A095200B9A85A /* ThoughtView.swift in Sources */,
+				BDD6ACF42C1A095200B9A85A /* ThoughtCardView.swift in Sources */,
 				BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
 				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
