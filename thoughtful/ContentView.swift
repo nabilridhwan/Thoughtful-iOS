@@ -42,9 +42,12 @@ struct ContentView: View {
                 //            }
             }
         }
-        .onAppear {
-            doneOnboarding = false
-        }
+
+        // MARK: UNCOMMENT THE LINE BELOW TO ENABLE ONBOARDING SCREEN
+
+//        .onAppear {
+//            doneOnboarding = false
+//        }
     }
 }
 

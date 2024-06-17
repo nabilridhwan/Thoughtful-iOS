@@ -12,8 +12,9 @@ enum Day: String, CaseIterable {
 }
 
 struct SettingsView: View {
-    @State var name: String = ""
-    @State var isRemindersEnabled: Bool = false
+    @AppStorage("userName") private var userName: String = ""
+
+    @AppStorage("remindersEnabled") private var remindersEnabled: Bool = false
 
     @State private var selectedDays: [Day] = []
     @State private var time: Date = .now
@@ -42,38 +43,38 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Section(header: Text("About You")) {
-                TextField("Name", text: $name)
+                TextField("Name", text: $userName)
             }
 
-            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
-                Toggle("Enable Reminders", isOn: $isRemindersEnabled)
-
-                if isRemindersEnabled {
-                    HStack(alignment: .center) {
-                        ForEach(Day.allCases, id: \.self) { day in
-                            Text(String(day.rawValue.first!))
-                                .bold()
-                                .foregroundStyle(.primary)
-                                .frame(width: 30, height: 30)
-                                .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
-                                .onTapGesture {
-                                    withAnimation {
-                                        if selectedDays.contains(day) {
-                                            selectedDays.removeAll(where: { $0 == day })
-                                        } else {
-                                            selectedDays.append(day)
-                                        }
-                                    }
-                                }
-                        }
-                    }
-
-                    DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
-                        .onAppear {
-                            UIDatePicker.appearance().minuteInterval = 15
-                        }
-                }
-            }
+//            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
+//                Toggle("Enable Reminders", isOn: $remindersEnabled)
+//
+//                if isRemindersEnabled {
+//                    HStack(alignment: .center) {
+//                        ForEach(Day.allCases, id: \.self) { day in
+//                            Text(String(day.rawValue.first!))
+//                                .bold()
+//                                .foregroundStyle(.primary)
+//                                .frame(width: 30, height: 30)
+//                                .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
+//                                .onTapGesture {
+//                                    withAnimation {
+//                                        if selectedDays.contains(day) {
+//                                            selectedDays.removeAll(where: { $0 == day })
+//                                        } else {
+//                                            selectedDays.append(day)
+//                                        }
+//                                    }
+//                                }
+//                        }
+//                    }
+//
+//                    DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
+//                        .onAppear {
+//                            UIDatePicker.appearance().minuteInterval = 15
+//                        }
+//                }
+//            }
 
             Spacer()
         }
