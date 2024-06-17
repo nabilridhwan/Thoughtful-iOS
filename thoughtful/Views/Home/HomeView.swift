@@ -66,48 +66,16 @@ struct HomeView: View {
             Text("Time to reflect and grow")
                 .foregroundStyle(.secondary)
 
-            //            HStack{
-            //                Text("Home")
-            //                    .fontWeight(.bold)
-            //                    .font(.largeTitle)
-            //                Spacer()
-            //
-            //                Button{
-            //                    withAnimation{
-            //                        isAddThoughtPresented.toggle()
-            //                    }
-            //
-            //                    addThoughtTip.invalidate(reason: .actionPerformed)
-            //
-            //                }label: {
-            //                    Label("Add Thought", systemImage: "plus")
-            //                        .labelStyle(.iconOnly)
-            //                }.popoverTip(addThoughtTip)
-            //
-            //                Button{
-            //                    withAnimation{
-            //                        isSettingsPresented.toggle()
-            //                    }
-            //                }label: {
-            //                    Label("Settings", systemImage: "person.circle")
-            //                        .labelStyle(.iconOnly)
-            //                }
-            //
-            //            }
-            //            .foregroundStyle(.white.opacity(0.5))
-
             HorizontalCalendarView(selectedDate: $filteredDate)
                 .padding(.vertical, 10)
                 .padding(.bottom, 20)
 
             ScrollView {
                 if filteredThoughts.isEmpty {
-                    VStack {
-                        EmptyThoughtsView()
-                            .padding(.horizontal, 40)
-                            .padding(.top, 80)
-                            .padding(.bottom, 20)
-                    }
+                    EmptyThoughtsView()
+                        .padding(.horizontal, 40)
+                        .padding(.top, 80)
+                        .padding(.bottom, 20)
                 } else {
                     ForEach(filteredThoughts) { thought in
                         NavigationLink {
@@ -204,7 +172,7 @@ struct HomeView: View {
         .onAppear {
             // Filter the thoughts
             let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: Date.now, toGranularity: .day) == .orderedSame
+                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
             }
 
             withAnimation {
