@@ -140,7 +140,6 @@ struct HomeView: View {
                 }
                 
             }
-            .presentationDetents([.medium])
         }
         
         .sheet(isPresented: $isSettingsPresented){
@@ -156,7 +155,6 @@ struct HomeView: View {
                 .navigationTitle("Settings")
                 
             }
-            .presentationDetents([.medium])
         }
         
         .foregroundStyle(.primary)
