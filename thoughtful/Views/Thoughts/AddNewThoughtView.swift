@@ -8,37 +8,35 @@
 import SwiftUI
 
 struct AddNewThoughtView: View {
-    
-    @Binding var prompt: String;
-    @Binding var date: Date;
+    @Binding var prompt: String
+    @Binding var date: Date
 
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
-    
+
     //    Form fields
-    @State private var response: String = "";
+    @State private var response: String = ""
     @State var emotion: Emotion?
-    
-    @State var showPromptModal: Bool = false;
-    @State var showEmotionModal: Bool = false;
-    
+
+    @State var showPromptModal: Bool = false
+    @State var showEmotionModal: Bool = false
+
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
-    @FocusState private var focusedField: Field?;
-    
-    var isSubmittingDisabled : Bool {
+    @FocusState private var focusedField: Field?
+
+    var isSubmittingDisabled: Bool {
         prompt.isEmpty || response.isEmpty
     }
-    
+
     var body: some View {
-        
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
 //            Text("Add Thought")
 //                .font(.title)
 //                .bold()
-            
+
             // Form
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text(prompt)
                     .font(.title3)
                     .bold()
@@ -47,7 +45,7 @@ struct AddNewThoughtView: View {
 //                        .focused($focusedField, equals: .prompt)
 //                        .submitLabel(.next)
 //                        .lineLimit(2)
-//                    
+//
 //                    if !prompt.isEmpty {
 //                        Button{
 //                            prompt = ""
@@ -68,17 +66,17 @@ struct AddNewThoughtView: View {
 //                    RoundedRectangle(cornerRadius: 20)
 //                        .foregroundStyle(.cardAttribute)
 //                }
-                
+
                 TextField("Type your reply...", text: $response, axis: .vertical)
                     .submitLabel(.done)
                     .lineLimit(4, reservesSpace: true)
                     .focused($focusedField, equals: .response)
                     .padding()
-                    .background{
+                    .background {
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundStyle(.cardAttribute)
                     }
-                
+
                 //                    Button(action: {
                 //                        print("Hello world")
                 //                    }) {
@@ -90,17 +88,17 @@ struct AddNewThoughtView: View {
                 //                                        in: RoundedRectangle(cornerRadius: 24))
                 //                    }
             }
-            
-            .sheet(isPresented: $showPromptModal){
-                ZStack{
+
+            .sheet(isPresented: $showPromptModal) {
+                ZStack {
                     Color.background.ignoresSafeArea()
                     ChoosePromptView(prompt: $prompt)
                         .padding()
                         .presentationDetents([.medium])
                 }.ignoresSafeArea(edges: .bottom)
             }
-            .sheet(isPresented: $showEmotionModal){
-                ZStack{
+            .sheet(isPresented: $showEmotionModal) {
+                ZStack {
                     Color.background.ignoresSafeArea()
                     ChooseEmotionView(
                         emotion: $emotion
@@ -109,12 +107,11 @@ struct AddNewThoughtView: View {
                     .presentationDetents([.medium])
                 }.ignoresSafeArea(edges: .bottom)
             }
-            
-            if (emotion != nil) {
+
+            if emotion != nil {
                 ThoughtCardAttrbuteView(icon: "smiley.fill", text: emotion!.description.capitalized, backgroundColor: emotionColors[emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[emotion!])
             }
-            
-            
+
             // Toolbar !
             ToolbarView(
                 emotion: $emotion,
@@ -123,19 +120,18 @@ struct AddNewThoughtView: View {
                 prompt: $prompt
             )
             .padding(.vertical, 20)
-            
+
             Spacer()
         }
-        .toolbar{
-            
-            ToolbarItem(placement: .topBarLeading){
-                Button("Cancel"){
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel") {
                     dismiss()
                 }
             }
-            
-            ToolbarItem{
-                Button("Add"){
+
+            ToolbarItem {
+                Button("Add") {
                     handleAdd()
                 }.disabled(isSubmittingDisabled)
             }
@@ -143,35 +139,30 @@ struct AddNewThoughtView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundStyle(.primary)
         .background(Color.background)
-        .onAppear{
+        .onAppear {
             focusedField = .prompt
         }
-        
     }
-    
-    
-    
 }
 
 extension AddNewThoughtView {
-    func handleAdd(){
+    func handleAdd() {
         let newThought = Thought(thought_prompt: prompt.localizedCapitalized, thought_response: response.localizedCapitalized, date_created: date)
-        
+
         if emotion != nil {
             newThought.emotion = emotion
         }
-        
+
         modelContext.insert(newThought)
-        
+
         dismiss()
-        
     }
 }
 
-//#Preview {
+// #Preview {
 //    NavigationStack{
-//        
+//
 //        AddNewThoughtView(date: $filteredDate)
 //    }
-//    
-//}
+//
+// }

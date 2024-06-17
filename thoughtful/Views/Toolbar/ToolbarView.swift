@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct ToolbarView: View {
-    @Binding var emotion: Emotion?;
-    @Binding var showEmotionModal: Bool;
+    @Binding var emotion: Emotion?
+    @Binding var showEmotionModal: Bool
     @FocusState var focusedField: Field?
-    @Binding var prompt: String;
-    
+    @Binding var prompt: String
+
     let addEmotionTip = AddEmotionTip()
-    
+
     var emotionExists: Bool {
         emotion != nil
     }
-    
+
     var body: some View {
-        
-        HStack{
-            Button{
+        HStack {
+            Button {
                 print("Location")
-            }   label: {
+            } label: {
                 Label("Location", systemImage: "location.fill")
                     .labelStyle(.iconOnly)
             }
             .frame(maxWidth: .infinity)
-            
+
             //            Button{
             //                print("Music")
             //            }   label: {
@@ -37,10 +36,9 @@ struct ToolbarView: View {
             //                    .labelStyle(.iconOnly)
             //            }
             //            .frame(maxWidth: .infinity)
-            
-            
+
             Button {
-                withAnimation{
+                withAnimation {
                     showEmotionModal = true
                 }
                 addEmotionTip.invalidate(reason: .actionPerformed)
@@ -51,18 +49,18 @@ struct ToolbarView: View {
             }
             .frame(maxWidth: .infinity)
             .popoverTip(addEmotionTip)
-            
-            Button{
+
+            Button {
                 print("Open Camera")
-            }   label: {
+            } label: {
                 Label("Open Camera", systemImage: "camera.fill")
                     .labelStyle(.iconOnly)
             }
             .frame(maxWidth: .infinity)
-            
-            Button{
+
+            Button {
                 print("Open Photos")
-            }   label: {
+            } label: {
                 Label("Open Photos", systemImage: "photo.fill")
                     .labelStyle(.iconOnly)
             }
@@ -72,7 +70,6 @@ struct ToolbarView: View {
         .foregroundStyle(.primary.opacity(0.5))
     }
 }
-
 
 extension ToolbarView {
     //    func handleAddEmotion(_ e: Emotion){
@@ -87,7 +84,7 @@ extension ToolbarView {
     //    }
 }
 
-//#Preview {
+// #Preview {
 //    ToolbarView()
 //        .background(Color.background)
-//}
+// }

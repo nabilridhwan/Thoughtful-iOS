@@ -5,23 +5,22 @@
 //  Created by Nabil Ridhwan on 16/6/24.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 struct Provider: TimelineProvider {
-    
-    @State var person: String = "3";
-    
-    func placeholder(in context: Context) -> ThoughtfulWidgetEntry {
+    @State var person: String = "3"
+
+    func placeholder(in _: Context) -> ThoughtfulWidgetEntry {
         ThoughtfulWidgetEntry(date: Date())
     }
-    
-    func getSnapshot(in context: Context, completion: @escaping (ThoughtfulWidgetEntry) -> ()) {
+
+    func getSnapshot(in _: Context, completion: @escaping (ThoughtfulWidgetEntry) -> Void) {
         let entry = ThoughtfulWidgetEntry(date: Date())
         completion(entry)
     }
-    
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+
+    func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let currentDate = Date()
         let entries: [ThoughtfulWidgetEntry] = [ThoughtfulWidgetEntry(date: currentDate)]
         let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -33,33 +32,31 @@ struct ThoughtfulWidgetEntry: TimelineEntry {
     var date: Date
 }
 
-struct ThoughtfulWidgetEntryView : View {
+struct ThoughtfulWidgetEntryView: View {
     var entry: Provider.Entry
-    
+
     var body: some View {
-        
         VStack(alignment: .leading) {
             Image(systemName: "plus.circle.fill")
                 .resizable()
                 .frame(width: 30, height: 30)
                 .foregroundStyle(.black)
-            
+
             Text("Add Thought")
                 .font(.headline)
                 .bold()
             Text("Be grateful for today!")
                 .foregroundStyle(.secondary)
-            
+
             Spacer()
-            
+
             HStack {
-                
                 Text("Today's thoughts")
                     .font(.caption2)
                     .bold()
-                
+
                 Spacer()
-                
+
                 Text("3")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
@@ -72,14 +69,13 @@ struct ThoughtfulWidgetEntryView : View {
 
 struct ThoughtfulWidget: Widget {
     let kind: String = "ThoughtfulWidget"
-    
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 ThoughtfulWidgetEntryView(entry: entry)
-                    .containerBackground(for: .widget){
+                    .containerBackground(for: .widget) {
                         LinearGradient(gradient: Gradient(colors: [.accent, .accent.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
-                        
                     }
                     .foregroundStyle(.black)
             } else {

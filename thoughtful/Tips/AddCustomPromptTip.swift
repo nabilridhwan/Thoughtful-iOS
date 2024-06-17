@@ -14,5 +14,4 @@ struct AddCustomPromptTip: Tip {
             "Tap here to add your own custom prompt"
         )
     }
-    
 }

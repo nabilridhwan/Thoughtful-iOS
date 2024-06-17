@@ -18,7 +18,7 @@ enum Emotion: Codable, CaseIterable {
     case happy
     case excited
     case grateful
-    
+
     var description: String {
         switch self {
         case .scared: return "scared"

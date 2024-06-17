@@ -8,37 +8,35 @@
 import SwiftUI
 
 struct ChooseEmotionView: View {
-    
-    @Binding var emotion: Emotion?;
+    @Binding var emotion: Emotion?
     @Environment(\.dismiss) var dismiss;
-    
-    func handleAddEmotion(_ e: Emotion){
-        
+
+    func handleAddEmotion(_ e: Emotion) {
         //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
-        if(emotion == e){
-            emotion = nil;
-            return;
+        if emotion == e {
+            emotion = nil
+            return
         }
         //        set the emotion 'binding' to the value passed
         emotion = e
     }
-    
+
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text("Choose an Emotion")
                 .font(.title)
                 .bold()
-            
-            ScrollView{
-                ForEach(Emotion.allCases, id: \.self){
+
+            ScrollView {
+                ForEach(Emotion.allCases, id: \.self) {
                     e in
-                    Button{
+                    Button {
                         handleAddEmotion(e)
                         dismiss()
-                    }label: {
+                    } label: {
                         if e == emotion {
                             Label(e.description.capitalized, systemImage: "checkmark")
-                        }else{
+                        } else {
                             Text(e.description.capitalized)
                         }
                     }
@@ -48,12 +46,11 @@ struct ChooseEmotionView: View {
                     .background(emotionColors[e]!, in: RoundedRectangle(cornerRadius: 24))
                 }
             }
-            
+
         }.frame(maxWidth: .infinity)
     }
-    
 }
 
-//#Preview {
+// #Preview {
 //    ChooseEmotionView()
-//}
+// }

@@ -1,5 +1,5 @@
 //
-//  NoThoughtsView.swift
+//  EmptyThoughtsView.swift
 //  Thoughtful
 //
 //  Created by Nabil Ridhwan on 13/6/24.

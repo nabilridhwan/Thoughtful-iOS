@@ -17,5 +17,5 @@ let gratitudeQuestions = [
     "What is a challenge you faced that you are now grateful for?",
     "What is something beautiful you saw recently that you are thankful for?",
     "What are you grateful for in your current job or daily routine?",
-    "What technology or modern convenience are you grateful for?"
+    "What technology or modern convenience are you grateful for?",
 ]

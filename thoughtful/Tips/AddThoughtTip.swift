@@ -12,7 +12,7 @@ struct AddThoughtTip: Tip {
     var title: Text {
         Text("Add Thought")
     }
-    
+
     var message: Text? {
         Text("Tap here to add a new Thought")
     }

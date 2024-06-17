@@ -1,5 +1,5 @@
 //
-//  ThoughtCardAttributeView.swift
+//  ThoughtCardAttrbuteView.swift
 //  Thoughtful
 //
 //  Created by Nabil Ridhwan on 13/6/24.
@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ThoughtCardAttrbuteView: View {
-    
-    let icon: String;
-    let text: String;
+    let icon: String
+    let text: String
     let backgroundColor: Color?
     let foregroundColor: Color?
-    
+
     let shadowColor: Color?
 
     init(icon: String, text: String, backgroundColor: Color? = .cardAttribute, foregroundColor: Color? = .white.opacity(0.5), shadowColor: Color? = .clear) {
@@ -25,9 +24,9 @@ struct ThoughtCardAttrbuteView: View {
     }
 
     var body: some View {
-        Button{
+        Button {
             print("Attribute Clicked")
-        } label:{
+        } label: {
             Image(systemName: icon)
                 .font(.caption)
             Text(text)
@@ -37,7 +36,7 @@ struct ThoughtCardAttrbuteView: View {
         .foregroundStyle(foregroundColor ?? .primary.opacity(0.5))
         .padding(.vertical, 5)
         .padding(.horizontal, 8)
-        .background{
+        .background {
             RoundedRectangle(cornerRadius: 9)
                 .foregroundStyle(backgroundColor ?? .cardAttribute)
         }

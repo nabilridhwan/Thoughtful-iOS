@@ -15,7 +15,7 @@ var dates: [Date] = [
     Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
     Calendar.current.date(byAdding: .day, value: -2, to: Date())!,
     Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: 0, to: Date())!
+    Calendar.current.date(byAdding: .day, value: 0, to: Date())!,
 ]
 
 let dateFormatter = DateFormatter()
@@ -37,18 +37,18 @@ func isToday(_ date1: Date, _ date2: Date) -> Bool {
 }
 
 struct HorizontalCalendarView: View {
-    @Binding var selectedDate: Date;
-    
+    @Binding var selectedDate: Date
+
     @Namespace var rectNs;
-    
+
     var body: some View {
-        ZStack{
-            HStack{
-                ForEach(dates, id:\.hashValue) {
+        ZStack {
+            HStack {
+                ForEach(dates, id: \.hashValue) {
                     date in
                     Button {
-                        withAnimation{
-                            selectedDate = date;
+                        withAnimation {
+                            selectedDate = date
                         }
                     } label: {
                         ZStack {
@@ -58,8 +58,7 @@ struct HorizontalCalendarView: View {
                                     .foregroundStyle(.cardAttribute)
                                     .matchedGeometryEffect(id: "Rect", in: rectNs)
                             }
-                            
-                            
+
                             //                            if isToday(date, Date()){
                             //                                RoundedRectangle(cornerRadius: 24)
                             //                                    .position(x:4, y:-25)
@@ -67,22 +66,20 @@ struct HorizontalCalendarView: View {
                             //                                    .foregroundStyle(.white)
                             //
                             //                            }
-                            
-                            VStack{
+
+                            VStack {
                                 Text("\(getDayOfWeekFromDate(date: date))")
-                                
+
                                 Text("\(getDayFromDate(date: date))")
                                     .font(.title3)
                                     .fontWeight(.bold)
-                                
+
                             }.frame(maxWidth: .infinity)
                                 .foregroundStyle(.primary.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
-                            
                         }
                     }.scaleEffect(
                         isToday(selectedDate, date) ? 1.1 : 1.0
                     )
-                    
                 }
             }
         }.frame(maxHeight: 50)
@@ -90,8 +87,8 @@ struct HorizontalCalendarView: View {
 }
 
 //
-//#Preview {
+// #Preview {
 //    Group{
 //        HorizontalCalendarView(selectedDate: $selectedDate)
 //    }
-//}
+// }

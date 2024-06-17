@@ -21,12 +21,10 @@ let emotionColors: [Emotion: Color] = [
 ]
 
 struct ThoughtCardView: View {
-    
-    let thought: Thought;
-    
-    
+    let thought: Thought
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 5){
+        VStack(alignment: .leading, spacing: 5) {
             Text(thought.thought_prompt)
                 .opacity(0.5)
                 .fontWeight(.bold)
@@ -34,34 +32,30 @@ struct ThoughtCardView: View {
             Text(LocalizedStringKey(thought.thought_response))
                 .font(.callout)
                 .lineLimit(2)
-            
-            if(thought.locationExists || thought.musicExists || thought.emotionExists){
-                
-                
-                HStack{
-                    
-                    if (thought.locationExists) {
+
+            if thought.locationExists || thought.musicExists || thought.emotionExists {
+                HStack {
+                    if thought.locationExists {
                         ThoughtCardAttrbuteView(icon: "location.fill", text: "Eunos")
                     }
-                    
-                    if (thought.musicExists) {
+
+                    if thought.musicExists {
                         ThoughtCardAttrbuteView(icon: "music.note", text: "The Backseat Lovers - Pool House")
                     }
-                    
-                    if (thought.emotionExists) {
+
+                    if thought.emotionExists {
                         ThoughtCardAttrbuteView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
                     }
                 }
                 .padding(.vertical, 2)
                 .padding(.top, 8)
-                
             }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
         .foregroundStyle(.primary)
         .padding()
-        .background{
+        .background {
             RoundedRectangle(cornerRadius: 24)
                 .foregroundStyle(.card)
         }
@@ -74,5 +68,4 @@ struct ThoughtCardView: View {
 
 #Preview {
     ThoughtCardView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
-    
 }

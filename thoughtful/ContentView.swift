@@ -5,38 +5,36 @@
 //  Created by Nabil Ridhwan on 13/6/24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 import TipKit
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack{
+        NavigationStack {
 //            TabView{
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+
 //                HomeView()
 //                    .tabItem {
 //                        Label("Calendar", systemImage: "calendar")
 //                    }
-//                
+//
 //                HomeView()
 //                    .tabItem {
 //                        Label("Stats", systemImage: "chart.bar")
 //                    }
-//                
+//
 //                SettingsView()
 //                    .tabItem {
 //                        Label("Settings", systemImage: "gear")
 //                    }
 //            }
-            
         }
     }
-    
 }
 
 #Preview {
@@ -45,7 +43,7 @@ struct ContentView: View {
         .preferredColorScheme(.dark)
         .task {
             try? Tips.configure([
-                .datastoreLocation(.applicationDefault)
+                .datastoreLocation(.applicationDefault),
             ])
         }
 }
