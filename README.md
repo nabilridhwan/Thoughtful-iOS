@@ -41,3 +41,13 @@ is NOT YET available in the Apple App Store.
 - Swift
 - SwiftUI
 - SwiftData
+
+## Development
+
+This project uses SwiftFormat to enforce code style. To install SwiftFormat, run the following command:
+
+```bash
+brew install swiftformat
+```
+
+Soon, a CI/CD pipeline will be set up to enforce code style and formatting.
