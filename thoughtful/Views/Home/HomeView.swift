@@ -24,7 +24,8 @@ struct HomeView: View {
     @State var filteredDate: Date = Date.now;
     
     //    Present modal on pressing "Add Thought"
-    @State var isPresented = false
+    @State var isAddThoughtPresented = false
+    @State var isSettingsPresented = false
     
     @State private var newThought: Thought?
     
@@ -44,24 +45,35 @@ struct HomeView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            HStack{
-                Text("Home")
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
-                Spacer()
-                
-                Button{
-                    withAnimation{
-                        isPresented.toggle()
-                    }
-                    
-                    addThoughtTip.invalidate(reason: .actionPerformed)
-                    
-                }label: {
-                    Label("Add Thought", systemImage: "plus")
-                        .labelStyle(.iconOnly)
-                }.popoverTip(addThoughtTip)
-            }
+            //            HStack{
+            //                Text("Home")
+            //                    .fontWeight(.bold)
+            //                    .font(.largeTitle)
+            //                Spacer()
+            //
+            //                Button{
+            //                    withAnimation{
+            //                        isAddThoughtPresented.toggle()
+            //                    }
+            //
+            //                    addThoughtTip.invalidate(reason: .actionPerformed)
+            //
+            //                }label: {
+            //                    Label("Add Thought", systemImage: "plus")
+            //                        .labelStyle(.iconOnly)
+            //                }.popoverTip(addThoughtTip)
+            //
+            //                Button{
+            //                    withAnimation{
+            //                        isSettingsPresented.toggle()
+            //                    }
+            //                }label: {
+            //                    Label("Settings", systemImage: "person.circle")
+            //                        .labelStyle(.iconOnly)
+            //                }
+            //
+            //            }
+            //            .foregroundStyle(.white.opacity(0.5))
             
             HorizontalCalendarView(selectedDate: $filteredDate)
                 .padding(.vertical, 10)
@@ -115,23 +127,67 @@ struct HomeView: View {
         .padding()
         .ignoresSafeArea(.all, edges: .bottom)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .sheet(isPresented: $isPresented){
+        .sheet(isPresented: $isAddThoughtPresented){
             NavigationStack{
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
                         prompt: $prompt
                     ).padding()
-//                    AddNewThoughtView(
-//                        date: $filteredDate
-//                    )
+                    //                    AddNewThoughtView(
+                    //                        date: $filteredDate
+                    //                    )
                 }
                 
             }
             .presentationDetents([.medium])
         }
-        .foregroundStyle(.white)
+        
+        .sheet(isPresented: $isSettingsPresented){
+            NavigationStack{
+                ZStack {
+                    Color.background.edgesIgnoringSafeArea(.all)
+                    SettingsView(
+                    ).padding()
+                    //                    AddNewThoughtView(
+                    //                        date: $filteredDate
+                    //                    )
+                }
+                .navigationTitle("Settings")
+                
+            }
+            .presentationDetents([.medium])
+        }
+        
+        .foregroundStyle(.primary)
         .background(Color.background)
+        .navigationTitle("Home")
+        .toolbar{
+            ToolbarItem{
+                
+                Button{
+                    withAnimation{
+                        isAddThoughtPresented.toggle()
+                    }
+                    
+                    addThoughtTip.invalidate(reason: .actionPerformed)
+                    
+                }label: {
+                    Label("Add Thought", systemImage: "plus.circle")
+                        .labelStyle(.iconOnly)
+                }.popoverTip(addThoughtTip)
+            }
+            
+            ToolbarItem{
+                Button{
+                    withAnimation{
+                        isSettingsPresented.toggle()
+                    }
+                }label: {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .onAppear{
             // Filter the thoughts
             let filtered = thoughts.filter{
@@ -155,7 +211,6 @@ struct HomeView: View {
                 filteredThoughts = filtered
             }
         })
-        
         .onChange(of: filteredDate, { oldValue, newValue in
             
             print("Filtered date changed")
@@ -170,9 +225,8 @@ struct HomeView: View {
         })
         .onOpenURL { url in
 #warning("Any deeplink to the app will open the Add Thought modal")
-            
             if url != nil {
-                isPresented = true
+                isAddThoughtPresented = true
             }
             print("Received deeplink \(url) \(url.lastPathComponent)")
         }
@@ -182,6 +236,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
-        .modelContainer(SampleData.shared.modelContainer)
+    NavigationStack{
+        HomeView()
+            .modelContainer(SampleData.shared.modelContainer)
+        
+    }
 }

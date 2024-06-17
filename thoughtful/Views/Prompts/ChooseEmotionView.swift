@@ -44,7 +44,7 @@ struct ChooseEmotionView: View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(.black.opacity(0.7))
+//                    .foregroundStyle(.black.opacity(0.7))
                     .background(emotionColors[e]!, in: RoundedRectangle(cornerRadius: 24))
                 }
             }

@@ -141,7 +141,7 @@ struct AddNewThoughtView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .background(Color.background)
         .onAppear{
             focusedField = .prompt

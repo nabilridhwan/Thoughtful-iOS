@@ -26,7 +26,7 @@ struct ThoughtCardAttrbuteView: View {
 
     var body: some View {
         Button{
-            print("hello world")
+            print("Attribute Clicked")
         } label:{
             Image(systemName: icon)
                 .font(.caption)
@@ -34,7 +34,7 @@ struct ThoughtCardAttrbuteView: View {
                 .font(.caption)
                 .lineLimit(1)
         }
-        .foregroundStyle(foregroundColor ?? .white.opacity(0.5))
+        .foregroundStyle(foregroundColor ?? .primary.opacity(0.5))
         .padding(.vertical, 5)
         .padding(.horizontal, 8)
         .background{

@@ -30,13 +30,13 @@ struct ToolbarView: View {
             }
             .frame(maxWidth: .infinity)
             
-//            Button{
-//                print("Music")
-//            }   label: {
-//                Label("Music", systemImage: "music.note")
-//                    .labelStyle(.iconOnly)
-//            }
-//            .frame(maxWidth: .infinity)
+            //            Button{
+            //                print("Music")
+            //            }   label: {
+            //                Label("Music", systemImage: "music.note")
+            //                    .labelStyle(.iconOnly)
+            //            }
+            //            .frame(maxWidth: .infinity)
             
             
             Button {
@@ -47,11 +47,11 @@ struct ToolbarView: View {
             } label: {
                 Label("Emotion", systemImage: "face.smiling")
                     .labelStyle(.iconOnly)
-                    .foregroundStyle(.white.opacity(emotionExists ? 1.0 : 0.5))
+                    .foregroundStyle(.primary.opacity(emotionExists ? 1.0 : 0.5))
             }
-                .frame(maxWidth: .infinity)
-                .popoverTip(addEmotionTip)
-
+            .frame(maxWidth: .infinity)
+            .popoverTip(addEmotionTip)
+            
             Button{
                 print("Open Camera")
             }   label: {
@@ -69,22 +69,22 @@ struct ToolbarView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
-        .foregroundStyle(.white.opacity(0.5))
+        .foregroundStyle(.primary.opacity(0.5))
     }
 }
 
 
 extension ToolbarView {
-//    func handleAddEmotion(_ e: Emotion){
-//        
-//        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
-//        if(emotion == e){
-//            emotion = nil;
-//            return;
-//        }
-//        //        set the emotion 'binding' to the value passed
-//        emotion = e
-//    }
+    //    func handleAddEmotion(_ e: Emotion){
+    //
+    //        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
+    //        if(emotion == e){
+    //            emotion = nil;
+    //            return;
+    //        }
+    //        //        set the emotion 'binding' to the value passed
+    //        emotion = e
+    //    }
 }
 
 //#Preview {

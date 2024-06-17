@@ -12,27 +12,27 @@ import TipKit
 struct ContentView: View {
     var body: some View {
         NavigationStack{
-            TabView{
+//            TabView{
                 HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }
                 
-                HomeView()
-                    .tabItem {
-                        Label("Calendar", systemImage: "calendar")
-                    }
-                
-                HomeView()
-                    .tabItem {
-                        Label("Stats", systemImage: "chart.bar")
-                    }
-                
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-            }
+//                HomeView()
+//                    .tabItem {
+//                        Label("Calendar", systemImage: "calendar")
+//                    }
+//                
+//                HomeView()
+//                    .tabItem {
+//                        Label("Stats", systemImage: "chart.bar")
+//                    }
+//                
+//                SettingsView()
+//                    .tabItem {
+//                        Label("Settings", systemImage: "gear")
+//                    }
+//            }
             
         }
     }

@@ -76,7 +76,7 @@ struct HorizontalCalendarView: View {
                                     .fontWeight(.bold)
                                 
                             }.frame(maxWidth: .infinity)
-                                .foregroundStyle(.white.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
+                                .foregroundStyle(.primary.opacity(isToday(selectedDate, date) ? 1.0 : 0.5))
                             
                         }
                     }.scaleEffect(

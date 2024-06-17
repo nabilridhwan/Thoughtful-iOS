@@ -59,7 +59,7 @@ struct ThoughtCardView: View {
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .foregroundColor(.white)
+        .foregroundStyle(.primary)
         .padding()
         .background{
             RoundedRectangle(cornerRadius: 24)

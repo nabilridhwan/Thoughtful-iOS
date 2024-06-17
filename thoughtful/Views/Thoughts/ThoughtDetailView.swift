@@ -43,16 +43,16 @@ struct ThoughtDetailView: View {
                 if (emotionExists) {
                     Text("Emotion")
                         .font(.caption2)
-                        .foregroundStyle(.white.opacity(0.5))
+                        .foregroundStyle(.primary.opacity(0.5))
                     
                     ThoughtCardAttrbuteView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
                 }
                 
                 Text("Created")
                     .font(.caption2)
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(.primary.opacity(0.5))
                 Label(relativeDateCreated, systemImage: "clock")
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.primary.opacity(0.6))
                     .font(.caption)
                 Spacer()
             }
@@ -60,7 +60,7 @@ struct ThoughtDetailView: View {
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 Button("Delete"){

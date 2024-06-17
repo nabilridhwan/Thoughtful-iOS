@@ -42,10 +42,6 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20){
-            Text("Settings")
-                .fontWeight(.bold)
-                .font(.largeTitle)
-            
             Section(header: Text("About You")){
                 TextField("Name", text: $name)
             }
@@ -60,7 +56,7 @@ struct SettingsView: View {
                         ForEach(Day.allCases, id: \.self) { day in
                             Text(String(day.rawValue.first!))
                                 .bold()
-                                .foregroundColor(.white)
+                                .foregroundStyle(.primary)
                                 .frame(width: 30, height: 30)
                                 .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
                                 .onTapGesture {
@@ -91,7 +87,7 @@ struct SettingsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .background(Color.background)
     }
 }

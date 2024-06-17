@@ -69,7 +69,7 @@ struct ChoosePromptView: View {
         .ignoresSafeArea(edges: .bottom)
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .background(Color.background)
         .tabViewStyle(.page(indexDisplayMode: .never))
         
