@@ -109,7 +109,7 @@ struct AddNewThoughtView: View {
             }
 
             if emotion != nil {
-                ThoughtCardAttrbuteView(icon: "smiley.fill", text: emotion!.description.capitalized, backgroundColor: emotionColors[emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[emotion!])
+                ThoughtCardAttrbuteView(icon: Image(emotion!.getIcon()), text: emotion!.description.capitalized, backgroundColor: emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: emotion!.getColor())
             }
 
             // Toolbar !

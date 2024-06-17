@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ThoughtCardAttrbuteView: View {
-    let icon: String
+    let icon: Image
     let text: String
     let backgroundColor: Color?
     let foregroundColor: Color?
 
     let shadowColor: Color?
 
-    init(icon: String, text: String, backgroundColor: Color? = .cardAttribute, foregroundColor: Color? = .white.opacity(0.5), shadowColor: Color? = .clear) {
+    init(icon: Image, text: String, backgroundColor: Color? = .cardAttribute, foregroundColor: Color? = .white.opacity(0.5), shadowColor: Color? = .clear) {
         self.icon = icon
         self.text = text
         self.backgroundColor = backgroundColor
@@ -27,8 +27,11 @@ struct ThoughtCardAttrbuteView: View {
         Button {
             print("Attribute Clicked")
         } label: {
-            Image(systemName: icon)
-                .font(.caption)
+            icon
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 14, height: 14)
+
             Text(text)
                 .font(.caption)
                 .lineLimit(1)
@@ -45,5 +48,5 @@ struct ThoughtCardAttrbuteView: View {
 }
 
 #Preview {
-    ThoughtCardAttrbuteView(icon: "smiley.fill", text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
+    ThoughtCardAttrbuteView(icon: Image(.terrible), text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
 }

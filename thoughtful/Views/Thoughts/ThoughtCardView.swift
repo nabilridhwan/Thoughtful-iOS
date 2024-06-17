@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-let emotionColors: [Emotion: Color] = [
-    .scared: Color.purple,
-    .sad: Color.indigo,
-    .angry: Color.red,
-    .embarassed: Color.orange,
-    .neutral: Color.gray,
-    .playful: Color.yellow,
-    .loved: Color.pink,
-    .happy: Color.green,
-    .excited: Color.blue,
-    .grateful: Color.purple,
-]
-
 struct ThoughtCardView: View {
     let thought: Thought
 
@@ -36,15 +23,15 @@ struct ThoughtCardView: View {
             if thought.locationExists || thought.musicExists || thought.emotionExists {
                 HStack {
                     if thought.locationExists {
-                        ThoughtCardAttrbuteView(icon: "location.fill", text: "Eunos")
+                        ThoughtCardAttrbuteView(icon: Image(systemName: "location.fill"), text: "Eunos")
                     }
 
                     if thought.musicExists {
-                        ThoughtCardAttrbuteView(icon: "music.note", text: "The Backseat Lovers - Pool House")
+                        ThoughtCardAttrbuteView(icon: Image(systemName: "music.note"), text: "The Backseat Lovers - Pool House")
                     }
 
                     if thought.emotionExists {
-                        ThoughtCardAttrbuteView(icon: "smiley.fill", text: thought.emotion!.description.capitalized, backgroundColor: emotionColors[thought.emotion!], foregroundColor: .black.opacity(0.6), shadowColor: emotionColors[thought.emotion!])
+                        ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
                     }
                 }
                 .padding(.vertical, 2)
@@ -67,5 +54,5 @@ struct ThoughtCardView: View {
 }
 
 #Preview {
-    ThoughtCardView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .neutral))
+    ThoughtCardView(thought: Thought(thought_prompt: "What are three things that I am grateful for?", thought_response: "My Friends, **Nazrul** for _checking up on me_, The movie night on Discord. I am gonna write a longer thought just to see if the lines would concatenate beacuse to be honest. This can get very long!", date_created: Date.now, location: "Eunos", music: "The Backseat Lovers - Pool House", emotion: .terrible))
 }

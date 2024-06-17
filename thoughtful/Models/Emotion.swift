@@ -6,31 +6,52 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Emotion: Codable, CaseIterable {
-    case scared
-    case sad
-    case angry
-    case embarassed
-    case neutral
-    case playful
-    case loved
+    case terrible
+    case bad
+    case okay
     case happy
-    case excited
-    case grateful
+    case awesome
 
     var description: String {
         switch self {
-        case .scared: return "scared"
-        case .sad: return "sad"
-        case .angry: return "angry"
-        case .embarassed: return "embarassed"
-        case .neutral: return "neutral"
-        case .playful: return "playful"
-        case .loved: return "loved"
+        case .terrible: return "terrible"
+        case .bad: return "bad"
+        case .okay: return "okay"
         case .happy: return "happy"
-        case .excited: return "excited"
-        case .grateful: return "grateful"
+        case .awesome: return "awesome"
+        }
+    }
+
+    func getColor() -> Color {
+        switch self {
+        case .terrible: return Color.emotionTerrible
+        case .bad: return Color.emotionBad
+        case .okay: return Color.emotionOkay
+        case .happy: return Color.emotionOkay
+        case .awesome: return Color.emotionAwesome
+        }
+    }
+
+    func getIcon() -> ImageResource {
+        switch self {
+        case .terrible: return .terrible
+        case .bad: return .sad
+        case .okay: return .neutral
+        case .happy: return .happy
+        case .awesome: return .awesome
+        }
+    }
+
+    func getIconNoFace() -> ImageResource {
+        switch self {
+        case .terrible: return .terribleNoFace
+        case .bad: return .sadNoFace
+        case .okay: return .neutralNoFace
+        case .happy: return .happyNoFace
+        case .awesome: return .awesomeNoFace
         }
     }
 }
