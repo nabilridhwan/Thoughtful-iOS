@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+var dateFormatter = DateFormatter()
+
 struct ThoughtCardView: View {
     let thought: Thought
 
     var cardColor: Color {
         thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+    }
+
+    var dateLabel: String {
+        thought.date_created.formatted(.relative(presentation: .named))
     }
 
     var body: some View {
@@ -24,8 +30,8 @@ struct ThoughtCardView: View {
                 .font(.callout)
                 .lineLimit(2)
 
-            if thought.locationExists || thought.musicExists || thought.emotionExists {
-                HStack {
+            HStack {
+                if thought.locationExists || thought.musicExists || thought.emotionExists {
                     if thought.locationExists {
                         ThoughtCardAttrbuteView(icon: Image(systemName: "location.fill"), text: "Eunos")
                     }
@@ -38,9 +44,17 @@ struct ThoughtCardView: View {
                         ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
                     }
                 }
-                .padding(.vertical, 2)
-                .padding(.top, 8)
+
+                Spacer()
+
+                Text(dateLabel)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
+            .padding(.vertical, 2)
+            .padding(.top, 8)
+
+            VStack(alignment: .leading) {}.frame(maxWidth: .infinity)
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
