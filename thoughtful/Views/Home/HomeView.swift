@@ -90,13 +90,6 @@ struct HomeView: View {
 
             Spacer()
         }
-        //            .toolbar{
-        //                ToolbarItem(placement: .confirmationAction){
-        //                    Button("Add"){
-        //                        print("Add pressed")
-        //                    }
-        //                }
-        //            }
         .onChange(of: isFormActive) { _, _ in
             print("isFormActive changed \(isFormActive)")
         }

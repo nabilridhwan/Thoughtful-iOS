@@ -31,15 +31,6 @@ struct HorizontalCalendarView: View {
                                 .foregroundStyle(.cardAttribute)
                                 .matchedGeometryEffect(id: "Rect", in: rectNs)
                         }
-
-                        //                            if isToday(date, Date()){
-                        //                                RoundedRectangle(cornerRadius: 24)
-                        //                                    .position(x:4, y:-25)
-                        //                                    .frame(width: 5, height: 5)
-                        //                                    .foregroundStyle(.white)
-                        //
-                        //                            }
-
                         VStack {
                             Text("\(DateHelpers.getDayOfWeekFromDate(date: date))")
 
@@ -50,7 +41,14 @@ struct HorizontalCalendarView: View {
                         }.frame(maxWidth: .infinity)
                             .foregroundStyle(.primary.opacity(DateHelpers.isSameDay(selectedDate, date) ? 1.0 : 0.5))
                     }
-                }.scaleEffect(
+                }
+                .foregroundStyle(.primary.opacity(
+                    DateHelpers.isAfterDate2(date, Date.now) ? 0.2 : 1.0
+                ))
+                .disabled(
+                    DateHelpers.isAfterDate2(date, Date.now)
+                )
+                .scaleEffect(
                     DateHelpers.isSameDay(selectedDate, date) ? 1.1 : 1.0
                 )
             }

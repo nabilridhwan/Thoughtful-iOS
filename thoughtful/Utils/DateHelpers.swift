@@ -27,6 +27,10 @@ enum DateHelpers {
         return calendar.isDate(date1, inSameDayAs: date2)
     }
 
+    static func isAfterDate2(_ date1: Date, _ date2: Date) -> Bool {
+        return date1 > date2
+    }
+
     static func findFirstDateOfTheWeek() -> Date {
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: Date.now)
