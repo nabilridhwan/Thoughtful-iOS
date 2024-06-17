@@ -30,7 +30,7 @@ enum Emotion: Codable, CaseIterable {
         case .terrible: return Color.emotionTerrible
         case .bad: return Color.emotionBad
         case .okay: return Color.emotionOkay
-        case .happy: return Color.emotionOkay
+        case .happy: return Color.emotionHappy
         case .awesome: return Color.emotionAwesome
         }
     }
