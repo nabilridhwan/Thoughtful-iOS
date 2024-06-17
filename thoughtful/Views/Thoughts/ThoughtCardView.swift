@@ -10,6 +10,10 @@ import SwiftUI
 struct ThoughtCardView: View {
     let thought: Thought
 
+    var cardColor: Color {
+        thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(thought.thought_prompt)
@@ -44,7 +48,7 @@ struct ThoughtCardView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 24)
-                .foregroundStyle(.card)
+                .foregroundStyle(cardColor)
         }
         .overlay( /// apply a rounded border
             RoundedRectangle(cornerRadius: 24)
