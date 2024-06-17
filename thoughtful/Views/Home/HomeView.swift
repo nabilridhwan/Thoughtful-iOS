@@ -15,6 +15,8 @@ enum Field {
 }
 
 struct HomeView: View {
+    @AppStorage("userName") private var userName: String = ""
+
     @Environment(\.modelContext) private var context: ModelContext
     @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
 
@@ -41,8 +43,29 @@ struct HomeView: View {
 
     let addThoughtTip = AddThoughtTip()
 
+    func getGreeting() -> String {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: currentDate)
+
+        switch hour {
+        case 0 ..< 12:
+            return "Good Morning,"
+        case 12 ..< 18:
+            return "Good Afternoon,"
+        default:
+            return "Good Evening,"
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
+            Text("\(getGreeting()) \(userName)")
+                .font(.title)
+                .bold()
+            Text("Time to reflect and grow")
+                .foregroundStyle(.secondary)
+
             //            HStack{
             //                Text("Home")
             //                    .fontWeight(.bold)
@@ -153,7 +176,6 @@ struct HomeView: View {
 
         .foregroundStyle(.primary)
         .background(Color.background)
-        .navigationTitle("Home")
         .toolbar {
             ToolbarItem {
                 Button {

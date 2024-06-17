@@ -11,6 +11,7 @@
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
 		BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */; };
 		BDA72AAA2C1FF23200856810 /* AddCustomPromptTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA92C1FF23200856810 /* AddCustomPromptTip.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
+		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
 		BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmotionTip.swift; sourceTree = "<group>"; };
 		BDA72AA92C1FF23200856810 /* AddCustomPromptTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPromptTip.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BDA0ADC22C20116D0034D2B1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		BDA72AA62C1F42A800856810 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 		BDD3670E2C1E926300B1BBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BDA0ADC22C20116D0034D2B1 /* Onboarding */,
 				BDD367142C1E929700B1BBE7 /* Home */,
 				BDD367132C1E929200B1BBE7 /* Settings */,
 				BDD367122C1E928E00B1BBE7 /* Toolbar */,
@@ -498,6 +509,7 @@
 				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
+				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
