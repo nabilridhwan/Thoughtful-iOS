@@ -147,7 +147,7 @@ struct AddNewThoughtView: View {
 
 extension AddNewThoughtView {
     func handleAdd() {
-        let newThought = Thought(thought_prompt: prompt.localizedCapitalized, thought_response: response.localizedCapitalized, date_created: date)
+        let newThought = Thought(thought_prompt: prompt.localizedCapitalized, thought_response: response, date_created: date)
 
         if emotion != nil {
             newThought.emotion = emotion
