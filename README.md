@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./docs/Promo iOS.png" style="" alt="Thoughtful Logo">
+<img src="./docs/Promo iOS 2.png" style="" alt="Thoughtful Logo">
 
 <h1>Thoughtful (Beta)</h1>
 
