@@ -44,10 +44,13 @@ is NOT YET available in the Apple App Store.
 
 ## Development
 
-This project uses SwiftFormat to enforce code style. To install SwiftFormat, run the following command:
+This project uses SwiftFormat to enforce code style.
+
+1. To install SwiftFormat, run the following command:
 
 ```bash
 brew install swiftformat
 ```
 
-Soon, a CI/CD pipeline will be set up to enforce code style and formatting.
+2. Follow these [steps](https://github.com/nicklockwood/SwiftFormat?tab=readme-ov-file#git-pre-commit-hook) to install a
+   pre-commit hook for swiftformat.
