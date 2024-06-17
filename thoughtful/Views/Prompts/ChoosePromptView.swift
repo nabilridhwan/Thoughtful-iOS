@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ChoosePromptView: View {
     
@@ -15,6 +16,8 @@ struct ChoosePromptView: View {
     @State var showCustomPrompt: Bool = false
     @Binding var prompt: String;
     @Environment(\.dismiss) var dismiss;
+    
+    var addCustomPromptTip = AddCustomPromptTip()
     
     func handlePressPrompt(_ p: String){
         withAnimation{
@@ -36,6 +39,7 @@ struct ChoosePromptView: View {
                     
                     Button {
                         showCustomPrompt = true
+                        addCustomPromptTip.invalidate(reason: .actionPerformed)
                         prompt = ""
                     } label: {
                         Text("Custom Prompt")
@@ -43,6 +47,7 @@ struct ChoosePromptView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(.cardAttribute, in: RoundedRectangle(cornerRadius: 24))
+                    .popoverTip(addCustomPromptTip)
                     
                     ForEach(gratitudeQuestions, id: \.self){ p in
                         Button {
@@ -66,16 +71,14 @@ struct ChoosePromptView: View {
             .tag("add_thought")
             
         }
-        .alert("Custom Prompt", isPresented: $showCustomPrompt){
-            Button("Cancel", role: .cancel) {
-                // Handle the acknowledgement.
-            }
+        .alert("Add Custom Prompt", isPresented: $showCustomPrompt){
+            Button("Cancel", role: .cancel) {}
             Button("OK") {
                 handlePressPrompt(prompt)
-                // Handle the acknowledgement.
             }
             
             TextField("Type your custom prompt", text: $prompt)
+                .lineLimit(3, reservesSpace: true)
         }
         .sheet(isPresented: $showAddNewThoughtView){
             NavigationStack{

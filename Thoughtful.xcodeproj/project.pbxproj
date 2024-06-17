@@ -13,6 +13,7 @@
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
 		BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */; };
+		BDA72AAA2C1FF23200856810 /* AddCustomPromptTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA92C1FF23200856810 /* AddCustomPromptTip.swift */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
 		BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */; };
@@ -82,6 +83,7 @@
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
 		BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmotionTip.swift; sourceTree = "<group>"; };
+		BDA72AA92C1FF23200856810 /* AddCustomPromptTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPromptTip.swift; sourceTree = "<group>"; };
 		BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePromptView.swift; sourceTree = "<group>"; };
 		BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseEmotionView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */,
 				BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */,
+				BDA72AA92C1FF23200856810 /* AddCustomPromptTip.swift */,
 			);
 			path = Tips;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 			files = (
 				BDD6ACF22C1A07BC00B9A85A /* Thought.swift in Sources */,
 				BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */,
+				BDA72AAA2C1FF23200856810 /* AddCustomPromptTip.swift in Sources */,
 				BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */,
 				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
