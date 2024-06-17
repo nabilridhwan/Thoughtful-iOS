@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-var dates: [Date] = [
-    Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -6, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -5, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -4, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -2, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
-    Calendar.current.date(byAdding: .day, value: 0, to: Date())!,
-]
-
 struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date
     @Namespace var rectNs;
