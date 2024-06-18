@@ -80,6 +80,11 @@ struct HomeView: View {
                             ThoughtCardView(thought: thought)
                         }
                     }
+
+//                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
+                    Rectangle()
+                        .frame(height: 100)
+                        .foregroundStyle(.primary.opacity(0))
                 }
             }
             .scrollDismissesKeyboard(.interactively)
