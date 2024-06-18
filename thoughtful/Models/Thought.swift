@@ -56,6 +56,15 @@ class Thought {
         }
     }
 
+    init() {
+        thought_prompt = ""
+        thought_response = ""
+        date_created = Date.now
+        location = nil
+        music = nil
+        emotion = nil
+    }
+
     init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
         self.thought_prompt = thought_prompt
         self.thought_response = thought_response
