@@ -12,8 +12,10 @@ var dateFormatter = DateFormatter()
 struct ThoughtCardView: View {
     let thought: Thought
 
+    @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
+
     var cardColor: Color {
-        thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+        decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
     }
 
     var dateLabel: String {
