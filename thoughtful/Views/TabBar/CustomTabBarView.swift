@@ -17,7 +17,7 @@ struct CustomTabBarView: View {
         ZStack(alignment: .bottom) {
 //            Rectangle()
 //                .frame(height: 200)
-            LinearGradient(colors: [.card.opacity(0), .card.opacity(1)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.background.opacity(0), .background.opacity(1)], startPoint: .top, endPoint: .bottom)
                 .offset(y: -40)
                 .frame(height: 140)
 

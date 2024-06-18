@@ -83,7 +83,7 @@ struct HomeView: View {
 
 //                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
                     Rectangle()
-                        .frame(height: 100)
+                        .frame(height: 150)
                         .foregroundStyle(.primary.opacity(0))
                 }
             }
