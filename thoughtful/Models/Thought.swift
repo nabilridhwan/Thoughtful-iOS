@@ -32,7 +32,17 @@ class Thought {
         music != nil
     }
 
-    static var empty = Thought(thought_prompt: "", thought_response: "", date_created: Date.now)
+    // https://developer.apple.com/documentation/swiftdata/filtering-and-sorting-persistent-data#Define-a-filter-using-a-predicate
+    static func predicate(searchDate: Date) -> Predicate<Thought> {
+        let calendar = Calendar.autoupdatingCurrent
+        let start = calendar.startOfDay(for: searchDate)
+        let end = calendar.date(byAdding: .init(day: 1), to: start) ?? start
+
+        return #Predicate<Thought> {
+            thought in
+            thought.date_created > start && thought.date_created < end
+        }
+    }
 
     init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
         self.thought_prompt = thought_prompt

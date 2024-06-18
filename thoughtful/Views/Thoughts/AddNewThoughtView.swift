@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct AddNewThoughtView: View {
-    @Binding var prompt: String
+    @Binding var thought: Thought
     @Binding var date: Date
 
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
-
-    @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
     //    Form fields
     @State private var response: String = ""
@@ -28,7 +26,7 @@ struct AddNewThoughtView: View {
     @FocusState private var focusedField: Field?
 
     var isSubmittingDisabled: Bool {
-        prompt.isEmpty || response.isEmpty
+        thought.thought_prompt.isEmpty || response.isEmpty
     }
 
     @State var photo: UIImage?
@@ -44,7 +42,7 @@ struct AddNewThoughtView: View {
 
             // Form
             VStack(alignment: .leading) {
-                Text(prompt)
+                Text(thought.thought_prompt)
                     .font(.title3)
                     .bold()
                 TextField("Type your reply...", text: $response, axis: .vertical)
@@ -82,10 +80,9 @@ struct AddNewThoughtView: View {
 
             // Toolbar !
             ToolbarView(
-                thought: $newThought,
+                thought: $thought,
                 showEmotionModal: $showEmotionModal,
-                focusedField: _focusedField,
-                prompt: $prompt
+                focusedField: _focusedField
             )
             .padding(.vertical, 20)
 
@@ -104,7 +101,7 @@ struct AddNewThoughtView: View {
                 }.disabled(isSubmittingDisabled)
             }
         }
-        .onChange(of: newThought.photos) { _, newValue in
+        .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
                 DispatchQueue.global().async {
                     if let loadedPhoto = UIImage(data: newValue[0]) {
@@ -129,15 +126,15 @@ struct AddNewThoughtView: View {
 
 extension AddNewThoughtView {
     func handleAdd() {
-        newThought.thought_prompt = prompt
-        newThought.date_created = date
-        newThought.thought_response = response
+//        thought.thought_prompt = prompt
+        thought.date_created = date
+        thought.thought_response = response
 
         if emotion != nil {
-            newThought.emotion = emotion
+            thought.emotion = emotion
         }
 
-        modelContext.insert(newThought)
+        modelContext.insert(thought)
 
         dismiss()
     }

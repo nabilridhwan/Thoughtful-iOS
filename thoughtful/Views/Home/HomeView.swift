@@ -18,7 +18,8 @@ struct HomeView: View {
     @AppStorage("userName") private var userName: String = ""
 
     @Environment(\.modelContext) private var context: ModelContext
-    @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
+
+    @State var thoughts: [Thought] = []
 
     @State var filteredThoughts: [Thought] = []
 
@@ -27,11 +28,6 @@ struct HomeView: View {
     //    Present modal on pressing "Add Thought"
     @State var isAddThoughtPresented = false
     @State var isSettingsPresented = false
-
-    @State private var newThought: Thought?
-
-    @State private var prompt: String = ""
-    @State private var response: String = ""
 
     //    Bases on focusedField in onChange to have animations
     @State private var isFormActive: Bool = false
@@ -71,13 +67,13 @@ struct HomeView: View {
                 .padding(.bottom, 20)
 
             ScrollView {
-                if filteredThoughts.isEmpty {
+                if thoughts.isEmpty {
                     EmptyThoughtsView()
                         .padding(.horizontal, 40)
                         .padding(.top, 80)
                         .padding(.bottom, 20)
                 } else {
-                    ForEach(filteredThoughts) { thought in
+                    ForEach(thoughts) { thought in
                         NavigationLink {
                             ThoughtDetailView(thought: thought)
                         } label: {
@@ -112,7 +108,6 @@ struct HomeView: View {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
-                        prompt: $prompt
                     ).padding()
                     //                    AddNewThoughtView(
                     //                        date: $filteredDate
@@ -163,39 +158,17 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+            /// Runs when this view first appears
+            refetchThoughtsForDate(filteredDate)
         }
-
-        .onChange(of: thoughts) { _, _ in
-
-            print("Thoughts changed")
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+        .onChange(of: isAddThoughtPresented) { _, _ in
+            /// Runs when  the add thought modal is not presented anymore (a.k.a dismissed a.k.a cancelled a.k.a added)
+            refetchThoughtsForDate(filteredDate)
         }
         .onChange(of: filteredDate) { _, newValue in
-
+            /// Runs when filteredDate change (for horizontal calendar)
             print("Filtered date changed")
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: newValue, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+            refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
             #warning("Any deeplink to the app will open the Add Thought modal")
@@ -203,6 +176,27 @@ struct HomeView: View {
                 isAddThoughtPresented = true
             }
             print("Received deeplink \(url) \(url.lastPathComponent)")
+        }
+    }
+}
+
+// MARK: Helper functions
+
+extension HomeView {
+    func refetchThoughtsForDate(_ date: Date) {
+        let fetchDescriptor = FetchDescriptor<Thought>(
+            predicate: Thought.predicate(searchDate: date),
+            sortBy: [
+                SortDescriptor(\.date_created, order: .reverse),
+            ]
+        )
+
+        do {
+            try withAnimation {
+                thoughts = try context.fetch(fetchDescriptor)
+            }
+        } catch {
+            print("Error while fetching thoughts \(error)")
         }
     }
 }
