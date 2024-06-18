@@ -31,8 +31,17 @@ struct AddNewThoughtView: View {
         prompt.isEmpty || response.isEmpty
     }
 
+    @State var photo: UIImage?
+
     var body: some View {
         VStack(alignment: .leading) {
+            if photo != nil {
+                Image(uiImage: photo!)
+                    .resizable()
+                    .frame(height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+
             // Form
             VStack(alignment: .leading) {
                 Text(prompt)
@@ -67,13 +76,6 @@ struct AddNewThoughtView: View {
                 }.ignoresSafeArea(edges: .bottom)
             }
 
-            if !newThought.photos.isEmpty {
-                Image(uiImage: UIImage(data: newThought.photos[0])!)
-                    .resizable()
-                    .frame(height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 24))
-            }
-
             if emotion != nil {
                 ThoughtCardAttrbuteView(icon: Image(emotion!.getIcon()), text: emotion!.description.capitalized, backgroundColor: emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: emotion!.getColor())
             }
@@ -102,6 +104,20 @@ struct AddNewThoughtView: View {
                 }.disabled(isSubmittingDisabled)
             }
         }
+        .onChange(of: newThought.photos) { _, newValue in
+            if !newValue.isEmpty {
+                DispatchQueue.global().async {
+                    if let loadedPhoto = UIImage(data: newValue[0]) {
+                        DispatchQueue.main.async {
+                            withAnimation {
+                                self.photo = loadedPhoto
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundStyle(.primary)
         .background(Color.background)

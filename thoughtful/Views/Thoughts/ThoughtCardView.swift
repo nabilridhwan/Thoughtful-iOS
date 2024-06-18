@@ -20,10 +20,12 @@ struct ThoughtCardView: View {
         thought.date_created.formatted(.relative(presentation: .named))
     }
 
+    @State var photo: UIImage? = nil
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            if !thought.photos.isEmpty {
-                Image(uiImage: UIImage(data: thought.photos[0])!)
+            if photo != nil {
+                Image(uiImage: photo!)
                     .resizable()
                     .frame(height: 200)
                     .clipShape(
@@ -64,6 +66,17 @@ struct ThoughtCardView: View {
             }
             .padding(.vertical, 2)
             .padding(.top, 8)
+        }
+        .task {
+            DispatchQueue.global().async {
+                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            self.photo = loadedPhoto
+                        }
+                    }
+                }
+            }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)

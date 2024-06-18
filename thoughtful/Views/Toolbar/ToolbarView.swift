@@ -25,13 +25,13 @@ struct ToolbarView: View {
 
     var body: some View {
         HStack {
-            Button {
-                print("Location")
-            } label: {
-                Label("Location", systemImage: "location.fill")
-                    .labelStyle(.iconOnly)
-            }
-            .frame(maxWidth: .infinity)
+            //            Button {
+            //                print("Location")
+            //            } label: {
+            //                Label("Location", systemImage: "location.fill")
+            //                    .labelStyle(.iconOnly)
+            //            }
+            //            .frame(maxWidth: .infinity)
 
             //            Button{
             //                print("Music")
@@ -54,13 +54,13 @@ struct ToolbarView: View {
             .frame(maxWidth: .infinity)
             .popoverTip(addEmotionTip)
 
-            Button {
-                print("Open Camera")
-            } label: {
-                Label("Open Camera", systemImage: "camera.fill")
-                    .labelStyle(.iconOnly)
-            }
-            .frame(maxWidth: .infinity)
+            //            Button {
+            //                print("Open Camera")
+            //            } label: {
+            //                Label("Open Camera", systemImage: "camera.fill")
+            //                    .labelStyle(.iconOnly)
+            //            }
+            //            .frame(maxWidth: .infinity)
 
             PhotosPicker(selection: $photosPickerItem, matching: .images) {
                 Label("Open Photos", systemImage: "photo.fill")
@@ -72,7 +72,7 @@ struct ToolbarView: View {
         .foregroundStyle(.primary.opacity(0.5))
         .onChange(of: photosPickerItem) { _, newValue in
             Task {
-//                Check if newValue is optional, and if it isnt, laod tranferrable as Data.self
+                //                Check if newValue is optional, and if it isnt, laod tranferrable as Data.self
                 if let newValue,
                    let data = try? await newValue.loadTransferable(type: Data.self)
                 {

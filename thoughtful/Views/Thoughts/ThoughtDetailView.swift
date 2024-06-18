@@ -23,9 +23,18 @@ struct ThoughtDetailView: View {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
     }
 
+    @State var photo: UIImage? = nil
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
+                if photo != nil {
+                    Image(uiImage: photo!)
+                        .resizable()
+                        .frame(height: 200)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+
                 Text(thought.thought_prompt)
                     .font(.title)
                     .bold()
@@ -65,6 +74,17 @@ struct ThoughtDetailView: View {
                     isPresentingConfirm = true
 
                 }.foregroundStyle(.red)
+            }
+        }
+        .task {
+            DispatchQueue.global().async {
+                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            self.photo = loadedPhoto
+                        }
+                    }
+                }
             }
         }
         .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
