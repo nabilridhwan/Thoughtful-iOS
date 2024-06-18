@@ -72,12 +72,12 @@ struct ToolbarView: View {
         .foregroundStyle(.primary.opacity(0.5))
         .onChange(of: photosPickerItem) { _, newValue in
             Task {
-                //                Check if newValue is optional, and if it isnt, laod tranferrable as Data.self
+                // Check if newValue is optional, and if it isnt, load transferrable as Data.self
                 if let newValue,
                    let data = try? await newValue.loadTransferable(type: Data.self)
                 {
-                    if let image = UIImage(data: data) {
-                        thought.photos.append(data)
+                    if let image = UIImage(data: data)?.jpegData(compressionQuality: 0.1) {
+                        thought.photos.append(image)
                     }
                 }
             }
