@@ -72,6 +72,7 @@ struct CustomTabBarView: View {
                         .font(.title2)
                         .labelStyle(.iconOnly)
                         .padding(26)
+                        .foregroundStyle(.white)
                         .background {
                             LinearGradient(colors: [.gradient1, .gradient2], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1))
                                 .clipShape(Circle())
