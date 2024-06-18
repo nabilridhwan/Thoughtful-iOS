@@ -97,7 +97,7 @@ extension ToolbarView {
     //    }
 }
 
-// #Preview {
-//    ToolbarView()
-//        .background(Color.background)
-// }
+#Preview {
+    ToolbarView(thought: .constant(Thought(thought_prompt: "", thought_response: "", date_created: Date.now)), showEmotionModal: .constant(false))
+        .background(Color.background)
+}

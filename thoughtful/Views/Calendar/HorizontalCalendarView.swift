@@ -67,9 +67,7 @@ struct HorizontalCalendarView: View {
     }
 }
 
-//
-// #Preview {
-//    Group{
-//        HorizontalCalendarView(selectedDate: $selectedDate)
-//    }
-// }
+#Preview {
+    HorizontalCalendarView(selectedDate: .constant(Date.now))
+        .previewLayout(.sizeThatFits)
+}

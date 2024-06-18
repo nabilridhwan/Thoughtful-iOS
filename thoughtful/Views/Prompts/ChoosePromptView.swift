@@ -83,6 +83,6 @@ struct ChoosePromptView: View {
     }
 }
 
-// #Preview {
-//    ChoosePromptView()
-// }
+#Preview {
+    ChoosePromptView()
+}

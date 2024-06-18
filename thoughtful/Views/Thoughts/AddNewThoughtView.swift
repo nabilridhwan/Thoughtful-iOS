@@ -126,7 +126,7 @@ struct AddNewThoughtView: View {
 
 extension AddNewThoughtView {
     func handleAdd() {
-//        thought.thought_prompt = prompt
+        //        thought.thought_prompt = prompt
         thought.date_created = date
         thought.thought_response = response
 
@@ -140,10 +140,8 @@ extension AddNewThoughtView {
     }
 }
 
-// #Preview {
-//    NavigationStack{
-//
-//        AddNewThoughtView(date: $filteredDate)
-//    }
-//
-// }
+#Preview {
+    NavigationStack {
+        AddNewThoughtView(thought: .constant(.init()), date: .constant(Date.now))
+    }
+}

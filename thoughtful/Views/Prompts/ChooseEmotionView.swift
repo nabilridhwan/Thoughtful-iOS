@@ -77,6 +77,6 @@ struct ChooseEmotionView: View {
     }
 }
 
-// #Preview {
-//    ChooseEmotionView()
-// }
+#Preview {
+    ChooseEmotionView(emotion: .constant(nil))
+}
