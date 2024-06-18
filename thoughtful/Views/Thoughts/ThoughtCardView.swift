@@ -59,13 +59,16 @@ struct ThoughtCardView: View {
                 }
 
                 Spacer()
+            }
+            .padding(.vertical, 2)
+            .padding(.top, 8)
 
+            VStack(alignment: .trailing) {
                 Text(dateLabel.localizedCapitalized)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
-            .padding(.vertical, 2)
-            .padding(.top, 8)
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .task {
             DispatchQueue.global().async {
