@@ -78,6 +78,7 @@ struct SettingsView: View {
 
             Spacer()
         }
+        .navigationTitle("Settings")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .foregroundStyle(.primary)
@@ -86,5 +87,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    NavigationStack {
+        SettingsView()
+    }
 }

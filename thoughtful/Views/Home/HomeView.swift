@@ -26,7 +26,7 @@ struct HomeView: View {
     @State var filteredDate: Date = .now
 
     //    Present modal on pressing "Add Thought"
-    @State var isAddThoughtPresented = false
+    @Binding var isAddThoughtPresented: Bool
     @State var isSettingsPresented = false
 
     //    Bases on focusedField in onChange to have animations
@@ -132,31 +132,31 @@ struct HomeView: View {
 
         .foregroundStyle(.primary)
         .background(Color.background)
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    withAnimation {
-                        isAddThoughtPresented.toggle()
-                    }
-
-                    addThoughtTip.invalidate(reason: .actionPerformed)
-
-                } label: {
-                    Label("Add Thought", systemImage: "plus.circle")
-                        .labelStyle(.iconOnly)
-                }.popoverTip(addThoughtTip)
-            }
-
-            ToolbarItem {
-                Button {
-                    withAnimation {
-                        isSettingsPresented.toggle()
-                    }
-                } label: {
-                    Image(systemName: "gear")
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem {
+//                Button {
+//                    withAnimation {
+//                        isAddThoughtPresented.toggle()
+//                    }
+//
+//                    addThoughtTip.invalidate(reason: .actionPerformed)
+//
+//                } label: {
+//                    Label("Add Thought", systemImage: "plus.circle")
+//                        .labelStyle(.iconOnly)
+//                }.popoverTip(addThoughtTip)
+//            }
+//
+//            ToolbarItem {
+//                Button {
+//                    withAnimation {
+//                        isSettingsPresented.toggle()
+//                    }
+//                } label: {
+//                    Image(systemName: "gear")
+//                }
+//            }
+//        }
         .onAppear {
             /// Runs when this view first appears
             refetchThoughtsForDate(filteredDate)
@@ -205,7 +205,9 @@ extension HomeView {
 
 #Preview {
     NavigationStack {
-        HomeView()
-            .modelContainer(SampleData.shared.modelContainer)
+        HomeView(
+            isAddThoughtPresented: .constant(false)
+        )
+        .modelContainer(SampleData.shared.modelContainer)
     }
 }
