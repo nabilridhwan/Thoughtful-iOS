@@ -22,6 +22,15 @@ struct ThoughtCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if !thought.photos.isEmpty {
+                Image(uiImage: UIImage(data: thought.photos[0])!)
+                    .resizable()
+                    .frame(height: 200)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 24)
+                    )
+            }
+
             Text(thought.thought_prompt)
                 .fontWeight(.bold)
                 .font(.headline)
@@ -55,8 +64,6 @@ struct ThoughtCardView: View {
             }
             .padding(.vertical, 2)
             .padding(.top, 8)
-
-            VStack(alignment: .leading) {}.frame(maxWidth: .infinity)
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)

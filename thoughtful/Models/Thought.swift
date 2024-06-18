@@ -10,13 +10,15 @@ import SwiftUI
 
 @Model
 class Thought {
-    let thought_prompt: String
-    let thought_response: String
-    let date_created: Date
+    var thought_prompt: String
+    var thought_response: String
+    var date_created: Date
 
-    let location: String?
-    let music: String?
+    var location: String?
+    var music: String?
     var emotion: Emotion?
+
+    @Attribute(.externalStorage) var photos: [Data] = []
 
     var emotionExists: Bool {
         emotion != nil
@@ -29,6 +31,8 @@ class Thought {
     var musicExists: Bool {
         music != nil
     }
+
+    static var empty = Thought(thought_prompt: "", thought_response: "", date_created: Date.now)
 
     init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
         self.thought_prompt = thought_prompt

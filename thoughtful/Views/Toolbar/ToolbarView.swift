@@ -5,18 +5,22 @@
 //  Created by Nabil Ridhwan on 15/6/24.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct ToolbarView: View {
-    @Binding var emotion: Emotion?
+    @Binding var thought: Thought
     @Binding var showEmotionModal: Bool
     @FocusState var focusedField: Field?
     @Binding var prompt: String
 
+    @State var showPhotosPicker: Bool = false
+    @State var photosPickerItem: PhotosPickerItem?
+
     let addEmotionTip = AddEmotionTip()
 
     var emotionExists: Bool {
-        emotion != nil
+        thought.emotionExists
     }
 
     var body: some View {
@@ -58,9 +62,7 @@ struct ToolbarView: View {
             }
             .frame(maxWidth: .infinity)
 
-            Button {
-                print("Open Photos")
-            } label: {
+            PhotosPicker(selection: $photosPickerItem, matching: .images) {
                 Label("Open Photos", systemImage: "photo.fill")
                     .labelStyle(.iconOnly)
             }
@@ -68,6 +70,18 @@ struct ToolbarView: View {
         }
         .frame(maxWidth: .infinity)
         .foregroundStyle(.primary.opacity(0.5))
+        .onChange(of: photosPickerItem) { _, newValue in
+            Task {
+//                Check if newValue is optional, and if it isnt, laod tranferrable as Data.self
+                if let newValue,
+                   let data = try? await newValue.loadTransferable(type: Data.self)
+                {
+                    if let image = UIImage(data: data) {
+                        thought.photos.append(data)
+                    }
+                }
+            }
+        }
     }
 }
 
