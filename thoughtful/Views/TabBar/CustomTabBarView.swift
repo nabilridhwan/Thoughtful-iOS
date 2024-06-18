@@ -13,6 +13,8 @@ struct CustomTabBarView: View {
 
     @Namespace var capsuleNs;
 
+    let addThoughtTip = AddThoughtTip()
+
     var body: some View {
         ZStack(alignment: .bottom) {
 //            Rectangle()
@@ -64,6 +66,7 @@ struct CustomTabBarView: View {
 
                 Button {
                     showAddModal = true
+                    addThoughtTip.invalidate(reason: .actionPerformed)
                 } label: {
                     Label("Add", systemImage: "plus")
                         .font(.title2)
@@ -76,6 +79,7 @@ struct CustomTabBarView: View {
                 }
                 .offset(y: -20)
                 .frame(maxWidth: .infinity)
+                .popoverTip(addThoughtTip)
 
                 //            VStack {
                 //                Button {
