@@ -183,6 +183,8 @@ struct HomeView: View {
 // MARK: Helper functions
 
 extension HomeView {
+    // The reason one might think "Why didn't I just use @Query or call the Query() method and pass in the predicate. Trust me, I ChatGPT-ed and looked at the docs so long that it didn't work. self is not mutating. But the docs shows the code to mutate the state. It's confusing so I resorted to manually fetching using a fetch descriptor in hopes that its better
+
     func refetchThoughtsForDate(_ date: Date) {
         let fetchDescriptor = FetchDescriptor<Thought>(
             predicate: Thought.predicate(searchDate: date),
