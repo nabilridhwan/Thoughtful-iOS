@@ -42,43 +42,47 @@ struct SettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Section(header: Text("About You")) {
-                TextField("Name", text: $userName)
+            Text("Settings")
+                .font(.title)
+                .bold()
+            List {
+                Section(header: Text("Name")) {
+                    TextField("Name", text: $userName)
+                }
+
+                //            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
+                //                Toggle("Enable Reminders", isOn: $remindersEnabled)
+                //
+                //                if isRemindersEnabled {
+                //                    HStack(alignment: .center) {
+                //                        ForEach(Day.allCases, id: \.self) { day in
+                //                            Text(String(day.rawValue.first!))
+                //                                .bold()
+                //                                .foregroundStyle(.primary)
+                //                                .frame(width: 30, height: 30)
+                //                                .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
+                //                                .onTapGesture {
+                //                                    withAnimation {
+                //                                        if selectedDays.contains(day) {
+                //                                            selectedDays.removeAll(where: { $0 == day })
+                //                                        } else {
+                //                                            selectedDays.append(day)
+                //                                        }
+                //                                    }
+                //                                }
+                //                        }
+                //                    }
+                //
+                //                    DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
+                //                        .onAppear {
+                //                            UIDatePicker.appearance().minuteInterval = 15
+                //                        }
+                //                }
+                //            }
             }
-
-//            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
-//                Toggle("Enable Reminders", isOn: $remindersEnabled)
-//
-//                if isRemindersEnabled {
-//                    HStack(alignment: .center) {
-//                        ForEach(Day.allCases, id: \.self) { day in
-//                            Text(String(day.rawValue.first!))
-//                                .bold()
-//                                .foregroundStyle(.primary)
-//                                .frame(width: 30, height: 30)
-//                                .background(selectedDays.contains(day) ? Color.cyan.cornerRadius(10) : Color.gray.cornerRadius(10))
-//                                .onTapGesture {
-//                                    withAnimation {
-//                                        if selectedDays.contains(day) {
-//                                            selectedDays.removeAll(where: { $0 == day })
-//                                        } else {
-//                                            selectedDays.append(day)
-//                                        }
-//                                    }
-//                                }
-//                        }
-//                    }
-//
-//                    DatePicker("Time", selection: $time, displayedComponents: .hourAndMinute)
-//                        .onAppear {
-//                            UIDatePicker.appearance().minuteInterval = 15
-//                        }
-//                }
-//            }
-
-            Spacer()
+            .listStyle(.grouped)
+            .scrollContentBackground(.hidden)
         }
-        .navigationTitle("Settings")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .foregroundStyle(.primary)
@@ -87,7 +91,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    NavigationStack {
-        SettingsView()
-    }
+    SettingsView()
 }
