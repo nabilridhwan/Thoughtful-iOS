@@ -69,7 +69,9 @@ struct ChoosePromptView: View {
             Button("Cancel", role: .cancel) {
                 newThought.thought_prompt = ""
             }
-            Button("OK") {}
+            Button("OK") {
+                currentTab = "add_thought"
+            }
 
             TextField("Type your custom prompt", text: $newThought.thought_prompt)
                 .lineLimit(3, reservesSpace: true)
