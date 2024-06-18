@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+// var sample_dates: [Date] {
+//    var dates: [Date] = []
+//    for i in 1...7 {
+//        dates.append(Date.now.advanced(by: TimeInterval(-i*86400)))
+//    }
+//    return dates.reversed();
+// }
+
 struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date
     @Namespace var rectNs;
@@ -20,14 +28,14 @@ struct HorizontalCalendarView: View {
             ForEach(weekDates, id: \.hashValue) {
                 date in
                 Button {
-                    withAnimation {
+                    withAnimation(.easeOut(duration: 0.2)) {
                         selectedDate = date
                     }
                 } label: {
                     ZStack {
                         if DateHelpers.isSameDay(selectedDate, date) {
                             RoundedRectangle(cornerRadius: 24)
-                                .frame(width: 55, height: 74)
+                                .frame(width: 52, height: 74)
                                 .foregroundStyle(.cardAttribute)
                                 .matchedGeometryEffect(id: "Rect", in: rectNs)
                         }
@@ -37,19 +45,20 @@ struct HorizontalCalendarView: View {
                             Text("\(DateHelpers.getDayFromDate(date: date))")
                                 .font(.title3)
                                 .fontWeight(.bold)
-
-                        }.frame(maxWidth: .infinity)
-                            .foregroundStyle(.primary.opacity(DateHelpers.isSameDay(selectedDate, date) ? 1.0 : 0.5))
+                        }
+                        //                        .scaleEffect(
+                        //                    DateHelpers.isSameDay(selectedDate, date) ? 1.1 : 1.0
+                        //                )
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.primary.opacity(DateHelpers.isSameDay(selectedDate, date) ? 1.0 : 0.5))
                     }
                 }
+
                 .foregroundStyle(.primary.opacity(
-                    DateHelpers.isAfterDate2(date, Date.now) ? 0.2 : 1.0
+                    DateHelpers.isAfterDate2(date, Date.now) ? 0.4 : 1.0
                 ))
                 .disabled(
                     DateHelpers.isAfterDate2(date, Date.now)
-                )
-                .scaleEffect(
-                    DateHelpers.isSameDay(selectedDate, date) ? 1.1 : 1.0
                 )
             }
         }
