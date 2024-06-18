@@ -31,8 +31,12 @@ struct ThoughtDetailView: View {
                 if photo != nil {
                     Image(uiImage: photo!)
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .transition(
+                            .scale.combined(with: .opacity)
+                        )
                 }
 
                 Text(thought.thought_prompt)
