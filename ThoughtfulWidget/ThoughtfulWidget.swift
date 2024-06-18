@@ -35,34 +35,60 @@ struct ThoughtfulWidgetEntry: TimelineEntry {
 struct ThoughtfulWidgetEntryView: View {
     var entry: Provider.Entry
 
+    @Environment(\.widgetFamily) var family
+
+    var length: CGFloat {
+        switch family {
+        case .systemSmall:
+            return 40
+        case .systemMedium:
+            return 60
+        case .systemLarge:
+            return 60
+        case .systemExtraLarge:
+            return 10
+        case .accessoryCorner:
+            return 10
+        case .accessoryCircular:
+            return 10
+        case .accessoryRectangular:
+            return 10
+        case .accessoryInline:
+            return 10
+        @unknown default:
+            return 40
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Image(systemName: "plus.circle.fill")
+            Image(.logo)
                 .resizable()
-                .frame(width: 30, height: 30)
+                .frame(width: length, height: length)
                 .foregroundStyle(.black)
 
             Text("Add Thought")
-                .font(.headline)
+                .font(.title3)
                 .bold()
-            Text("Be grateful for today!")
+            Text("Time to reflect and grow")
                 .foregroundStyle(.secondary)
 
-            Spacer()
+//            Spacer()
 
-            HStack {
-                Text("Today's thoughts")
-                    .font(.caption2)
-                    .bold()
-
-                Spacer()
-
-                Text("3")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .bold()
-            }
+//            HStack {
+//                Text("Today's thoughts")
+//                    .font(.caption2)
+//                    .bold()
+//
+//                Spacer()
+//
+//                Text("3")
+//                    .font(.caption2)
+//                    .foregroundStyle(.secondary)
+//                    .bold()
+//            }
         }
+        .foregroundStyle(.black.opacity(0.8))
         .widgetURL(URL(string: "thoughtful://add"))
     }
 }
@@ -75,13 +101,15 @@ struct ThoughtfulWidget: Widget {
             if #available(iOS 17.0, *) {
                 ThoughtfulWidgetEntryView(entry: entry)
                     .containerBackground(for: .widget) {
-                        LinearGradient(gradient: Gradient(colors: [.accent, .accent.opacity(0.9)]), startPoint: .top, endPoint: .bottom)
+                        Color.widgetBackground
                     }
                     .foregroundStyle(.black)
             } else {
                 ThoughtfulWidgetEntryView(entry: entry)
                     .padding()
-                    .background(.accent)
+                    .background(
+                        Color.widgetBackground
+                    )
                     .foregroundStyle(.black)
             }
         }
