@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThoughtDetailView: View {
-    @Bindable var thought: Thought
+    var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
 
@@ -70,7 +70,7 @@ struct ThoughtDetailView: View {
         .foregroundStyle(.primary)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button("Delete") {
+                Button("Delete", role: .destructive) {
                     isPresentingConfirm = true
 
                 }.foregroundStyle(.red)
