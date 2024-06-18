@@ -35,25 +35,25 @@ struct CustomTabBarView: View {
                 }
             }
 
-            VStack {
-                Button {
-                    withAnimation {
-                        selectedTab = 1
-                    }
-                } label: {
-                    Label("Search", systemImage: "magnifyingglass")
-                        .labelStyle(.iconOnly)
-                }
-                .foregroundStyle(.primary.opacity(selectedTab == 1 ? 1 : 0.5))
-                .frame(maxWidth: .infinity)
-
-                if selectedTab == 1 {
-                    Capsule()
-                        .frame(width: 18, height: 6)
-                        .offset(y: 10)
-                        .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
-                }
-            }
+//            VStack {
+//                Button {
+//                    withAnimation {
+//                        selectedTab = 1
+//                    }
+//                } label: {
+//                    Label("Search", systemImage: "magnifyingglass")
+//                        .labelStyle(.iconOnly)
+//                }
+//                .foregroundStyle(.primary.opacity(selectedTab == 1 ? 1 : 0.5))
+//                .frame(maxWidth: .infinity)
+//
+//                if selectedTab == 1 {
+//                    Capsule()
+//                        .frame(width: 18, height: 6)
+//                        .offset(y: 10)
+//                        .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+//                }
+//            }
 
             Button {
                 showAddModal = true
@@ -70,25 +70,25 @@ struct CustomTabBarView: View {
             .offset(y: -20)
             .frame(maxWidth: .infinity)
 
-            VStack {
-                Button {
-                    withAnimation {
-                        selectedTab = 3
-                    }
-                } label: {
-                    Label("Calendar", systemImage: "calendar")
-                        .labelStyle(.iconOnly)
-                }
-                .foregroundStyle(.primary.opacity(selectedTab == 3 ? 1 : 0.5))
-                .frame(maxWidth: .infinity)
-
-                if selectedTab == 3 {
-                    Capsule()
-                        .frame(width: 18, height: 6)
-                        .offset(y: 10)
-                        .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
-                }
-            }
+//            VStack {
+//                Button {
+//                    withAnimation {
+//                        selectedTab = 3
+//                    }
+//                } label: {
+//                    Label("Calendar", systemImage: "calendar")
+//                        .labelStyle(.iconOnly)
+//                }
+//                .foregroundStyle(.primary.opacity(selectedTab == 3 ? 1 : 0.5))
+//                .frame(maxWidth: .infinity)
+//
+//                if selectedTab == 3 {
+//                    Capsule()
+//                        .frame(width: 18, height: 6)
+//                        .offset(y: 10)
+//                        .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+//                }
+//            }
 
             VStack {
                 Button {
