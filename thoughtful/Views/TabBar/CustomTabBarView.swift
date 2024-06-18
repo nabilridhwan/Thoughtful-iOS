@@ -24,7 +24,7 @@ struct CustomTabBarView: View {
                     Label("Home", systemImage: "house")
                         .labelStyle(.iconOnly)
                 }
-                .foregroundStyle(.white.opacity(selectedTab == 0 ? 1 : 0.5))
+                .foregroundStyle(.primary.opacity(selectedTab == 0 ? 1 : 0.5))
                 .frame(maxWidth: .infinity)
 
                 if selectedTab == 0 {
@@ -44,7 +44,7 @@ struct CustomTabBarView: View {
                     Label("Search", systemImage: "magnifyingglass")
                         .labelStyle(.iconOnly)
                 }
-                .foregroundStyle(.white.opacity(selectedTab == 1 ? 1 : 0.5))
+                .foregroundStyle(.primary.opacity(selectedTab == 1 ? 1 : 0.5))
                 .frame(maxWidth: .infinity)
 
                 if selectedTab == 1 {
@@ -79,7 +79,7 @@ struct CustomTabBarView: View {
                     Label("Calendar", systemImage: "calendar")
                         .labelStyle(.iconOnly)
                 }
-                .foregroundStyle(.white.opacity(selectedTab == 3 ? 1 : 0.5))
+                .foregroundStyle(.primary.opacity(selectedTab == 3 ? 1 : 0.5))
                 .frame(maxWidth: .infinity)
 
                 if selectedTab == 3 {
@@ -99,7 +99,7 @@ struct CustomTabBarView: View {
                     Label("Settings", systemImage: "gear")
                         .labelStyle(.iconOnly)
                 }
-                .foregroundStyle(.white.opacity(selectedTab == 4 ? 1 : 0.5))
+                .foregroundStyle(.primary.opacity(selectedTab == 4 ? 1 : 0.5))
                 .frame(maxWidth: .infinity)
                 if selectedTab == 4 {
                     Capsule()
