@@ -44,6 +44,18 @@ class Thought {
         }
     }
 
+    // Date range predicate (for upcoming calendar feature)
+    static func predicate(startDate: Date, endDate: Date) -> Predicate<Thought> {
+        let calendar = Calendar.autoupdatingCurrent
+        let start = calendar.startOfDay(for: startDate)
+        let end = endDate
+
+        return #Predicate<Thought> {
+            thought in
+            thought.date_created > start && thought.date_created < end
+        }
+    }
+
     init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
         self.thought_prompt = thought_prompt
         self.thought_response = thought_response
