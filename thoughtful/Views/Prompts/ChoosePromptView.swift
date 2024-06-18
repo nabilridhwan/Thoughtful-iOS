@@ -11,17 +11,16 @@ import TipKit
 struct ChoosePromptView: View {
     @State var date: Date = .now
     @State var currentTab: String = "choose_prompt"
-    @State var showAddNewThoughtView: Bool = false
     @State var showCustomPrompt: Bool = false
-    @Binding var prompt: String
     @Environment(\.dismiss) var dismiss;
+
+    @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
     var addCustomPromptTip = AddCustomPromptTip()
 
     func handlePressPrompt(_ p: String) {
         withAnimation {
-            prompt = p
-            //        showAddNewThoughtView = true
+            newThought.thought_prompt = p
             currentTab = "add_thought"
         }
     }
@@ -37,7 +36,7 @@ struct ChoosePromptView: View {
                     Button {
                         showCustomPrompt = true
                         addCustomPromptTip.invalidate(reason: .actionPerformed)
-                        prompt = ""
+                        newThought.thought_prompt = ""
                     } label: {
                         Text("Custom Prompt")
                     }
@@ -61,28 +60,19 @@ struct ChoosePromptView: View {
             .tag("choose_prompt")
 
             AddNewThoughtView(
-                prompt: $prompt,
+                thought: $newThought,
                 date: $date
             )
             .tag("add_thought")
         }
         .alert("Add Custom Prompt", isPresented: $showCustomPrompt) {
-            Button("Cancel", role: .cancel) {}
-            Button("OK") {
-                handlePressPrompt(prompt)
+            Button("Cancel", role: .cancel) {
+                newThought.thought_prompt = ""
             }
+            Button("OK") {}
 
-            TextField("Type your custom prompt", text: $prompt)
+            TextField("Type your custom prompt", text: $newThought.thought_prompt)
                 .lineLimit(3, reservesSpace: true)
-        }
-        .sheet(isPresented: $showAddNewThoughtView) {
-            NavigationStack {
-                AddNewThoughtView(
-                    prompt: $prompt,
-                    date: $date
-                )
-            }
-            .presentationDetents([.medium])
         }
         .ignoresSafeArea(edges: .bottom)
         .multilineTextAlignment(.leading)

@@ -12,7 +12,6 @@ struct ToolbarView: View {
     @Binding var thought: Thought
     @Binding var showEmotionModal: Bool
     @FocusState var focusedField: Field?
-    @Binding var prompt: String
 
     @State var showPhotosPicker: Bool = false
     @State var photosPickerItem: PhotosPickerItem?
