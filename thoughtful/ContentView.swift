@@ -28,15 +28,11 @@ struct ContentView: View {
                     )
                     .tag(0)
 
-                    HomeView(
-                        isAddThoughtPresented: .constant(false)
-                    )
-                    .tag(1)
+                    EmptyView()
+                        .tag(1)
 
-                    HomeView(
-                        isAddThoughtPresented: .constant(false)
-                    )
-                    .tag(3)
+                    EmptyView()
+                        .tag(3)
 
                     NavigationStack {
                         SettingsView()
