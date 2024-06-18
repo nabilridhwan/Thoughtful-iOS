@@ -21,14 +21,16 @@ struct ThoughtCardView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(thought.thought_prompt)
-                .opacity(0.5)
                 .fontWeight(.bold)
-                .font(.callout)
+                .font(.headline)
+                .opacity(0.5)
+
             Text(LocalizedStringKey(thought.thought_response))
                 .font(.callout)
                 .lineLimit(2)
+                .opacity(0.9)
 
             HStack {
                 if thought.locationExists || thought.musicExists || thought.emotionExists {
@@ -47,7 +49,7 @@ struct ThoughtCardView: View {
 
                 Spacer()
 
-                Text(dateLabel)
+                Text(dateLabel.localizedCapitalized)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
