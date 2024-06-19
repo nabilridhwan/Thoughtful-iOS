@@ -178,6 +178,7 @@ struct HomeView: View {
             refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
+            dlvm.reset()
 
             print("Received deeplink \(url) \(url.lastPathComponent)")
             #warning("Any deeplink to the app will open the Add Thought modal")
