@@ -47,11 +47,11 @@ struct PromptWidgetEntryView: View {
 
     var body: some View {
         VStack {
-            Text("How are you feeling right now?")
+            Text("Emotion Check-In")
                 .font(.headline)
                 .bold()
 
-            Text("Share what it is that makes you feel this way, in this moment")
+            Text("Select an emotion to express and reflect on your current mood")
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -69,9 +69,8 @@ struct PromptWidgetEntryView: View {
                                      .frame(width: 30, height: 30)
                              }.labelStyle(.iconOnly)
                                  .padding(10)
-                                 .foregroundStyle(e.getColor())
-                                 .background(e.getColor(), in: RoundedRectangle(cornerRadius: 10)
-                                     .stroke(lineWidth: 2))
+                                 .foregroundStyle(.black.opacity(0.6))
+                                 .background(e.getColor(), in: RoundedRectangle(cornerRadius: 10))
                          })
                 }
 
