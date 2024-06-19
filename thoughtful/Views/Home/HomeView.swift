@@ -18,20 +18,13 @@ struct HomeView: View {
     @AppStorage("userName") private var userName: String = ""
 
     @Environment(\.modelContext) private var context: ModelContext
-    @Query(sort: \Thought.date_created, order: .reverse) private var thoughts: [Thought]
 
-    @State var filteredThoughts: [Thought] = []
-
+    @State var thoughts: [Thought] = []
     @State var filteredDate: Date = .now
 
     //    Present modal on pressing "Add Thought"
-    @State var isAddThoughtPresented = false
+    @Binding var isAddThoughtPresented: Bool
     @State var isSettingsPresented = false
-
-    @State private var newThought: Thought?
-
-    @State private var prompt: String = ""
-    @State private var response: String = ""
 
     //    Bases on focusedField in onChange to have animations
     @State private var isFormActive: Bool = false
@@ -40,8 +33,6 @@ struct HomeView: View {
     @FocusState private var focusedField: Field?
 
     @State var emotion: Emotion?
-
-    let addThoughtTip = AddThoughtTip()
 
     func getGreeting() -> String {
         let currentDate = Date()
@@ -71,19 +62,21 @@ struct HomeView: View {
                 .padding(.bottom, 20)
 
             ScrollView {
-                if filteredThoughts.isEmpty {
+                if thoughts.isEmpty {
                     EmptyThoughtsView()
-                        .padding(.horizontal, 40)
-                        .padding(.top, 80)
-                        .padding(.bottom, 20)
                 } else {
-                    ForEach(filteredThoughts) { thought in
+                    ForEach(thoughts) { thought in
                         NavigationLink {
                             ThoughtDetailView(thought: thought)
                         } label: {
                             ThoughtCardView(thought: thought)
                         }
                     }
+
+//                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
+                    Rectangle()
+                        .frame(height: 150)
+                        .foregroundStyle(.primary.opacity(0))
                 }
             }
             .scrollDismissesKeyboard(.interactively)
@@ -112,7 +105,6 @@ struct HomeView: View {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
-                        prompt: $prompt
                     ).padding()
                     //                    AddNewThoughtView(
                     //                        date: $filteredDate
@@ -137,65 +129,43 @@ struct HomeView: View {
 
         .foregroundStyle(.primary)
         .background(Color.background)
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    withAnimation {
-                        isAddThoughtPresented.toggle()
-                    }
-
-                    addThoughtTip.invalidate(reason: .actionPerformed)
-
-                } label: {
-                    Label("Add Thought", systemImage: "plus.circle")
-                        .labelStyle(.iconOnly)
-                }.popoverTip(addThoughtTip)
-            }
-
-            ToolbarItem {
-                Button {
-                    withAnimation {
-                        isSettingsPresented.toggle()
-                    }
-                } label: {
-                    Image(systemName: "gear")
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem {
+//                Button {
+//                    withAnimation {
+//                        isAddThoughtPresented.toggle()
+//                    }
+//
+//                    addThoughtTip.invalidate(reason: .actionPerformed)
+//
+//                } label: {
+//                    Label("Add Thought", systemImage: "plus.circle")
+//                        .labelStyle(.iconOnly)
+//                }.popoverTip(addThoughtTip)
+//            }
+//
+//            ToolbarItem {
+//                Button {
+//                    withAnimation {
+//                        isSettingsPresented.toggle()
+//                    }
+//                } label: {
+//                    Image(systemName: "gear")
+//                }
+//            }
+//        }
         .onAppear {
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+            /// Runs when this view first appears
+            refetchThoughtsForDate(filteredDate)
         }
-
-        .onChange(of: thoughts) { _, _ in
-
-            print("Thoughts changed")
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: filteredDate, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+        .onChange(of: isAddThoughtPresented) { _, _ in
+            /// Runs when  the add thought modal is not presented anymore (a.k.a dismissed a.k.a cancelled a.k.a added)
+            refetchThoughtsForDate(filteredDate)
         }
         .onChange(of: filteredDate) { _, newValue in
-
+            /// Runs when filteredDate change (for horizontal calendar)
             print("Filtered date changed")
-            // Filter the thoughts
-            let filtered = thoughts.filter {
-                Calendar.current.compare($0.date_created, to: newValue, toGranularity: .day) == .orderedSame
-            }
-
-            withAnimation {
-                filteredThoughts = filtered
-            }
+            refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
             #warning("Any deeplink to the app will open the Add Thought modal")
@@ -207,9 +177,34 @@ struct HomeView: View {
     }
 }
 
+// MARK: Helper functions
+
+extension HomeView {
+    // The reason one might think "Why didn't I just use @Query or call the Query() method and pass in the predicate. Trust me, I ChatGPT-ed and looked at the docs so long that it didn't work. self is not mutating. But the docs shows the code to mutate the state. It's confusing so I resorted to manually fetching using a fetch descriptor in hopes that its better
+
+    func refetchThoughtsForDate(_ date: Date) {
+        let fetchDescriptor = FetchDescriptor<Thought>(
+            predicate: Thought.predicate(searchDate: date),
+            sortBy: [
+                SortDescriptor(\.date_created, order: .reverse),
+            ]
+        )
+
+        do {
+            try withAnimation {
+                thoughts = try context.fetch(fetchDescriptor)
+            }
+        } catch {
+            print("Error while fetching thoughts \(error)")
+        }
+    }
+}
+
 #Preview {
     NavigationStack {
-        HomeView()
-            .modelContainer(SampleData.shared.modelContainer)
+        HomeView(
+            isAddThoughtPresented: .constant(false)
+        )
+        .modelContainer(SampleData.shared.modelContainer)
     }
 }

@@ -12,6 +12,9 @@ import TipKit
 struct ContentView: View {
     @AppStorage("doneOnboarding") private var doneOnboarding: Bool = false
 
+    @State var selectedTab: Int = 0
+    @State var showAddNewThought: Bool = false
+
     var body: some View {
         NavigationStack {
             if !doneOnboarding {
@@ -19,44 +22,51 @@ struct ContentView: View {
                     doneOnboarding: $doneOnboarding
                 )
             } else {
-                //            TabView{
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
+                TabView(selection: $selectedTab) {
+                    HomeView(
+                        isAddThoughtPresented: $showAddNewThought
+                    )
+                    .tag(0)
 
-                //                HomeView()
-                //                    .tabItem {
-                //                        Label("Calendar", systemImage: "calendar")
-                //                    }
-                //
-                //                HomeView()
-                //                    .tabItem {
-                //                        Label("Stats", systemImage: "chart.bar")
-                //                    }
-                //
-                //                SettingsView()
-                //                    .tabItem {
-                //                        Label("Settings", systemImage: "gear")
-                //                    }
-                //            }
+                    EmptyView()
+                        .tag(1)
+
+                    EmptyView()
+                        .tag(3)
+
+                    SettingsView()
+                        .tag(4)
+                }
+                .overlay(alignment: .bottom) {
+                    CustomTabBarView(
+                        selectedTab: $selectedTab,
+                        showAddModal: $showAddNewThought
+                    )
+                }
+                .onChange(of: selectedTab) { _, _ in
+                    if selectedTab == 2 {
+                        print("add pressed")
+                    }
+                }
+                .ignoresSafeArea(.all, edges: .bottom)
             }
         }
 
         // MARK: UNCOMMENT THE LINE BELOW TO ENABLE ONBOARDING SCREEN
 
-//        .onAppear {
-//            doneOnboarding = false
-//        }
+        //        .onAppear {
+        //            doneOnboarding = false
+        //        }
     }
 }
 
 #Preview {
     ContentView()
-
         .modelContainer(SampleData.shared.modelContainer)
-        .preferredColorScheme(.dark)
         .task {
+            // MARK: UNCOMMENT THE LINE BELOW TO FORCEFULLY SHOW TIPS
+
+//            try? Tips.resetDatastore()
             try? Tips.configure([
                 .datastoreLocation(.applicationDefault),
             ])

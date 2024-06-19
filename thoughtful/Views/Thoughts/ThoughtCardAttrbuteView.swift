@@ -36,7 +36,7 @@ struct ThoughtCardAttrbuteView: View {
                 .font(.caption)
                 .lineLimit(1)
         }
-        .foregroundStyle(foregroundColor ?? .primary.opacity(0.5))
+        .foregroundStyle(foregroundColor ?? .secondary.opacity(0.5))
         .padding(.vertical, 5)
         .padding(.horizontal, 8)
         .background {
@@ -48,5 +48,5 @@ struct ThoughtCardAttrbuteView: View {
 }
 
 #Preview {
-    ThoughtCardAttrbuteView(icon: Image(.terrible), text: "Happy", backgroundColor: .yellow, foregroundColor: .black.opacity(0.6), shadowColor: .yellow)
+    ThoughtCardAttrbuteView(icon: Image(.terrible), text: "Happy", backgroundColor: .yellow, shadowColor: .yellow)
 }

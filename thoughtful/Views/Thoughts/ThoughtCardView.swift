@@ -12,16 +12,31 @@ var dateFormatter = DateFormatter()
 struct ThoughtCardView: View {
     let thought: Thought
 
+    @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
+
     var cardColor: Color {
-        thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+        decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
     }
 
     var dateLabel: String {
         thought.date_created.formatted(.relative(presentation: .named))
     }
 
+    @State var photo: UIImage? = nil
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if photo != nil {
+                Image(uiImage: photo!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 200)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 24)
+                    )
+                    .transition(.scale.combined(with: .opacity))
+            }
+
             Text(thought.thought_prompt)
                 .fontWeight(.bold)
                 .font(.headline)
@@ -44,19 +59,32 @@ struct ThoughtCardView: View {
 
                     if thought.emotionExists {
                         ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                            .transition(
+                                .scale.combined(with: .opacity)
+                            )
                     }
                 }
 
                 Spacer()
-
-                Text(dateLabel.localizedCapitalized)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
             }
             .padding(.vertical, 2)
             .padding(.top, 8)
 
-            VStack(alignment: .leading) {}.frame(maxWidth: .infinity)
+            VStack(alignment: .trailing) {
+                Text(dateLabel.localizedCapitalized)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+        .task {
+            DispatchQueue.main.async {
+                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+                    withAnimation {
+                        self.photo = loadedPhoto
+                    }
+                }
+            }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -12,6 +12,7 @@
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */; };
 		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
@@ -40,7 +41,7 @@
 		BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */; };
 		BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843AB2C1D7D750046C2A4 /* SampleData.swift */; };
 		BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843AE2C1D99040046C2A4 /* ToolbarView.swift */; };
-		BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */; };
+		BDE843B12C1DB41F0046C2A4 /* ThoughtDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE843B02C1DB41F0046C2A4 /* ThoughtDetailForm.swift */; };
 		BDED2CB32C21210100B4B40B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD6ACCB2C1A07A300B9A85A /* Assets.xcassets */; };
 		BDED2CB92C2124B700B4B40B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
 		BDED2CBA2C2124B700B4B40B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
@@ -102,6 +103,7 @@
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
 		BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmotionTip.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		BDED2CBE2C2124B700B4B40B /* PromptWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptWidget.swift; sourceTree = "<group>"; };
 		BDED2CC02C2124B800B4B40B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDED2CC22C2124B800B4B40B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDE843B02C1DB41F0046C2A4 /* ThoughtDetailForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +198,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		BD9A79852C21ACB0009C6401 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		BDA0ADC22C20116D0034D2B1 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +227,7 @@
 		BDD3670E2C1E926300B1BBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD9A79852C21ACB0009C6401 /* TabBar */,
 				BDA0ADC22C20116D0034D2B1 /* Onboarding */,
 				BDD367142C1E929700B1BBE7 /* Home */,
 				BDD367132C1E929200B1BBE7 /* Settings */,
@@ -234,7 +246,7 @@
 				BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */,
 				BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */,
 				BDE843A92C1D7D670046C2A4 /* ThoughtDetailView.swift */,
-				BDE843B02C1DB41F0046C2A4 /* AddNewThoughtView.swift */,
+				BDE843B02C1DB41F0046C2A4 /* ThoughtDetailForm.swift */,
 			);
 			path = Thoughts;
 			sourceTree = "<group>";
@@ -594,8 +606,9 @@
 				BDD6ACF62C1A885B00B9A85A /* HorizontalCalendarView.swift in Sources */,
 				BDA72AAA2C1FF23200856810 /* AddCustomPromptTip.swift in Sources */,
 				BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */,
-				BDE843B12C1DB41F0046C2A4 /* AddNewThoughtView.swift in Sources */,
+				BDE843B12C1DB41F0046C2A4 /* ThoughtDetailForm.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
+				BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,

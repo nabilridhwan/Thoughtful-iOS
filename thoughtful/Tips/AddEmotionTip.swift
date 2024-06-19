@@ -10,14 +10,10 @@ import TipKit
 
 struct AddEmotionTip: Tip {
     var title: Text {
-        Text("Add Emotion")
+        Text("Add how you're feeling")
     }
 
     var message: Text? {
-        Text("Tap here to add an Emotion")
-    }
-
-    var image: Image? {
-        Image(systemName: "smiley")
+        Text("Tap here to tag how you're feeling")
     }
 }

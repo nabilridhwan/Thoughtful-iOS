@@ -5,29 +5,32 @@
 //  Created by Nabil Ridhwan on 15/6/24.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct ToolbarView: View {
-    @Binding var emotion: Emotion?
+    @ObservedObject var thought: Thought
     @Binding var showEmotionModal: Bool
     @FocusState var focusedField: Field?
-    @Binding var prompt: String
+
+    @State var showPhotosPicker: Bool = false
+    @State var photosPickerItem: PhotosPickerItem?
 
     let addEmotionTip = AddEmotionTip()
 
     var emotionExists: Bool {
-        emotion != nil
+        thought.emotionExists
     }
 
     var body: some View {
         HStack {
-            Button {
-                print("Location")
-            } label: {
-                Label("Location", systemImage: "location.fill")
-                    .labelStyle(.iconOnly)
-            }
-            .frame(maxWidth: .infinity)
+            //            Button {
+            //                print("Location")
+            //            } label: {
+            //                Label("Location", systemImage: "location.fill")
+            //                    .labelStyle(.iconOnly)
+            //            }
+            //            .frame(maxWidth: .infinity)
 
             //            Button{
             //                print("Music")
@@ -50,17 +53,15 @@ struct ToolbarView: View {
             .frame(maxWidth: .infinity)
             .popoverTip(addEmotionTip)
 
-            Button {
-                print("Open Camera")
-            } label: {
-                Label("Open Camera", systemImage: "camera.fill")
-                    .labelStyle(.iconOnly)
-            }
-            .frame(maxWidth: .infinity)
+            //            Button {
+            //                print("Open Camera")
+            //            } label: {
+            //                Label("Open Camera", systemImage: "camera.fill")
+            //                    .labelStyle(.iconOnly)
+            //            }
+            //            .frame(maxWidth: .infinity)
 
-            Button {
-                print("Open Photos")
-            } label: {
+            PhotosPicker(selection: $photosPickerItem, matching: .images) {
                 Label("Open Photos", systemImage: "photo.fill")
                     .labelStyle(.iconOnly)
             }
@@ -68,6 +69,18 @@ struct ToolbarView: View {
         }
         .frame(maxWidth: .infinity)
         .foregroundStyle(.primary.opacity(0.5))
+        .onChange(of: photosPickerItem) { _, newValue in
+            Task {
+                // Check if newValue is optional, and if it isnt, load transferrable as Data.self
+                if let newValue,
+                   let data = try? await newValue.loadTransferable(type: Data.self)
+                {
+                    if let image = UIImage(data: data)?.jpegData(compressionQuality: 0.1) {
+                        thought.photos.append(image)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -84,7 +97,7 @@ extension ToolbarView {
     //    }
 }
 
-// #Preview {
-//    ToolbarView()
-//        .background(Color.background)
-// }
+#Preview {
+    ToolbarView(thought: Thought(thought_prompt: "", thought_response: "", date_created: Date.now), showEmotionModal: .constant(false))
+        .background(Color.background)
+}

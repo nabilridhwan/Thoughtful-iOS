@@ -144,6 +144,8 @@ struct OnboardingRequestNotificationPermission: View {
     }
 }
 
-// #Preview {
-//    MainOnboardingView()
-// }
+#Preview {
+    MainOnboardingView(
+        doneOnboarding: .constant(false)
+    )
+}

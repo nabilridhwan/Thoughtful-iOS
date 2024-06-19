@@ -9,14 +9,16 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Thought {
-    let thought_prompt: String
-    let thought_response: String
-    let date_created: Date
+class Thought: ObservableObject {
+    var thought_prompt: String
+    var thought_response: String
+    var date_created: Date
 
-    let location: String?
-    let music: String?
+    var location: String?
+    var music: String?
     var emotion: Emotion?
+
+    @Attribute(.externalStorage) var photos: [Data] = []
 
     var emotionExists: Bool {
         emotion != nil
@@ -28,6 +30,39 @@ class Thought {
 
     var musicExists: Bool {
         music != nil
+    }
+
+    // https://developer.apple.com/documentation/swiftdata/filtering-and-sorting-persistent-data#Define-a-filter-using-a-predicate
+    static func predicate(searchDate: Date) -> Predicate<Thought> {
+        let calendar = Calendar.autoupdatingCurrent
+        let start = calendar.startOfDay(for: searchDate)
+        let end = calendar.date(byAdding: .init(day: 1), to: start) ?? start
+
+        return #Predicate<Thought> {
+            thought in
+            thought.date_created > start && thought.date_created < end
+        }
+    }
+
+    // Date range predicate (for upcoming calendar feature)
+    static func predicate(startDate: Date, endDate: Date) -> Predicate<Thought> {
+        let calendar = Calendar.autoupdatingCurrent
+        let start = calendar.startOfDay(for: startDate)
+        let end = endDate
+
+        return #Predicate<Thought> {
+            thought in
+            thought.date_created > start && thought.date_created < end
+        }
+    }
+
+    init() {
+        thought_prompt = ""
+        thought_response = ""
+        date_created = Date.now
+        location = nil
+        music = nil
+        emotion = nil
     }
 
     init(thought_prompt: String, thought_response: String, date_created: Date, location: String? = nil, music: String? = nil, emotion: Emotion? = nil) {
