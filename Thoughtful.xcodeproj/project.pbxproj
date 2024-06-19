@@ -12,6 +12,7 @@
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
 		BDA72AA82C1F444F00856810 /* AddEmotionTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA72C1F444F00856810 /* AddEmotionTip.swift */; };
@@ -638,6 +639,7 @@
 				BDED2CBD2C2124B700B4B40B /* PromptWidgetBundle.swift in Sources */,
 				BDED2CC92C2124E200B4B40B /* GratitudeQuestions.swift in Sources */,
 				BDED2CBF2C2124B700B4B40B /* PromptWidget.swift in Sources */,
+				BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

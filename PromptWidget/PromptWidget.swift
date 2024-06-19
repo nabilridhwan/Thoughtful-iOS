@@ -10,7 +10,7 @@ import WidgetKit
 
 struct Provider: TimelineProvider {
     func placeholder(in _: Context) -> SimpleEntry {
-        gratitudeQuestions.randomElement()!
+//        gratitudeQuestions.randomElement()!
         return SimpleEntry(date: Date(), emoji: "😀")
     }
 
@@ -40,6 +40,12 @@ struct SimpleEntry: TimelineEntry {
     let emoji: String
 }
 
+func getUrlWithEmotion(_ emotion: Emotion) -> URL {
+    return URL(
+        string: "thoughtful://add?prompt=Share what it is that makes you feel this way, in this moment&emotion=\(emotion.description)"
+    )!
+}
+
 struct PromptWidgetEntryView: View {
     var randomGratitudeQuestion: String = gratitudeQuestions.randomElement()!
     var randomGratitudeQuestion2: String = gratitudeQuestions.randomElement()!
@@ -49,13 +55,36 @@ struct PromptWidgetEntryView: View {
 
     var body: some View {
         VStack {
-            Button {} label: {
-                Text(randomGratitudeQuestion)
-            }
+            Text("How are you feeling right now?")
+                .font(.headline)
+                .bold()
 
-            Button {} label: {
-                Text(randomGratitudeQuestion2)
-            }
+            Text("Share what it is that makes you feel this way, in this moment")
+                .font(.subheadline)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 12) {
+                ForEach(Emotion.allCases, id: \.self) {
+                    e in
+                    Link(destination: getUrlWithEmotion(e),
+                         label: {
+                             Label {
+                                 Text(e.description)
+                             } icon: {
+                                 Image(e.getIcon())
+                                     .resizable()
+                                     .frame(width: 30, height: 30)
+                             }.labelStyle(.iconOnly)
+                                 .padding(10)
+                                 .foregroundStyle(e.getColor())
+                                 .background(e.getColor(), in: RoundedRectangle(cornerRadius: 10)
+                                     .stroke(lineWidth: 2))
+                         })
+                }
+
+            }.foregroundStyle(.primary)
+                .multilineTextAlignment(.center)
         }
     }
 }
@@ -68,14 +97,13 @@ struct PromptWidget: Widget {
             if #available(iOS 17.0, *) {
                 PromptWidgetEntryView(entry: entry)
                     .containerBackground(for: .widget) {
-                        Color.widgetBackground
+                        Color.card
                     }
-                    .foregroundStyle(.black)
             } else {
                 PromptWidgetEntryView(entry: entry)
                     .padding()
                     .background(
-                        Color.widgetBackground
+                        Color.card
                     )
             }
         }
