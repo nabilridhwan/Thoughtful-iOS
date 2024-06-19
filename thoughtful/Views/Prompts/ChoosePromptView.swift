@@ -14,7 +14,7 @@ struct ChoosePromptView: View {
     @State var showCustomPrompt: Bool = false
     @Environment(\.dismiss) var dismiss;
 
-    @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
+    @StateObject var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
     var addCustomPromptTip = AddCustomPromptTip()
 
@@ -60,7 +60,7 @@ struct ChoosePromptView: View {
             .tag("choose_prompt")
 
             AddNewThoughtView(
-                thought: $newThought,
+                thought: newThought,
                 date: $date
             )
             .tag("add_thought")
@@ -69,7 +69,9 @@ struct ChoosePromptView: View {
             Button("Cancel", role: .cancel) {
                 newThought.thought_prompt = ""
             }
-            Button("OK") {}
+            Button("OK") {
+                currentTab = "add_thought"
+            }
 
             TextField("Type your custom prompt", text: $newThought.thought_prompt)
                 .lineLimit(3, reservesSpace: true)

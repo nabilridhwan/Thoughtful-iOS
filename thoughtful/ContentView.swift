@@ -34,10 +34,8 @@ struct ContentView: View {
                     EmptyView()
                         .tag(3)
 
-                    NavigationStack {
-                        SettingsView()
-                    }
-                    .tag(4)
+                    SettingsView()
+                        .tag(4)
                 }
                 .overlay(alignment: .bottom) {
                     CustomTabBarView(
@@ -64,10 +62,11 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-
         .modelContainer(SampleData.shared.modelContainer)
-        .preferredColorScheme(.dark)
         .task {
+            // MARK: UNCOMMENT THE LINE BELOW TO FORCEFULLY SHOW TIPS
+
+//            try? Tips.resetDatastore()
             try? Tips.configure([
                 .datastoreLocation(.applicationDefault),
             ])

@@ -20,9 +20,6 @@ struct HomeView: View {
     @Environment(\.modelContext) private var context: ModelContext
 
     @State var thoughts: [Thought] = []
-
-    @State var filteredThoughts: [Thought] = []
-
     @State var filteredDate: Date = .now
 
     //    Present modal on pressing "Add Thought"
@@ -36,8 +33,6 @@ struct HomeView: View {
     @FocusState private var focusedField: Field?
 
     @State var emotion: Emotion?
-
-    let addThoughtTip = AddThoughtTip()
 
     func getGreeting() -> String {
         let currentDate = Date()
@@ -69,9 +64,6 @@ struct HomeView: View {
             ScrollView {
                 if thoughts.isEmpty {
                     EmptyThoughtsView()
-                        .padding(.horizontal, 40)
-                        .padding(.top, 80)
-                        .padding(.bottom, 20)
                 } else {
                     ForEach(thoughts) { thought in
                         NavigationLink {
@@ -80,6 +72,11 @@ struct HomeView: View {
                             ThoughtCardView(thought: thought)
                         }
                     }
+
+//                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
+                    Rectangle()
+                        .frame(height: 150)
+                        .foregroundStyle(.primary.opacity(0))
                 }
             }
             .scrollDismissesKeyboard(.interactively)

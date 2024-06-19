@@ -31,8 +31,12 @@ struct ThoughtDetailView: View {
                 if photo != nil {
                     Image(uiImage: photo!)
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .transition(
+                            .scale.combined(with: .opacity)
+                        )
                 }
 
                 Text(thought.thought_prompt)
@@ -51,15 +55,42 @@ struct ThoughtDetailView: View {
                     Text("Emotion")
                         .font(.caption2)
                         .foregroundStyle(.primary.opacity(0.5))
-
                     ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                } else {
+                    Text("How were you feeling?")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+
+                    HStack {
+                        ForEach(Emotion.allCases, id: \.self) {
+                            e in
+
+                            Button {
+                                withAnimation {
+                                    thought.emotion = e
+                                }
+                            } label: {
+                                VStack {
+                                    Image(e.getIcon())
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundStyle(e.getColor())
+                                }
+                            }
+                            .padding()
+                            .background(e.getColor(), in: RoundedRectangle(cornerRadius: 14)
+                                .stroke(lineWidth: 2))
+
+                            //                            ThoughtCardAttrbuteView(icon: Image(e.getIcon()), text: e.description.capitalized, backgroundColor: e.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: e.getColor())
+                        }
+                    }
                 }
 
                 Text("Created")
                     .font(.caption2)
-                    .foregroundStyle(.primary.opacity(0.5))
+                    .foregroundStyle(.secondary)
                 Label(relativeDateCreated, systemImage: "clock")
-                    .foregroundStyle(.primary.opacity(0.6))
+                    .foregroundStyle(.secondary.opacity(0.7))
                     .font(.caption)
                 Spacer()
             }
@@ -101,6 +132,14 @@ struct ThoughtDetailView: View {
 #Preview {
     NavigationStack {
         ThoughtDetailView(thought: SampleData.shared.thought)
+    }
+    .modelContext(SampleData.shared.context)
+    .modelContainer(SampleData.shared.modelContainer)
+}
+
+#Preview {
+    NavigationStack {
+        ThoughtDetailView(thought: .init(thought_prompt: "Prompt", thought_response: "Response", date_created: Date.now))
     }
     .modelContext(SampleData.shared.context)
     .modelContainer(SampleData.shared.modelContainer)
