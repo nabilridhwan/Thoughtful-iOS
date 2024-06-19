@@ -10,25 +10,18 @@ import WidgetKit
 
 struct Provider: TimelineProvider {
     func placeholder(in _: Context) -> SimpleEntry {
-//        gratitudeQuestions.randomElement()!
-        return SimpleEntry(date: Date(), emoji: "😀")
+        return SimpleEntry(date: Date())
     }
 
     func getSnapshot(in _: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date())
         completion(entry)
     }
 
     func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
+        let entries: [SimpleEntry] = [
+            SimpleEntry(date: Date.now),
+        ]
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -37,7 +30,6 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
 }
 
 func getUrlWithEmotion(_ emotion: Emotion) -> URL {
@@ -107,14 +99,15 @@ struct PromptWidget: Widget {
                     )
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Mood Check")
+        .description("Tap to log your current mood with our emotion buttons")
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
 
 #Preview(as: .systemSmall) {
     PromptWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now)
+    SimpleEntry(date: .now)
 }
