@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddNewThoughtView: View {
-    @Binding var thought: Thought
+    @ObservedObject var thought: Thought
     @Binding var date: Date
 
     @Environment(\.dismiss) var dismiss;
@@ -37,20 +37,20 @@ struct AddNewThoughtView: View {
             }
 
             // Form
-            VStack(alignment: .leading) {
-                Text(thought.thought_prompt)
-                    .font(.title3)
-                    .bold()
-                TextField("Type your reply...", text: $thought.thought_response, axis: .vertical)
-                    .submitLabel(.done)
-                    .lineLimit(4, reservesSpace: true)
-                    .focused($focusedField, equals: .response)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(.cardAttribute)
-                    }
-            }
+            //            VStack(alignment: .leading) {
+            Text(thought.thought_prompt)
+                .font(.title3)
+                .bold()
+            TextField("Type your reply...", text: $thought.thought_response, axis: .vertical)
+                .submitLabel(.done)
+                .lineLimit(4, reservesSpace: true)
+                .focused($focusedField, equals: .response)
+                .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(.cardAttribute)
+                }
+            //            }
             //            .sheet(isPresented: $showPromptModal) {
             //                ZStack {
             //                    Color.background.ignoresSafeArea()
@@ -59,18 +59,8 @@ struct AddNewThoughtView: View {
             //                        .presentationDetents([.medium])
             //                }.ignoresSafeArea(edges: .bottom)
             //            }
-            .sheet(isPresented: $showEmotionModal) {
-                ZStack {
-                    Color.background.ignoresSafeArea()
-                    ChooseEmotionView(
-                        emotion: $thought.emotion
-                    )
-                    .padding()
-                    .presentationDetents([.medium])
-                }.ignoresSafeArea(edges: .bottom)
-            }
 
-            if thought.emotion != nil {
+            if thought.emotionExists {
                 ThoughtCardAttrbuteView(
                     icon: Image(thought.emotion!.getIcon()),
                     text: thought.emotion!.description.capitalized,
@@ -82,13 +72,27 @@ struct AddNewThoughtView: View {
 
             // Toolbar !
             ToolbarView(
-                thought: $thought,
+                thought: thought,
                 showEmotionModal: $showEmotionModal,
                 focusedField: _focusedField
             )
             .padding(.vertical, 20)
 
             Spacer()
+        }
+
+        .sheet(isPresented: $showEmotionModal) {
+            ZStack {
+                Color.background.ignoresSafeArea()
+                ChooseEmotionView(
+                    emotion: $thought.emotion
+                )
+                .padding()
+                .presentationDetents([.medium])
+            }.ignoresSafeArea(edges: .bottom)
+        }
+        .onAppear {
+            print(thought.thought_prompt)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -102,6 +106,9 @@ struct AddNewThoughtView: View {
                     handleAdd()
                 }.disabled(isSubmittingDisabled)
             }
+        }
+        .onChange(of: thought.thought_response) { _, n in
+            print(n)
         }
         .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
@@ -128,13 +135,14 @@ struct AddNewThoughtView: View {
 
 extension AddNewThoughtView {
     func handleAdd() {
+        print("Adding new thought")
         //        thought.thought_prompt = prompt
         thought.date_created = date
-//        thought.thought_response = response
-//
-//        if emotion != nil {
-//            thought.emotion = emotion
-//        }
+        //        thought.thought_response = response
+        //
+        //        if emotion != nil {
+        //            thought.emotion = emotion
+        //        }
 
         modelContext.insert(thought)
 
@@ -144,6 +152,6 @@ extension AddNewThoughtView {
 
 #Preview {
     NavigationStack {
-        AddNewThoughtView(thought: .constant(.init()), date: .constant(Date.now))
+        AddNewThoughtView(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now), date: .constant(Date.now))
     }
 }
