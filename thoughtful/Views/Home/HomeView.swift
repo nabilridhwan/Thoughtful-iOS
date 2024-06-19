@@ -178,10 +178,7 @@ struct HomeView: View {
             refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
-            dlvm.reset()
-
             print("Received deeplink \(url) \(url.lastPathComponent)")
-            #warning("Any deeplink to the app will open the Add Thought modal")
 
             guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                   let host = components.host
@@ -193,6 +190,7 @@ struct HomeView: View {
             // Switch on the host part of the URL
             switch host {
             case "add":
+                dlvm.reset()
                 handleAddAction(with: components)
             default:
                 print("Unhandled deep link action: \(host)")
