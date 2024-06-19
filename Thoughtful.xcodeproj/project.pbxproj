@@ -22,6 +22,7 @@
 		BDD29A5F2C22E5D00023BA06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BDD29A5D2C22E5D00023BA06 /* Localizable.xcstrings */; };
 		BDD29A602C22E5D00023BA06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BDD29A5D2C22E5D00023BA06 /* Localizable.xcstrings */; };
 		BDD29A662C22F1D70023BA06 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = BDD29A652C22F1D70023BA06 /* HorizonCalendar */; };
+		BDD29A6B2C22F68A0023BA06 /* CalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = BDD29A6A2C22F68A0023BA06 /* CalendarView */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
 		BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */; };
@@ -166,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDD29A662C22F1D70023BA06 /* HorizonCalendar in Frameworks */,
+				BDD29A6B2C22F68A0023BA06 /* CalendarView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +446,7 @@
 			name = Thoughtful;
 			packageProductDependencies = (
 				BDD29A652C22F1D70023BA06 /* HorizonCalendar */,
+				BDD29A6A2C22F68A0023BA06 /* CalendarView */,
 			);
 			productName = thoughtful;
 			productReference = BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */;
@@ -543,6 +546,7 @@
 			mainGroup = BDD6ACBB2C1A07A200B9A85A;
 			packageReferences = (
 				BDD29A642C22F1D70023BA06 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			productRefGroup = BDD6ACC52C1A07A200B9A85A /* Products */;
 			projectDirPath = "";
@@ -1131,6 +1135,14 @@
 				kind = branch;
 			};
 		};
+		BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AllanJuenemann/CalendarView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1138,6 +1150,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BDD29A642C22F1D70023BA06 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
+		};
+		BDD29A6A2C22F68A0023BA06 /* CalendarView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = CalendarView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
