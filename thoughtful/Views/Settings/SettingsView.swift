@@ -91,6 +91,7 @@ struct SettingsView: View {
             }
             .listStyle(.grouped)
             .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.interactively)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
