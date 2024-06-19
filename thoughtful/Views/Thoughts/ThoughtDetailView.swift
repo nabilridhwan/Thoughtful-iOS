@@ -115,12 +115,10 @@ struct ThoughtDetailView: View {
             }
         }
         .task {
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.photo = loadedPhoto
-                        }
+                    withAnimation {
+                        self.photo = loadedPhoto
                     }
                 }
             }

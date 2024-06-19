@@ -10,10 +10,10 @@ import SwiftUI
 struct AddNewThoughtView: View {
     @ObservedObject var thought: Thought
 
-//    If the user clicks cancel
-//    @State var originalThought: Thought
+    //    If the user clicks cancel
+    //    @State var originalThought: Thought
 
-//    Date Created
+    //    Date Created
     @Binding var date: Date
 
     @Environment(\.dismiss) var dismiss;
@@ -96,12 +96,10 @@ struct AddNewThoughtView: View {
             }.ignoresSafeArea(edges: .bottom)
         }
         .task {
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.photo = loadedPhoto
-                        }
+                    withAnimation {
+                        self.photo = loadedPhoto
                     }
                 }
             }
@@ -124,12 +122,10 @@ struct AddNewThoughtView: View {
         }
         .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
-                DispatchQueue.global().async {
+                DispatchQueue.main.async {
                     if let loadedPhoto = UIImage(data: newValue[0]) {
-                        DispatchQueue.main.async {
-                            withAnimation {
-                                self.photo = loadedPhoto
-                            }
+                        withAnimation {
+                            self.photo = loadedPhoto
                         }
                     }
                 }
