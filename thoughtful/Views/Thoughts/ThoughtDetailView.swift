@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ThoughtDetailView: View {
-    var thought: Thought
+    @ObservedObject var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
 
     //    State for showing the confirm delete option
     @State var isPresentingConfirm: Bool = false
+    @State var isPresentingEdit: Bool = false
 
     var emotionExists: Bool {
         thought.emotion != nil
@@ -101,6 +102,12 @@ struct ThoughtDetailView: View {
         .foregroundStyle(.primary)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
+                Button("Edit") {
+                    isPresentingEdit = true
+                }
+            }
+
+            ToolbarItem(placement: .primaryAction) {
                 Button("Delete", role: .destructive) {
                     isPresentingConfirm = true
 
@@ -117,6 +124,9 @@ struct ThoughtDetailView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $isPresentingEdit) {
+            AddNewThoughtView(thought: thought, date: .constant(Date.now))
         }
         .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
             Button("Delete", role: .destructive) {

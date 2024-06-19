@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AddNewThoughtView: View {
     @ObservedObject var thought: Thought
+
+//    If the user clicks cancel
+//    @State var originalThought: Thought
+
+//    Date Created
     @Binding var date: Date
 
     @Environment(\.dismiss) var dismiss;
@@ -80,7 +85,6 @@ struct AddNewThoughtView: View {
 
             Spacer()
         }
-
         .sheet(isPresented: $showEmotionModal) {
             ZStack {
                 Color.background.ignoresSafeArea()
@@ -91,8 +95,16 @@ struct AddNewThoughtView: View {
                 .presentationDetents([.medium])
             }.ignoresSafeArea(edges: .bottom)
         }
-        .onAppear {
-            print(thought.thought_prompt)
+        .task {
+            DispatchQueue.global().async {
+                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            self.photo = loadedPhoto
+                        }
+                    }
+                }
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
