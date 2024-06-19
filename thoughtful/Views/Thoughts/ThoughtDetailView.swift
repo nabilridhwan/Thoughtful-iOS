@@ -123,6 +123,15 @@ struct ThoughtDetailView: View {
                 }
             }
         }
+        .onChange(of: thought.photos) { _, photos in
+            DispatchQueue.main.async {
+                if !photos.isEmpty, let loadedPhoto = UIImage(data: photos[0]) {
+                    withAnimation {
+                        self.photo = loadedPhoto
+                    }
+                }
+            }
+        }
         .sheet(isPresented: $isPresentingEdit) {
             NavigationStack {
                 ThoughtDetailForm(
