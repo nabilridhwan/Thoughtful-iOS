@@ -1,5 +1,5 @@
 <div align="center" style="margin: 20px 0;">
-<img src="./docs/app-icon-2.png" width="100" style="border-radius: 20px;margin-top:20px;" alt="Thoughtful Logo">
+<img src="./docs/app-icon-rounded.png" width="100" style="border-radius: 20px;margin-top:20px;" alt="Thoughtful Logo">
 <h1>Thoughtful</h1>
 
 <p>
@@ -14,13 +14,16 @@ is NOT YET available in the Apple App Store. Thoughtful (Flutter) will be discon
 
 </div>
 
-<img src="./docs/Promo iOS 3.png" style="" alt="Thoughtful Logo">
+<br />
+
+<img src="./docs/promo-ios-widget.png" style="" alt="Thoughtful Logo">
 
 ## Features
 
-- Daily prompts to reflect on positive moments
-- Customizable prompts
-- Privacy-focused (no data is stored on the cloud, all data is stored locally on the device)
+- Handcrafted prompts to reflect on positive moments in life
+- Custom prompts
+- Cool-looking Widgets, making your journey to gratitude more fun
+- Privacy-focused (ALL data stored locally on the device)
 
 ## Technology Used
 
