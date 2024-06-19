@@ -14,7 +14,19 @@ enum Field {
     case response
 }
 
+class DeeplinkViewModel: ObservableObject {
+    var prompt: String = ""
+    var emotion: Emotion?
+
+    func reset() {
+        prompt = ""
+        emotion = nil
+    }
+}
+
 struct HomeView: View {
+    @EnvironmentObject var dlvm: DeeplinkViewModel
+
     @AppStorage("userName") private var userName: String = ""
 
     @Environment(\.modelContext) private var context: ModelContext
@@ -31,8 +43,6 @@ struct HomeView: View {
 
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
-
-    @State var emotion: Emotion?
 
     func getGreeting() -> String {
         let currentDate = Date()
@@ -105,10 +115,10 @@ struct HomeView: View {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
-                    ).padding()
-                    //                    AddNewThoughtView(
-                    //                        date: $filteredDate
-                    //                    )
+                        prompt: dlvm.prompt,
+                        emotion: dlvm.emotion
+                    )
+                    .padding()
                 }
             }
         }
@@ -168,11 +178,23 @@ struct HomeView: View {
             refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
-            #warning("Any deeplink to the app will open the Add Thought modal")
-            if url != nil {
-                isAddThoughtPresented = true
-            }
+
             print("Received deeplink \(url) \(url.lastPathComponent)")
+            #warning("Any deeplink to the app will open the Add Thought modal")
+            isAddThoughtPresented = true
+
+            let (prompt, emotion) = extractPromptAndEmotion(from: url)
+
+            guard let truePrompt = prompt, let trueEmotion = emotion else {
+                print("No prompt nor emotion")
+                return
+            }
+
+            print("Prompt from deeplink: \(truePrompt)")
+            print("Emotion from deeplink: \(trueEmotion)")
+
+            dlvm.prompt = truePrompt
+            dlvm.emotion = trueEmotion
         }
     }
 }
@@ -197,6 +219,27 @@ extension HomeView {
         } catch {
             print("Error while fetching thoughts \(error)")
         }
+    }
+
+    func extractPromptAndEmotion(from url: URL) -> (prompt: String?, emotion: Emotion?) {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let queryItems = components.queryItems
+        else {
+            return (nil, nil)
+        }
+
+        var prompt: String?
+        var emotion: Emotion?
+
+        for queryItem in queryItems {
+            if queryItem.name == "prompt" {
+                prompt = queryItem.value
+            } else if queryItem.name == "emotion", let rawValue = queryItem.value {
+                emotion = Emotion(rawValue: rawValue)
+            }
+        }
+
+        return (prompt, emotion)
     }
 }
 

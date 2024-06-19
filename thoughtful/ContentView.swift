@@ -10,6 +10,7 @@ import SwiftUI
 import TipKit
 
 struct ContentView: View {
+    @StateObject var dlvm = DeeplinkViewModel()
     @AppStorage("doneOnboarding") private var doneOnboarding: Bool = false
 
     @State var selectedTab: Int = 0
@@ -26,6 +27,7 @@ struct ContentView: View {
                     HomeView(
                         isAddThoughtPresented: $showAddNewThought
                     )
+                    .environmentObject(dlvm)
                     .tag(0)
 
                     EmptyView()

@@ -12,9 +12,8 @@ struct ChoosePromptView: View {
     @State var date: Date = .now
     @State var currentTab: String = "choose_prompt"
     @State var showCustomPrompt: Bool = false
-    @Environment(\.dismiss) var dismiss;
 
-    @StateObject var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
+    @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
     var addCustomPromptTip = AddCustomPromptTip()
 
@@ -23,6 +22,28 @@ struct ChoosePromptView: View {
             newThought.thought_prompt = p
             currentTab = "add_thought"
         }
+    }
+
+    //    Empty constructor
+    init() {}
+
+    //    Constructor for deeplink
+    init(prompt: String, emotion: Emotion?) {
+        newThought.thought_prompt = prompt
+        newThought.emotion = emotion
+
+        print("Using deeplink constructor for ChoosePromptView")
+        print("New Thought Prompt: \(prompt)")
+        print("New Thought Emotion: \(emotion)")
+        print("Current Tab: \(currentTab)")
+
+        if !prompt.isEmpty {
+            _currentTab = State(initialValue: "add_thought")
+        }
+    }
+
+    func changeTab() {
+        currentTab = "add_thought"
     }
 
     var body: some View {
@@ -75,6 +96,10 @@ struct ChoosePromptView: View {
 
             TextField("Type your custom prompt", text: $newThought.thought_prompt)
                 .lineLimit(3, reservesSpace: true)
+        }
+        .onAppear {
+            print("On Appear Choose Prompt View")
+            print("New Thought Prompt: \(newThought.thought_prompt)")
         }
         .ignoresSafeArea(edges: .bottom)
         .multilineTextAlignment(.leading)

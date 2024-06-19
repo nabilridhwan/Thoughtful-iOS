@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum Emotion: Codable, CaseIterable {
+enum Emotion: String, Codable, CaseIterable {
     case terrible
     case bad
     case okay
