@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ThoughtDetailView: View {
-    @Bindable var thought: Thought
+    @ObservedObject var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
 
     //    State for showing the confirm delete option
     @State var isPresentingConfirm: Bool = false
+    @State var isPresentingEdit: Bool = false
 
     var emotionExists: Bool {
         thought.emotion != nil
@@ -101,21 +102,43 @@ struct ThoughtDetailView: View {
         .foregroundStyle(.primary)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button("Delete") {
+                Button("Edit") {
+                    isPresentingEdit = true
+                }
+            }
+
+            ToolbarItem(placement: .primaryAction) {
+                Button("Delete", role: .destructive) {
                     isPresentingConfirm = true
 
                 }.foregroundStyle(.red)
             }
         }
         .task {
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.photo = loadedPhoto
-                        }
+                    withAnimation {
+                        self.photo = loadedPhoto
                     }
                 }
+            }
+        }
+        .onChange(of: thought.photos) { _, photos in
+            DispatchQueue.main.async {
+                if !photos.isEmpty, let loadedPhoto = UIImage(data: photos[0]) {
+                    withAnimation {
+                        self.photo = loadedPhoto
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $isPresentingEdit) {
+            NavigationStack {
+                ThoughtDetailForm(
+                    thought: thought,
+                    date: .constant(Date.now),
+                    editMode: true
+                )
             }
         }
         .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
