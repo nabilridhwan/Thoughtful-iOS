@@ -1,5 +1,5 @@
 //
-//  AddNewThoughtView.swift
+//  ThoughtDetailForm.swift
 //  Thoughtful
 //
 //  Created by Nabil Ridhwan on 15/6/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddNewThoughtView: View {
+struct ThoughtDetailForm: View {
     @ObservedObject var thought: Thought
 
     //    If the user clicks cancel
@@ -169,7 +169,7 @@ struct AddNewThoughtView: View {
     }
 }
 
-extension AddNewThoughtView {
+extension ThoughtDetailForm {
     func handleCancel() {
         print("Cancelling thought add/edit – Setting back to original thought")
 
@@ -199,6 +199,6 @@ extension AddNewThoughtView {
 
 #Preview {
     NavigationStack {
-        AddNewThoughtView(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now), date: .constant(Date.now))
+        ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now), date: .constant(Date.now))
     }
 }

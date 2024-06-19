@@ -59,7 +59,7 @@ struct ChoosePromptView: View {
             }
             .tag("choose_prompt")
 
-            AddNewThoughtView(
+            ThoughtDetailForm(
                 thought: newThought,
                 date: $date
             )

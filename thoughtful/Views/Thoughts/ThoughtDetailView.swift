@@ -125,7 +125,7 @@ struct ThoughtDetailView: View {
         }
         .sheet(isPresented: $isPresentingEdit) {
             NavigationStack {
-                AddNewThoughtView(
+                ThoughtDetailForm(
                     thought: thought,
                     date: .constant(Date.now),
                     editMode: true
