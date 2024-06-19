@@ -7,7 +7,13 @@
 
 import SwiftUI
 
+// struct ThoughtDetailFormViewModel {
+//    @State var showEmotionModal: Bool = false
+// }
+
 struct ThoughtDetailForm: View {
+//    let vm = ThoughtDetailFormViewModel();
+
     @ObservedObject var thought: Thought
 
     //    If the user clicks cancel
@@ -164,7 +170,7 @@ struct ThoughtDetailForm: View {
         .foregroundStyle(.primary)
         .background(Color.background)
         .onAppear {
-            focusedField = .prompt
+            focusedField = .response
         }
     }
 }
