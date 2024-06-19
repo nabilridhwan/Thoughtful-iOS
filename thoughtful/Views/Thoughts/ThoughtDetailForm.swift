@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-// struct ThoughtDetailFormViewModel {
-//    @State var showEmotionModal: Bool = false
-// }
-
 struct ThoughtDetailForm: View {
-//    let vm = ThoughtDetailFormViewModel();
+    @EnvironmentObject var dlvm: DeeplinkViewModel
 
     @ObservedObject var thought: Thought
 
@@ -141,6 +137,8 @@ struct ThoughtDetailForm: View {
                     //                    Set back the thought as the original thought
                     handleCancel()
 
+//                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    dlvm.reset()
                     dismiss()
                 }
             }
@@ -148,11 +146,11 @@ struct ThoughtDetailForm: View {
             ToolbarItem {
                 Button(confirmationText) {
                     handleAdd()
+
+                    //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    dlvm.reset()
                 }.disabled(isSubmittingDisabled)
             }
-        }
-        .onChange(of: thought.thought_response) { _, n in
-            print(n)
         }
         .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
@@ -177,6 +175,10 @@ struct ThoughtDetailForm: View {
 
 extension ThoughtDetailForm {
     func handleCancel() {
+        if !editMode {
+            originalThought = .init()
+        }
+
         print("Cancelling thought add/edit – Setting back to original thought")
 
         thought.thought_prompt = originalThought.thought_prompt

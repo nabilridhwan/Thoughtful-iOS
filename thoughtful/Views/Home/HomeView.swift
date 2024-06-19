@@ -14,7 +14,19 @@ enum Field {
     case response
 }
 
+class DeeplinkViewModel: ObservableObject {
+    var prompt: String = ""
+    var emotion: Emotion?
+
+    func reset() {
+        prompt = ""
+        emotion = nil
+    }
+}
+
 struct HomeView: View {
+    @EnvironmentObject var dlvm: DeeplinkViewModel
+
     @AppStorage("userName") private var userName: String = ""
 
     @Environment(\.modelContext) private var context: ModelContext
@@ -31,8 +43,6 @@ struct HomeView: View {
 
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
-
-    @State var emotion: Emotion?
 
     func getGreeting() -> String {
         let currentDate = Date()
@@ -73,7 +83,7 @@ struct HomeView: View {
                         }
                     }
 
-//                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
+                    //                    Add rectangle at the bottom of scrollview to avoid the navigation bar + navbar gradient
                     Rectangle()
                         .frame(height: 150)
                         .foregroundStyle(.primary.opacity(0))
@@ -105,10 +115,10 @@ struct HomeView: View {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
-                    ).padding()
-                    //                    AddNewThoughtView(
-                    //                        date: $filteredDate
-                    //                    )
+                        prompt: dlvm.prompt,
+                        emotion: dlvm.emotion
+                    )
+                    .padding()
                 }
             }
         }
@@ -129,31 +139,31 @@ struct HomeView: View {
 
         .foregroundStyle(.primary)
         .background(Color.background)
-//        .toolbar {
-//            ToolbarItem {
-//                Button {
-//                    withAnimation {
-//                        isAddThoughtPresented.toggle()
-//                    }
-//
-//                    addThoughtTip.invalidate(reason: .actionPerformed)
-//
-//                } label: {
-//                    Label("Add Thought", systemImage: "plus.circle")
-//                        .labelStyle(.iconOnly)
-//                }.popoverTip(addThoughtTip)
-//            }
-//
-//            ToolbarItem {
-//                Button {
-//                    withAnimation {
-//                        isSettingsPresented.toggle()
-//                    }
-//                } label: {
-//                    Image(systemName: "gear")
-//                }
-//            }
-//        }
+        //        .toolbar {
+        //            ToolbarItem {
+        //                Button {
+        //                    withAnimation {
+        //                        isAddThoughtPresented.toggle()
+        //                    }
+        //
+        //                    addThoughtTip.invalidate(reason: .actionPerformed)
+        //
+        //                } label: {
+        //                    Label("Add Thought", systemImage: "plus.circle")
+        //                        .labelStyle(.iconOnly)
+        //                }.popoverTip(addThoughtTip)
+        //            }
+        //
+        //            ToolbarItem {
+        //                Button {
+        //                    withAnimation {
+        //                        isSettingsPresented.toggle()
+        //                    }
+        //                } label: {
+        //                    Image(systemName: "gear")
+        //                }
+        //            }
+        //        }
         .onAppear {
             /// Runs when this view first appears
             refetchThoughtsForDate(filteredDate)
@@ -168,11 +178,23 @@ struct HomeView: View {
             refetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
-            #warning("Any deeplink to the app will open the Add Thought modal")
-            if url != nil {
-                isAddThoughtPresented = true
-            }
             print("Received deeplink \(url) \(url.lastPathComponent)")
+
+            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                  let host = components.host
+            else {
+                print("Invalid URL: \(url)")
+                return
+            }
+
+            // Switch on the host part of the URL
+            switch host {
+            case "add":
+                dlvm.reset()
+                handleAddAction(with: components)
+            default:
+                print("Unhandled deep link action: \(host)")
+            }
         }
     }
 }
@@ -197,6 +219,50 @@ extension HomeView {
         } catch {
             print("Error while fetching thoughts \(error)")
         }
+    }
+
+    func handleAddAction(with: URLComponents) {
+        isAddThoughtPresented = true
+
+        let (prompt, emotion) = extractPromptAndEmotion(from: with)
+
+        guard let truePrompt = prompt, let trueEmotion = emotion else {
+            print("No prompt nor emotion")
+            return
+        }
+
+        print("Prompt from deeplink: \(truePrompt)")
+        print("Emotion from deeplink: \(trueEmotion)")
+
+        dlvm.prompt = truePrompt
+        dlvm.emotion = trueEmotion
+    }
+
+    func extractPromptAndEmotion(from components: URLComponents) -> (prompt: String?, emotion: Emotion?) {
+        // Access query parameters
+        let queryItems = components.queryItems ?? []
+
+        // Extract prompt and emotion if available
+        var prompt: String?
+        var emotion: String?
+
+        for queryItem in queryItems {
+            switch queryItem.name {
+            case "prompt":
+                prompt = queryItem.value
+            case "emotion":
+                emotion = queryItem.value
+            default:
+                continue
+            }
+        }
+
+        // Perform action based on prompt and emotion values
+        guard let truePrompt = prompt, let emotion = emotion, let trueEmotion = Emotion(rawValue: emotion) else {
+            return (nil, nil)
+        }
+
+        return (truePrompt, trueEmotion)
     }
 }
 
