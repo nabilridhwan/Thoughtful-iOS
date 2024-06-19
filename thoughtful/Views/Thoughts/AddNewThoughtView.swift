@@ -11,7 +11,7 @@ struct AddNewThoughtView: View {
     @ObservedObject var thought: Thought
 
     //    If the user clicks cancel
-    //    @State var originalThought: Thought
+    @State var originalThought: Thought = .init()
 
     //    Date Created
     @Binding var date: Date
@@ -26,11 +26,23 @@ struct AddNewThoughtView: View {
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
 
+    @State var photo: UIImage?
+
+    var editMode: Bool = false
+
+    init(thought: Thought, date: Binding<Date>, editMode: Bool = false) {
+        self.thought = thought
+        _date = date
+        self.editMode = editMode
+    }
+
     var isSubmittingDisabled: Bool {
         thought.thought_prompt.isEmpty || thought.thought_response.isEmpty
     }
 
-    @State var photo: UIImage?
+    var confirmationText: String {
+        editMode ? "Save" : "Add"
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -85,6 +97,19 @@ struct AddNewThoughtView: View {
 
             Spacer()
         }
+        .onAppear {
+            originalThought = Thought(
+                thought_prompt: thought.thought_prompt,
+                thought_response: thought.thought_response,
+                date_created: thought.date_created,
+                location: thought.location,
+                music: thought.music,
+                emotion: thought.emotion
+            )
+
+            //            Set the original photos
+            originalThought.photos = thought.photos
+        }
         .sheet(isPresented: $showEmotionModal) {
             ZStack {
                 Color.background.ignoresSafeArea()
@@ -107,12 +132,15 @@ struct AddNewThoughtView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Cancel") {
+                    //                    Set back the thought as the original thought
+                    handleCancel()
+
                     dismiss()
                 }
             }
 
             ToolbarItem {
-                Button("Add") {
+                Button(confirmationText) {
                     handleAdd()
                 }.disabled(isSubmittingDisabled)
             }
@@ -142,6 +170,17 @@ struct AddNewThoughtView: View {
 }
 
 extension AddNewThoughtView {
+    func handleCancel() {
+        print("Cancelling thought add/edit – Setting back to original thought")
+
+        thought.thought_prompt = originalThought.thought_prompt
+        thought.thought_response = originalThought.thought_response
+        thought.emotion = originalThought.emotion
+        thought.photos = originalThought.photos
+        thought.music = originalThought.music
+        thought.location = originalThought.location
+    }
+
     func handleAdd() {
         print("Adding new thought")
         //        thought.thought_prompt = prompt

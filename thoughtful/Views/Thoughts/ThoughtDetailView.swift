@@ -124,7 +124,13 @@ struct ThoughtDetailView: View {
             }
         }
         .sheet(isPresented: $isPresentingEdit) {
-            AddNewThoughtView(thought: thought, date: .constant(Date.now))
+            NavigationStack {
+                AddNewThoughtView(
+                    thought: thought,
+                    date: .constant(Date.now),
+                    editMode: true
+                )
+            }
         }
         .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
             Button("Delete", role: .destructive) {
