@@ -11,6 +11,9 @@ struct CustomTabBarView: View {
     @Binding var selectedTab: Int
     @Binding var showAddModal: Bool
 
+    //    State for animating the add button in
+    @State var showAddButton: Bool = false
+
     @Namespace var capsuleNs;
 
     let addThoughtTip = AddThoughtTip()
@@ -44,63 +47,66 @@ struct CustomTabBarView: View {
                     }
                 }
 
-                VStack {
+                //                VStack {
+                //                    Button {
+                //                        withAnimation {
+                //                            selectedTab = 1
+                //                        }
+                //                    } label: {
+                //                        Label("Stats", systemImage: "chart.pie.fill")
+                //                            .labelStyle(.iconOnly)
+                //                    }
+                //                    .foregroundStyle(.primary.opacity(selectedTab == 1 ? 1 : 0.5))
+                //                    .frame(maxWidth: .infinity)
+                //
+                //                    if selectedTab == 1 {
+                //                        Capsule()
+                //                            .frame(width: 18, height: 6)
+                //                            .offset(y: 10)
+                //                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+                //                    }
+                //                }
+
+                if showAddButton {
                     Button {
-                        withAnimation {
-                            selectedTab = 1
-                        }
+                        showAddModal = true
+                        addThoughtTip.invalidate(reason: .actionPerformed)
                     } label: {
-                        Label("Stats", systemImage: "chart.pie.fill")
+                        Label("Add", systemImage: "plus")
+                            .font(.title2)
                             .labelStyle(.iconOnly)
+                            .padding(26)
+                            .foregroundStyle(.white)
+                            .background {
+                                LinearGradient(colors: [.gradient1, .gradient2], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1))
+                                    .clipShape(Circle())
+                            }
                     }
-                    .foregroundStyle(.primary.opacity(selectedTab == 1 ? 1 : 0.5))
+                    .offset(y: -20)
                     .frame(maxWidth: .infinity)
-
-                    if selectedTab == 1 {
-                        Capsule()
-                            .frame(width: 18, height: 6)
-                            .offset(y: 10)
-                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
-                    }
+                    .popoverTip(addThoughtTip)
+                    .transition(.push(from: .bottom).combined(with: .scale))
                 }
 
-                Button {
-                    showAddModal = true
-                    addThoughtTip.invalidate(reason: .actionPerformed)
-                } label: {
-                    Label("Add", systemImage: "plus")
-                        .font(.title2)
-                        .labelStyle(.iconOnly)
-                        .padding(26)
-                        .foregroundStyle(.white)
-                        .background {
-                            LinearGradient(colors: [.gradient1, .gradient2], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1))
-                                .clipShape(Circle())
-                        }
-                }
-                .offset(y: -20)
-                .frame(maxWidth: .infinity)
-                .popoverTip(addThoughtTip)
-
-                VStack {
-                    Button {
-                        withAnimation {
-                            selectedTab = 3
-                        }
-                    } label: {
-                        Label("Calendar", systemImage: "calendar")
-                            .labelStyle(.iconOnly)
-                    }
-                    .foregroundStyle(.primary.opacity(selectedTab == 3 ? 1 : 0.5))
-                    .frame(maxWidth: .infinity)
-
-                    if selectedTab == 3 {
-                        Capsule()
-                            .frame(width: 18, height: 6)
-                            .offset(y: 10)
-                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
-                    }
-                }
+                //                VStack {
+                //                    Button {
+                //                        withAnimation {
+                //                            selectedTab = 3
+                //                        }
+                //                    } label: {
+                //                        Label("Calendar", systemImage: "calendar")
+                //                            .labelStyle(.iconOnly)
+                //                    }
+                //                    .foregroundStyle(.primary.opacity(selectedTab == 3 ? 1 : 0.5))
+                //                    .frame(maxWidth: .infinity)
+                //
+                //                    if selectedTab == 3 {
+                //                        Capsule()
+                //                            .frame(width: 18, height: 6)
+                //                            .offset(y: 10)
+                //                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+                //                    }
+                //                }
 
                 VStack {
                     Button {
@@ -129,13 +135,18 @@ struct CustomTabBarView: View {
                 Rectangle()
                     .foregroundStyle(.card)
             }
+            .onAppear {
+                withAnimation {
+                    showAddButton = true
+                }
+            }
         }
     }
 }
 
 #Preview {
     CustomTabBarView(
-        selectedTab: .constant(1),
+        selectedTab: .constant(0),
         showAddModal: .constant(false)
     )
     .previewLayout(.sizeThatFits)
