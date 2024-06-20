@@ -25,14 +25,20 @@ final class ThoughtfulUITests: XCTestCase {
 
     func test_HomeView_addThoughtButton_shouldShowAddScreen() {
         let app = XCUIApplication()
+
+        let responseContent = UUID().uuidString
+
         app.buttons["Add"].tap()
         app.collectionViews/*@START_MENU_TOKEN@*/ .scrollViews/*[[".cells.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .otherElements.buttons["What are three things you are grateful for today?"].tap()
         app.collectionViews/*@START_MENU_TOKEN@*/ .textViews["Type your reply..."]/*[[".cells.textViews[\"Type your reply...\"]",".textViews[\"Type your reply...\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .tap()
-        app.collectionViews/*@START_MENU_TOKEN@*/ .textViews["Type your reply..."]/*[[".cells.textViews[\"Type your reply...\"]",".textViews[\"Type your reply...\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .typeText("TEST SUITE")
+        app.collectionViews/*@START_MENU_TOKEN@*/ .textViews["Type your reply..."]/*[[".cells.textViews[\"Type your reply...\"]",".textViews[\"Type your reply...\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ .typeText(responseContent)
         app.navigationBars.buttons["Add"].tap()
 
-        let newThought = app.staticTexts["TEST SUITE"]
-        XCTAssertTrue(newThought.exists, "The new thought should be displayed on the screen")
+        // https://stackoverflow.com/a/47253096
+        let predicate = NSPredicate(format: "label CONTAINS[c] %@", responseContent)
+        let elementQuery = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 2)
+
+        XCTAssertTrue(elementQuery, "The new thought should be displayed on the screen")
     }
 
     func test_HomeView_addThoughtFlow_shouldNotAllowAddWhenResponseIsEmpty() {
