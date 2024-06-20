@@ -9,7 +9,7 @@ import PhotosUI
 import SwiftUI
 
 struct ToolbarView: View {
-    @Binding var thought: Thought
+    @ObservedObject var thought: Thought
     @Binding var showEmotionModal: Bool
     @FocusState var focusedField: Field?
 
@@ -98,6 +98,6 @@ extension ToolbarView {
 }
 
 #Preview {
-    ToolbarView(thought: .constant(Thought(thought_prompt: "", thought_response: "", date_created: Date.now)), showEmotionModal: .constant(false))
+    ToolbarView(thought: Thought(thought_prompt: "", thought_response: "", date_created: Date.now), showEmotionModal: .constant(false))
         .background(Color.background)
 }

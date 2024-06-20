@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Thought {
+class Thought: ObservableObject {
     var thought_prompt: String
     var thought_response: String
     var date_created: Date

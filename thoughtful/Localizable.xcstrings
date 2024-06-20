@@ -1,0 +1,160 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "A widget to add a Thought from your home screen!" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add Custom Prompt" : {
+
+    },
+    "Add how you're feeling" : {
+
+    },
+    "Add Thought" : {
+
+    },
+    "Are you sure?" : {
+
+    },
+    "Are you sure? You cannot undo this action" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Choose a prompt" : {
+
+    },
+    "Continue" : {
+
+    },
+    "Created" : {
+
+    },
+    "Custom Prompt" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Edit" : {
+
+    },
+    "Emotion" : {
+
+    },
+    "Emotion Card Decolorization" : {
+
+    },
+    "Emotion Check-In" : {
+
+    },
+    "Enable daily reminders to keep your thoughts flowing." : {
+
+    },
+    "Enable Reminders" : {
+
+    },
+    "Enable to display cards in grayscale, turning off emotional color cues." : {
+
+    },
+    "Home" : {
+
+    },
+    "How are you feeling?" : {
+
+    },
+    "How were you feeling?" : {
+
+    },
+    "In our fast-paced world, it's easy to overlook the beauty of life. With Thoughtful, we'll help you rediscover it, one step at a time." : {
+
+    },
+    "Looks like your mind is clear! Jot down your thoughts while they're fresh. Remember, you can't go back in time!" : {
+
+    },
+    "Mood Check" : {
+
+    },
+    "Name" : {
+
+    },
+    "No Thoughts?" : {
+
+    },
+    "OK" : {
+
+    },
+    "Open Photos" : {
+
+    },
+    "Select an emotion to express and reflect on your current mood" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Stay Inspired Daily" : {
+
+    },
+    "Tap here to add a new Thought" : {
+
+    },
+    "Tap here to add your own custom prompt" : {
+
+    },
+    "Tap here to tag how you're feeling" : {
+
+    },
+    "Tap to log your current mood with our emotion buttons" : {
+
+    },
+    "Thoughtful" : {
+
+    },
+    "Time" : {
+
+    },
+    "Time to reflect and grow" : {
+
+    },
+    "Type your custom prompt" : {
+
+    },
+    "Type your name here" : {
+
+    },
+    "Type your reply..." : {
+
+    },
+    "User Interface" : {
+
+    },
+    "We use your name for a more personalised touch!" : {
+
+    },
+    "Welcome to" : {
+
+    },
+    "What's your name?" : {
+
+    }
+  },
+  "version" : "1.0"
+}

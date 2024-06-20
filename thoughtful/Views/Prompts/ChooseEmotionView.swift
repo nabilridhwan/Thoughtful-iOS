@@ -53,6 +53,7 @@ struct ChooseEmotionView: View {
                                     .frame(width: 50, height: 50)
 
                                 Text(e.description.capitalized)
+                                    .font(.caption)
 
                                 //                        if e == emotion {
                                 //                            Label(e.description.capitalized, systemImage: "checkmark")

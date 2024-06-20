@@ -1,0 +1,24 @@
+{
+  "originHash" : "588cdc444d8dbbf603e50143ba1f4ddc2b36d2d006384c534334428845cf3f68",
+  "pins" : [
+    {
+      "identity" : "calendarview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AllanJuenemann/CalendarView",
+      "state" : {
+        "revision" : "0081d7d0cb9e5b589919f95680c03cc2cd1eec87",
+        "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "horizoncalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/HorizonCalendar.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "bc58dcb7856f728afe3ef71f53fda4f0329ece11"
+      }
+    }
+  ],
+  "version" : 3
+}

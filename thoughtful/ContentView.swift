@@ -64,6 +64,9 @@ struct ContentView: View {
     ContentView()
         .modelContainer(SampleData.shared.modelContainer)
         .task {
+            // MARK: UNCOMMENT THE LINE BELOW TO FORCEFULLY SHOW TIPS
+
+//            try? Tips.resetDatastore()
             try? Tips.configure([
                 .datastoreLocation(.applicationDefault),
             ])

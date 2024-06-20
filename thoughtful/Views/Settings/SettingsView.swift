@@ -14,6 +14,8 @@ enum Day: String, CaseIterable {
 struct SettingsView: View {
     @AppStorage("userName") private var userName: String = ""
 
+    @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
+
     @AppStorage("remindersEnabled") private var remindersEnabled: Bool = false
 
     @State private var selectedDays: [Day] = []
@@ -50,6 +52,13 @@ struct SettingsView: View {
                     TextField("Name", text: $userName)
                 }
 
+                Section(header: Text("User Interface")) {
+                    Toggle("Emotion Card Decolorization", isOn: $decolorizeCards)
+                    Text("Enable to display cards in grayscale, turning off emotional color cues.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
                 //            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
                 //                Toggle("Enable Reminders", isOn: $remindersEnabled)
                 //
@@ -82,6 +91,7 @@ struct SettingsView: View {
             }
             .listStyle(.grouped)
             .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.interactively)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()

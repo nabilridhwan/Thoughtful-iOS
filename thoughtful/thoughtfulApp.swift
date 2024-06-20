@@ -11,6 +11,8 @@ import TipKit
 
 @main
 struct thoughtfulApp: App {
+    @StateObject var dlvm = DeeplinkViewModel()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Thought.self,
@@ -28,6 +30,7 @@ struct thoughtfulApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
+                .environmentObject(dlvm)
                 .task {
                     try? Tips.configure([
                         .datastoreLocation(.applicationDefault),
