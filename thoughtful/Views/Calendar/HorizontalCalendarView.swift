@@ -20,7 +20,7 @@ struct HorizontalCalendarView: View {
     @Namespace var rectNs;
 
     var weekDates: [Date] {
-        DateHelpers.getDatesForWeek()
+        DateHelpers.getDatesForWeek(selectedDate)
     }
 
     var body: some View {
