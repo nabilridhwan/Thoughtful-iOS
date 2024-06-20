@@ -1,13 +1,13 @@
 //
-//  thoughtfulUITestsLaunchTests.swift
-//  thoughtfulUITests
+//  ThoughtfulUITestsLaunchTests.swift
+//  ThoughtfulUITests
 //
-//  Created by Nabil Ridhwan on 13/6/24.
+//  Created by Nabil Ridhwan on 20/6/24.
 //
 
 import XCTest
 
-final class thoughtfulUITestsLaunchTests: XCTestCase {
+final class ThoughtfulUITestsLaunchTests: XCTestCase {
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

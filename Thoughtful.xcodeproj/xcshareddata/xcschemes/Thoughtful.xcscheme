@@ -46,7 +46,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDD6ACDD2C1A07A300B9A85A"
+               BlueprintIdentifier = "BDB1A2B72C23CBE30085B933"
                BuildableName = "ThoughtfulUITests.xctest"
                BlueprintName = "ThoughtfulUITests"
                ReferencedContainer = "container:Thoughtful.xcodeproj">
