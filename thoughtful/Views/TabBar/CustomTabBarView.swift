@@ -75,7 +75,7 @@ struct CustomTabBarView: View {
                         Label("Add", systemImage: "plus")
                             .font(.title2)
                             .labelStyle(.iconOnly)
-                            .padding(26)
+                            .padding(30)
                             .foregroundStyle(.white)
                             .background {
                                 LinearGradient(colors: [.gradient1, .gradient2], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1))
@@ -128,8 +128,8 @@ struct CustomTabBarView: View {
                 }
             }
             .font(.custom("Custom Tab Bar Icon", size: 18))
-            .padding(.bottom, 20)
-            .frame(maxWidth: .infinity, maxHeight: 80)
+            .padding(.bottom, 30)
+            .frame(maxWidth: .infinity, maxHeight: 90)
             .foregroundStyle(.primary)
             .background {
                 Rectangle()
