@@ -14,50 +14,17 @@ enum Field {
     case response
 }
 
-class DeeplinkViewModel: ObservableObject {
-    var prompt: String = ""
-    var emotion: Emotion?
-
-    func reset() {
-        prompt = ""
-        emotion = nil
-    }
-}
-
 struct HomeView: View {
-    @EnvironmentObject var dlvm: DeeplinkViewModel
+    @EnvironmentObject private var dlvm: DeeplinkViewModel
+    @EnvironmentObject private var modalManager: ModalManager
+
+    // MVVM in SwiftData: https://www.youtube.com/watch?v=4-Q14fCm-VE
+    @State private var thoughtVm: ThoughtViewModel = .init()
 
     @AppStorage("userName") private var userName: String = ""
-
     @Environment(\.modelContext) private var context: ModelContext
 
-    @State var thoughts: [Thought] = []
     @State var filteredDate: Date = .now
-
-    //    Present modal on pressing "Add Thought"
-    @Binding var isAddThoughtPresented: Bool
-    @State var isSettingsPresented = false
-
-    //    Bases on focusedField in onChange to have animations
-    @State private var isFormActive: Bool = false
-
-    //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
-    @FocusState private var focusedField: Field?
-
-    func getGreeting() -> LocalizedStringResource {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: currentDate)
-
-        switch hour {
-        case 0 ..< 12:
-            return "Good Morning,"
-        case 12 ..< 18:
-            return "Good Afternoon,"
-        default:
-            return "Good Evening,"
-        }
-    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -72,14 +39,14 @@ struct HomeView: View {
                 .padding(.bottom, 20)
 
             ScrollView {
-                if thoughts.isEmpty {
+                if thoughtVm.thoughts.isEmpty {
                     EmptyThoughtsView()
                 } else {
-                    ForEach(thoughts) { thought in
+                    ForEach(thoughtVm.thoughts) { t in
                         NavigationLink {
-                            ThoughtDetailView(thought: thought)
+                            ThoughtDetailView(thought: t)
                         } label: {
-                            ThoughtCardView(thought: thought)
+                            ThoughtCardView(thought: t)
                         }
                     }
 
@@ -93,24 +60,10 @@ struct HomeView: View {
 
             Spacer()
         }
-        .onChange(of: isFormActive) { _, _ in
-            print("isFormActive changed \(isFormActive)")
-        }
-        .onChange(of: focusedField) { _, newValue in
-            withAnimation(.easeOut(duration: 0.3)) {
-                if newValue == nil {
-                    isFormActive = false
-                } else {
-                    isFormActive = true
-                }
-            }
-            print("focusedField changed:")
-            print(newValue != nil ? newValue! : "nil")
-        }
         .padding()
         .ignoresSafeArea(.all, edges: .bottom)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .sheet(isPresented: $isAddThoughtPresented) {
+        .sheet(isPresented: $modalManager.addThought) {
             NavigationStack {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
@@ -122,71 +75,23 @@ struct HomeView: View {
                 }
             }
         }
-
-        .sheet(isPresented: $isSettingsPresented) {
-            NavigationStack {
-                ZStack {
-                    Color.background.edgesIgnoringSafeArea(.all)
-                    SettingsView(
-                    ).padding()
-                    //                    AddNewThoughtView(
-                    //                        date: $filteredDate
-                    //                    )
-                }
-                .navigationTitle("Settings")
-            }
-        }
-
         .foregroundStyle(.primary)
         .background(Color.background)
-//        .toolbar {
-//            //            ToolbarItem {
-//            //                Button {
-//            //                    withAnimation {
-//            //                        isAddThoughtPresented.toggle()
-//            //                    }
-//            //
-//            //                } label: {
-//            //                    Label("Search", systemImage: "magnifyingglass")
-//            //                        .labelStyle(.iconOnly)
-//            //                }
-//            //            }
-//
-//            ToolbarItem {
-//                Button {
-//                    withAnimation {
-//                        isSettingsPresented.toggle()
-//                    }
-//                } label: {
-//                    Image(systemName: "calendar")
-//                }.overlay {
-//                    DatePicker(
-//                        "",
-//                        selection: $filteredDate,
-//                        in: Date.distantPast ... Date(),
-//                        displayedComponents: [.date]
-//                    )
-//                    .labelsHidden()
-//                    .blendMode(.destinationOver) // MARK: use this extension to keep the clickable functionality
-//
-        ////                    .onChange(of: , perform: { value in
-        ////                        isChild = checkAge(date:birthday)
-        ////                    })
-//                }
-//            }
-//        }
+        .onAppear {
+            thoughtVm.context = context
+        }
         .onAppear {
             /// Runs when this view first appears
-            refetchThoughtsForDate(filteredDate)
+            thoughtVm.fetchThoughtsForDate(filteredDate)
         }
-        .onChange(of: isAddThoughtPresented) { _, _ in
+        .onChange(of: modalManager.addThought) { _, _ in
             /// Runs when  the add thought modal is not presented anymore (a.k.a dismissed a.k.a cancelled a.k.a added)
-            refetchThoughtsForDate(filteredDate)
+            thoughtVm.fetchThoughtsForDate(filteredDate)
         }
         .onChange(of: filteredDate) { _, newValue in
             /// Runs when filteredDate change (for horizontal calendar)
             print("Filtered date changed")
-            refetchThoughtsForDate(newValue)
+            thoughtVm.fetchThoughtsForDate(newValue)
         }
         .onOpenURL { url in
             print("Received deeplink \(url) \(url.lastPathComponent)")
@@ -213,27 +118,23 @@ struct HomeView: View {
 // MARK: Helper functions
 
 extension HomeView {
-    // The reason one might think "Why didn't I just use @Query or call the Query() method and pass in the predicate. Trust me, I ChatGPT-ed and looked at the docs so long that it didn't work. self is not mutating. But the docs shows the code to mutate the state. It's confusing so I resorted to manually fetching using a fetch descriptor in hopes that its better
+    func getGreeting() -> LocalizedStringResource {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: currentDate)
 
-    func refetchThoughtsForDate(_ date: Date) {
-        let fetchDescriptor = FetchDescriptor<Thought>(
-            predicate: Thought.predicate(searchDate: date),
-            sortBy: [
-                SortDescriptor(\.date_created, order: .reverse),
-            ]
-        )
-
-        do {
-            try withAnimation {
-                thoughts = try context.fetch(fetchDescriptor)
-            }
-        } catch {
-            print("Error while fetching thoughts \(error)")
+        switch hour {
+        case 0 ..< 12:
+            return "Good Morning,"
+        case 12 ..< 18:
+            return "Good Afternoon,"
+        default:
+            return "Good Evening,"
         }
     }
 
     func handleAddAction(with: URLComponents) {
-        isAddThoughtPresented = true
+        modalManager.addThought = true
 
         let (prompt, emotion) = extractPromptAndEmotion(from: with)
 
@@ -280,7 +181,7 @@ extension HomeView {
 #Preview {
     NavigationStack {
         HomeView(
-            isAddThoughtPresented: .constant(false)
+            //            isAddThoughtPresented: .constant(false)
         )
         .modelContainer(SampleData.shared.modelContainer)
     }

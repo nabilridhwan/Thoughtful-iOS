@@ -11,8 +11,9 @@ import TipKit
 
 @main
 struct thoughtfulApp: App {
-    @StateObject var dlvm = DeeplinkViewModel()
     @AppStorage("theme") var theme: Theme = .system
+    @StateObject var dlvm = DeeplinkViewModel()
+    @StateObject var mmgr = ModalManager()
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -33,6 +34,7 @@ struct thoughtfulApp: App {
                 .preferredColorScheme(theme.getColorScheme())
                 .modelContainer(sharedModelContainer)
                 .environmentObject(dlvm)
+                .environmentObject(mmgr)
                 .task {
                     try? Tips.configure([
                         .datastoreLocation(.applicationDefault),
