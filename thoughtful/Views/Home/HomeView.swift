@@ -44,7 +44,7 @@ struct HomeView: View {
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
 
-    func getGreeting() -> String {
+    func getGreeting() -> LocalizedStringResource {
         let currentDate = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: currentDate)
