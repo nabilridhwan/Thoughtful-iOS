@@ -11,7 +11,7 @@
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */; };
-		BD56803B2C25D71200F8F1EF /* DeeplinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803A2C25D71200F8F1EF /* DeeplinkViewModel.swift */; };
+		BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */; };
 		BD56803D2C25DDCB00F8F1EF /* ModalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
@@ -105,7 +105,7 @@
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtViewModel.swift; sourceTree = "<group>"; };
-		BD56803A2C25D71200F8F1EF /* DeeplinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkViewModel.swift; sourceTree = "<group>"; };
+		BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkStateManager.swift; sourceTree = "<group>"; };
 		BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalManager.swift; sourceTree = "<group>"; };
 		BD5E843B2C25B25200BCEAE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */,
-				BD56803A2C25D71200F8F1EF /* DeeplinkViewModel.swift */,
+				BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */,
 				BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */,
 			);
 			path = ViewModels;
@@ -608,7 +608,7 @@
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
 				BDD6ACF42C1A095200B9A85A /* ThoughtCardView.swift in Sources */,
-				BD56803B2C25D71200F8F1EF /* DeeplinkViewModel.swift in Sources */,
+				BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */,
 				BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
 				BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */,

@@ -15,7 +15,7 @@ enum Field {
 }
 
 struct HomeView: View {
-    @EnvironmentObject private var dlvm: DeeplinkViewModel
+    @EnvironmentObject private var deeplinkManager: DeeplinkStateManager
     @EnvironmentObject private var modalManager: ModalManager
 
     // MVVM in SwiftData: https://www.youtube.com/watch?v=4-Q14fCm-VE
@@ -68,8 +68,8 @@ struct HomeView: View {
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.all)
                     ChoosePromptView(
-                        prompt: dlvm.prompt,
-                        emotion: dlvm.emotion
+                        prompt: deeplinkManager.prompt,
+                        emotion: deeplinkManager.emotion
                     )
                     .padding()
                 }
@@ -78,20 +78,21 @@ struct HomeView: View {
         .foregroundStyle(.primary)
         .background(Color.background)
         .onAppear {
+            // MVVM in SwiftData: https://www.youtube.com/watch?v=4-Q14fCm-VE
             thoughtVm.context = context
         }
         .onAppear {
             /// Runs when this view first appears
-            thoughtVm.fetchThoughtsForDate(filteredDate)
+            thoughtVm.fetchThoughtsForDate(for: filteredDate)
         }
         .onChange(of: modalManager.addThought) { _, _ in
             /// Runs when  the add thought modal is not presented anymore (a.k.a dismissed a.k.a cancelled a.k.a added)
-            thoughtVm.fetchThoughtsForDate(filteredDate)
+            thoughtVm.fetchThoughtsForDate(for: filteredDate)
         }
-        .onChange(of: filteredDate) { _, newValue in
+        .onChange(of: filteredDate) {
             /// Runs when filteredDate change (for horizontal calendar)
-            print("Filtered date changed")
-            thoughtVm.fetchThoughtsForDate(newValue)
+            print("Filtered date changed: \($1)")
+            thoughtVm.fetchThoughtsForDate(for: $1)
         }
         .onOpenURL { url in
             print("Received deeplink \(url) \(url.lastPathComponent)")
@@ -106,7 +107,7 @@ struct HomeView: View {
             // Switch on the host part of the URL
             switch host {
             case "add":
-                dlvm.reset()
+                deeplinkManager.reset()
                 handleAddAction(with: components)
             default:
                 print("Unhandled deep link action: \(host)")
@@ -146,8 +147,8 @@ extension HomeView {
         print("Prompt from deeplink: \(truePrompt)")
         print("Emotion from deeplink: \(trueEmotion)")
 
-        dlvm.prompt = truePrompt
-        dlvm.emotion = trueEmotion
+        deeplinkManager.prompt = truePrompt
+        deeplinkManager.emotion = trueEmotion
     }
 
     func extractPromptAndEmotion(from components: URLComponents) -> (prompt: String?, emotion: Emotion?) {

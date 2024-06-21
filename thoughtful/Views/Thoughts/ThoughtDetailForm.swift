@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThoughtDetailForm: View {
-    @EnvironmentObject var dlvm: DeeplinkViewModel
+    @EnvironmentObject var deeplinkManager: DeeplinkStateManager
     @EnvironmentObject var modalManager: ModalManager
 
     @ObservedObject var thought: Thought
@@ -109,7 +109,7 @@ struct ThoughtDetailForm: View {
                     handleCancel()
 
                     //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
-                    dlvm.reset()
+                    deeplinkManager.reset()
                     dismiss()
                 }
             }
@@ -119,7 +119,7 @@ struct ThoughtDetailForm: View {
                     handleSubmit()
 
                     //  Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
-                    dlvm.reset()
+                    deeplinkManager.reset()
                 }.disabled(isSubmittingDisabled)
             }
         }

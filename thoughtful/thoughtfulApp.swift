@@ -12,7 +12,7 @@ import TipKit
 @main
 struct thoughtfulApp: App {
     @AppStorage("theme") var theme: Theme = .system
-    @StateObject var dlvm = DeeplinkViewModel()
+    @StateObject var dlmgr = DeeplinkStateManager()
     @StateObject var mmgr = ModalManager()
 
     var sharedModelContainer: ModelContainer = {
@@ -33,7 +33,7 @@ struct thoughtfulApp: App {
             ContentView()
                 .preferredColorScheme(theme.getColorScheme())
                 .modelContainer(sharedModelContainer)
-                .environmentObject(dlvm)
+                .environmentObject(dlmgr)
                 .environmentObject(mmgr)
                 .task {
                     try? Tips.configure([
