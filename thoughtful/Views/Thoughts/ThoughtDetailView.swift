@@ -16,10 +16,6 @@ struct ThoughtDetailView: View {
 
     @EnvironmentObject var modalManager: ModalManager
 
-    var emotionExists: Bool {
-        thought.emotion != nil
-    }
-
     var relativeDateCreated: String {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
     }
@@ -52,7 +48,7 @@ struct ThoughtDetailView: View {
 
                 //            https://developer.apple.com/documentation/foundation/date/relativeformatstyle
 
-                if emotionExists {
+                if thought.emotionExists {
                     Text("Emotion")
                         .font(.caption2)
                         .foregroundStyle(.primary.opacity(0.5))
