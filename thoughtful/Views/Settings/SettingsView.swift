@@ -55,30 +55,33 @@ struct SettingsView: View {
 
             List {
                 VStack(alignment: .center, spacing: 10) {
-                    Image(.logo)
+                    Image(.logoPremium)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
 
-                    Text("Thoughtful Powerpack")
+                    Text("Thoughtful Premium")
                         .font(.title2)
                         .bold()
 
-                    Text("Unlock features such as reminders, iCloud integration, Recap and more...")
-                        .opacity(0.7)
+                    Text("A single in-app purchase that unlocks features such as reminders, iCloud integration, Recap, and more...")
+
+                        .opacity(0.6)
                         .multilineTextAlignment(.center)
 
                     Text("Coming Soon")
                         .font(.caption)
+                        .opacity(0.5)
 
                     //                Button("Find out more"){
                     //
                     //                }
                 }
+                .shadow(color: .logoBackground.opacity(0.5), radius: 30)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .listRowBackground(RoundedRectangle(cornerRadius: 24)
-                    .foregroundStyle(.cardAttribute))
+                    .foregroundStyle(.logoBorder))
 
                 Section(header: Text("Name")) {
                     VStack(alignment: .leading) {
