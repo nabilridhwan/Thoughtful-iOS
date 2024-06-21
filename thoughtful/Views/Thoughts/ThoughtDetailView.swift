@@ -52,7 +52,7 @@ struct ThoughtDetailView: View {
                     Text("Emotion")
                         .font(.caption2)
                         .foregroundStyle(.primary.opacity(0.5))
-                    ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                    ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.rawValue.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
                 } else {
                     Text("How were you feeling?")
                         .font(.caption2)
@@ -77,8 +77,6 @@ struct ThoughtDetailView: View {
                             .padding()
                             .background(e.getColor(), in: RoundedRectangle(cornerRadius: 14)
                                 .stroke(lineWidth: 2))
-
-                            //                            ThoughtCardAttrbuteView(icon: Image(e.getIcon()), text: e.description.capitalized, backgroundColor: e.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: e.getColor())
                         }
                     }
                 }

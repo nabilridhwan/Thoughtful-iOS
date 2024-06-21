@@ -68,7 +68,7 @@ struct ThoughtDetailForm: View {
             if thought.emotionExists {
                 ThoughtCardAttrbuteView(
                     icon: Image(thought.emotion!.getIcon()),
-                    text: thought.emotion!.description.capitalized,
+                    text: thought.emotion!.rawValue.capitalized,
                     backgroundColor: thought.emotion!.getColor(),
                     foregroundColor: .black.opacity(0.6),
                     shadowColor: thought.emotion!.getColor()
