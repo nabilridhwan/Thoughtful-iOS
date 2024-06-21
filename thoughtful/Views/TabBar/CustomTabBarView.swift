@@ -123,7 +123,7 @@ struct CustomTabBarView: View {
                         Capsule()
                             .frame(width: 18, height: 6)
                             .offset(y: 10)
-                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+                            .matchedGeometryEffect(id: "navcapsule", in: capsuleAnimNamespace)
                     }
                 }
             }
