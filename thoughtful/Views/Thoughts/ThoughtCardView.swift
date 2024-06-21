@@ -29,10 +29,9 @@ struct ThoughtCardView: View {
             if photo != nil {
                 Image(uiImage: photo!)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 200)
+                    .aspectRatio(contentMode: .fit)
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 24)
+                        RoundedRectangle(cornerRadius: 12)
                     )
                     .transition(.scale.combined(with: .opacity))
             }

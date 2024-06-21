@@ -60,7 +60,7 @@ struct ThoughtDetailForm: View {
             if photo != nil {
                 Image(uiImage: photo!)
                     .resizable()
-                    .frame(height: 200)
+                    .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
 

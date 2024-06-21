@@ -32,7 +32,7 @@ struct ThoughtDetailView: View {
                 if photo != nil {
                     Image(uiImage: photo!)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .transition(
