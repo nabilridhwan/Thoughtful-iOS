@@ -139,42 +139,42 @@ struct HomeView: View {
 
         .foregroundStyle(.primary)
         .background(Color.background)
-        .toolbar {
-            //            ToolbarItem {
-            //                Button {
-            //                    withAnimation {
-            //                        isAddThoughtPresented.toggle()
-            //                    }
-            //
-            //                } label: {
-            //                    Label("Search", systemImage: "magnifyingglass")
-            //                        .labelStyle(.iconOnly)
-            //                }
-            //            }
-
-            ToolbarItem {
-                Button {
-                    withAnimation {
-                        isSettingsPresented.toggle()
-                    }
-                } label: {
-                    Image(systemName: "calendar")
-                }.overlay {
-                    DatePicker(
-                        "",
-                        selection: $filteredDate,
-                        in: Date.distantPast ... Date(),
-                        displayedComponents: [.date]
-                    )
-                    .labelsHidden()
-                    .blendMode(.destinationOver) // MARK: use this extension to keep the clickable functionality
-
-//                    .onChange(of: , perform: { value in
-//                        isChild = checkAge(date:birthday)
-//                    })
-                }
-            }
-        }
+//        .toolbar {
+//            //            ToolbarItem {
+//            //                Button {
+//            //                    withAnimation {
+//            //                        isAddThoughtPresented.toggle()
+//            //                    }
+//            //
+//            //                } label: {
+//            //                    Label("Search", systemImage: "magnifyingglass")
+//            //                        .labelStyle(.iconOnly)
+//            //                }
+//            //            }
+//
+//            ToolbarItem {
+//                Button {
+//                    withAnimation {
+//                        isSettingsPresented.toggle()
+//                    }
+//                } label: {
+//                    Image(systemName: "calendar")
+//                }.overlay {
+//                    DatePicker(
+//                        "",
+//                        selection: $filteredDate,
+//                        in: Date.distantPast ... Date(),
+//                        displayedComponents: [.date]
+//                    )
+//                    .labelsHidden()
+//                    .blendMode(.destinationOver) // MARK: use this extension to keep the clickable functionality
+//
+        ////                    .onChange(of: , perform: { value in
+        ////                        isChild = checkAge(date:birthday)
+        ////                    })
+//                }
+//            }
+//        }
         .onAppear {
             /// Runs when this view first appears
             refetchThoughtsForDate(filteredDate)
