@@ -46,9 +46,9 @@ struct HorizontalCalendarView: View {
                                 .font(.title3)
                                 .fontWeight(.bold)
                         }
-                        //                        .scaleEffect(
-                        //                    DateHelpers.isSameDay(selectedDate, date) ? 1.1 : 1.0
-                        //                )
+                        .scaleEffect(
+                            DateHelpers.isSameDay(selectedDate, date) ? 1.1 : 1.0
+                        )
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.primary.opacity(DateHelpers.isSameDay(selectedDate, date) ? 1.0 : 0.5))
                     }
