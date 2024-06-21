@@ -122,6 +122,13 @@ struct ThoughtDetailView: View {
         }
         .onChange(of: thought.photos) { _, photos in
             DispatchQueue.main.async {
+                if photos.isEmpty {
+                    withAnimation {
+                        self.photo = nil
+                    }
+                    return
+                }
+
                 if !photos.isEmpty, let loadedPhoto = UIImage(data: photos[0]) {
                     withAnimation {
                         self.photo = loadedPhoto

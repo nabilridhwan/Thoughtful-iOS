@@ -75,7 +75,7 @@ struct ToolbarView: View {
                    let data = try? await newValue.loadTransferable(type: Data.self)
                 {
                     if let image = UIImage(data: data)?.jpegData(compressionQuality: 0.1) {
-                        thought.photos.append(image)
+                        thought.photos = [image]
                     }
                 }
             }

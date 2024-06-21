@@ -48,6 +48,13 @@ struct ThoughtDetailForm: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .overlay {
+                        Button {
+                            thought.photos.removeAll()
+                        } label: {
+                            Text("Delete")
+                        }
+                    }
             }
 
             // Form
@@ -96,6 +103,23 @@ struct ThoughtDetailForm: View {
         }
         .task {
             DispatchQueue.main.async {
+                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+                    withAnimation {
+                        self.photo = loadedPhoto
+                    }
+                }
+            }
+        }
+        .onChange(of: thought.photos) {
+            DispatchQueue.main.async {
+                if thought.photos.isEmpty {
+                    withAnimation {
+                        self.photo = nil
+                    }
+
+                    return
+                }
+
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
                     withAnimation {
                         self.photo = loadedPhoto
