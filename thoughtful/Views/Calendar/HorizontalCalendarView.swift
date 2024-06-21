@@ -23,7 +23,7 @@ struct HorizontalCalendarView: View {
     @State var dateForWeekDates: Date = .now
     @State var thoughtVm: ThoughtViewModel = .init()
 
-    @Namespace var rectNs;
+    @Namespace var rectAnimNamespace;
 
     @State var weekDates: [Date] = DateHelpers.getDatesForWeek(.now)
 
@@ -66,7 +66,7 @@ struct HorizontalCalendarView: View {
                             RoundedRectangle(cornerRadius: 24)
                                 .frame(width: 52, height: 80)
                                 .foregroundStyle(.cardAttribute)
-                                .matchedGeometryEffect(id: "Rect", in: rectNs)
+                                .matchedGeometryEffect(id: "Rect", in: rectAnimNamespace)
                         }
 
                         if hasThoughts {

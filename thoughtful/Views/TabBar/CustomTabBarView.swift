@@ -14,7 +14,7 @@ struct CustomTabBarView: View {
     //    State for animating the add button in
     @State var showAddButton: Bool = false
 
-    @Namespace var capsuleNs;
+    @Namespace var capsuleAnimNamespace;
 
     let addThoughtTip = AddThoughtTip()
 
@@ -43,7 +43,7 @@ struct CustomTabBarView: View {
                         Capsule()
                             .frame(width: 18, height: 6)
                             .offset(y: 10)
-                            .matchedGeometryEffect(id: "navcapsule", in: capsuleNs)
+                            .matchedGeometryEffect(id: "navcapsule", in: capsuleAnimNamespace)
                     }
                 }
 
