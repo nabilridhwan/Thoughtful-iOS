@@ -145,8 +145,8 @@ struct SettingsView: View {
 
                 Section(header: Text("Open Source Attributions")) {
                     Text("MingCute Icons")
-                    Text("CalendarView")
-                    Text("HorizonCalendar")
+//                    Text("CalendarView")
+//                    Text("HorizonCalendar")
                 }
 
                 Section(header: Text("Support")) {
