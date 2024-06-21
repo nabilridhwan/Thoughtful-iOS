@@ -180,9 +180,7 @@ extension HomeView {
 
 #Preview {
     NavigationStack {
-        HomeView(
-            //            isAddThoughtPresented: .constant(false)
-        )
-        .modelContainer(SampleData.shared.modelContainer)
+        HomeView()
+            .modelContainer(SampleData.shared.modelContainer)
     }
 }

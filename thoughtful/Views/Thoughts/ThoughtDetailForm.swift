@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ThoughtDetailForm: View {
     @EnvironmentObject var dlvm: DeeplinkViewModel
+    @EnvironmentObject var modalManager: ModalManager
 
     @ObservedObject var thought: Thought
 
@@ -18,9 +19,6 @@ struct ThoughtDetailForm: View {
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
-
-    //    @State var showPromptModal: Bool = false
-    @State var showEmotionModal: Bool = false
 
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
@@ -65,15 +63,6 @@ struct ThoughtDetailForm: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(.cardAttribute)
                 }
-            //            }
-            //            .sheet(isPresented: $showPromptModal) {
-            //                ZStack {
-            //                    Color.background.ignoresSafeArea()
-            //                    ChoosePromptView(prompt: $prompt)
-            //                        .padding()
-            //                        .presentationDetents([.medium])
-            //                }.ignoresSafeArea(edges: .bottom)
-            //            }
 
             if thought.emotionExists {
                 ThoughtCardAttrbuteView(
@@ -88,14 +77,14 @@ struct ThoughtDetailForm: View {
             // Toolbar !
             ToolbarView(
                 thought: thought,
-                showEmotionModal: $showEmotionModal,
+                showEmotionModal: $modalManager.emotionSelect,
                 focusedField: _focusedField
             )
             .padding(.vertical, 20)
 
             Spacer()
         }
-        .sheet(isPresented: $showEmotionModal) {
+        .sheet(isPresented: $modalManager.emotionSelect) {
             ZStack {
                 Color.background.ignoresSafeArea()
                 ChooseEmotionView(

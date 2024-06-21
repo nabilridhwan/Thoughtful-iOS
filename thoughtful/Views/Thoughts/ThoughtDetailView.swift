@@ -12,9 +12,7 @@ struct ThoughtDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
 
-    //    State for showing the confirm delete option
-    @State var isPresentingConfirm: Bool = false
-    @State var isPresentingEdit: Bool = false
+    @EnvironmentObject var modalManager: ModalManager
 
     var emotionExists: Bool {
         thought.emotion != nil
@@ -103,13 +101,13 @@ struct ThoughtDetailView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit") {
-                    isPresentingEdit = true
+                    modalManager.edit = true
                 }
             }
 
             ToolbarItem(placement: .primaryAction) {
                 Button("Delete", role: .destructive) {
-                    isPresentingConfirm = true
+                    modalManager.confirmDelete = true
 
                 }.foregroundStyle(.red)
             }
@@ -132,7 +130,7 @@ struct ThoughtDetailView: View {
                 }
             }
         }
-        .sheet(isPresented: $isPresentingEdit) {
+        .sheet(isPresented: $modalManager.edit) {
             NavigationStack {
                 ThoughtDetailForm(
                     thought: thought,
@@ -140,7 +138,7 @@ struct ThoughtDetailView: View {
                 )
             }
         }
-        .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
+        .confirmationDialog("Are you sure?", isPresented: $modalManager.confirmDelete) {
             Button("Delete", role: .destructive) {
                 dismiss()
                 context.delete(thought)
