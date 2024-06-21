@@ -15,9 +15,6 @@ struct ThoughtDetailForm: View {
     //    If the user clicks cancel
     @State var originalThought: Thought = .init()
 
-    //    Date Created
-    @Binding var date: Date
-
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
     @Environment(\.modelContext) var modelContext;
@@ -32,10 +29,22 @@ struct ThoughtDetailForm: View {
 
     var editMode: Bool = false
 
-    init(thought: Thought, date: Binding<Date>, editMode: Bool = false) {
+    init(thought: Thought, editMode: Bool = false) {
         self.thought = thought
-        _date = date
         self.editMode = editMode
+
+        // Set the originalThought to be the Thought passed through
+        originalThought = Thought(
+            thought_prompt: thought.thought_prompt,
+            thought_response: thought.thought_response,
+            date_created: thought.date_created,
+            location: thought.location,
+            music: thought.music,
+            emotion: thought.emotion
+        )
+
+        //            Set the original photos
+        originalThought.photos = thought.photos
     }
 
     var isSubmittingDisabled: Bool {
@@ -99,19 +108,6 @@ struct ThoughtDetailForm: View {
 
             Spacer()
         }
-        .onAppear {
-            originalThought = Thought(
-                thought_prompt: thought.thought_prompt,
-                thought_response: thought.thought_response,
-                date_created: thought.date_created,
-                location: thought.location,
-                music: thought.music,
-                emotion: thought.emotion
-            )
-
-            //            Set the original photos
-            originalThought.photos = thought.photos
-        }
         .sheet(isPresented: $showEmotionModal) {
             ZStack {
                 Color.background.ignoresSafeArea()
@@ -137,7 +133,7 @@ struct ThoughtDetailForm: View {
                     //                    Set back the thought as the original thought
                     handleCancel()
 
-//                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
                     dlvm.reset()
                     dismiss()
                 }
@@ -145,9 +141,9 @@ struct ThoughtDetailForm: View {
 
             ToolbarItem {
                 Button(confirmationText) {
-                    handleAdd()
+                    handleSubmit()
 
-                    //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    //  Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
                     dlvm.reset()
                 }.disabled(isSubmittingDisabled)
             }
@@ -175,6 +171,7 @@ struct ThoughtDetailForm: View {
 
 extension ThoughtDetailForm {
     func handleCancel() {
+        //        The reason we check if its not editMode and init the original thought is so that when the user cancels, it will set it to its' default new Thought values
         if !editMode {
             originalThought = .init()
         }
@@ -189,24 +186,15 @@ extension ThoughtDetailForm {
         thought.location = originalThought.location
     }
 
-    func handleAdd() {
-        print("Adding new thought")
-        //        thought.thought_prompt = prompt
-        thought.date_created = date
-        //        thought.thought_response = response
-        //
-        //        if emotion != nil {
-        //            thought.emotion = emotion
-        //        }
-
+    func handleSubmit() {
+        print("Adding/saving new thought")
         modelContext.insert(thought)
-
         dismiss()
     }
 }
 
 #Preview {
     NavigationStack {
-        ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now), date: .constant(Date.now))
+        ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now))
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import TipKit
 
 struct ChoosePromptView: View {
-    @State var date: Date = .now
     @State var currentTab: String = "choose_prompt"
     @State var showCustomPrompt: Bool = false
 
@@ -81,8 +80,7 @@ struct ChoosePromptView: View {
             .tag("choose_prompt")
 
             ThoughtDetailForm(
-                thought: newThought,
-                date: $date
+                thought: newThought
             )
             .tag("add_thought")
         }

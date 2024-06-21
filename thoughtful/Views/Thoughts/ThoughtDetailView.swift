@@ -136,7 +136,6 @@ struct ThoughtDetailView: View {
             NavigationStack {
                 ThoughtDetailForm(
                     thought: thought,
-                    date: .constant(Date.now),
                     editMode: true
                 )
             }
