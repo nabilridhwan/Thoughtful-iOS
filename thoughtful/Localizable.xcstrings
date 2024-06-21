@@ -38,10 +38,16 @@
     "Are you sure? You cannot undo this action" : {
 
     },
+    "CalendarView" : {
+
+    },
     "Cancel" : {
 
     },
     "Choose a prompt" : {
+
+    },
+    "Coming Soon" : {
 
     },
     "Continue" : {
@@ -53,10 +59,16 @@
     "Custom Prompt" : {
 
     },
+    "Customization" : {
+
+    },
     "Delete" : {
 
     },
     "Edit" : {
+
+    },
+    "Email" : {
 
     },
     "Emotion" : {
@@ -77,6 +89,9 @@
     "Enable to display cards in grayscale, turning off emotional color cues." : {
 
     },
+    "Enable to hide images in card, showing only text content" : {
+
+    },
     "Good Afternoon," : {
 
     },
@@ -86,7 +101,13 @@
     "Good Morning," : {
 
     },
+    "Hide images in card" : {
+
+    },
     "Home" : {
+
+    },
+    "HorizonCalendar" : {
 
     },
     "How are you feeling?" : {
@@ -99,6 +120,9 @@
 
     },
     "Looks like your mind is clear! Jot down your thoughts while they're fresh. Remember, you can't go back in time!" : {
+
+    },
+    "MingCute Icons" : {
 
     },
     "Mood Check" : {
@@ -116,6 +140,9 @@
     "Open Photos" : {
 
     },
+    "Open Source Attributions" : {
+
+    },
     "Select an emotion to express and reflect on your current mood" : {
 
     },
@@ -123,6 +150,9 @@
 
     },
     "Stay Inspired Daily" : {
+
+    },
+    "Support" : {
 
     },
     "Tap here to add a new Thought" : {
@@ -140,6 +170,9 @@
     "Thoughtful" : {
 
     },
+    "Thoughtful Powerpack" : {
+
+    },
     "Time" : {
 
     },
@@ -155,10 +188,16 @@
     "Type your reply..." : {
 
     },
-    "User Interface" : {
+    "Unlock features such as reminders, iCloud integration, Recap and more..." : {
+
+    },
+    "We use this name to greet you! Try replacing it with \"good looking 😉\"" : {
 
     },
     "We use your name for a more personalised touch!" : {
+
+    },
+    "Website" : {
 
     },
     "Welcome to" : {

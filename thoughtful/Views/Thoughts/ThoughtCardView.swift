@@ -14,6 +14,8 @@ struct ThoughtCardView: View {
 
     @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
 
+    @AppStorage("hideImagesInCard") private var hideImagesInCard: Bool = false
+
     var cardColor: Color {
         decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
     }
@@ -26,7 +28,7 @@ struct ThoughtCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            if photo != nil {
+            if photo != nil && !hideImagesInCard {
                 Image(uiImage: photo!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
