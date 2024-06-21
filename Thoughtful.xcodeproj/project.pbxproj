@@ -10,8 +10,12 @@
 		BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
+		BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */; };
+		BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */; };
+		BD56803D2C25DDCB00F8F1EF /* ModalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E843B2C25B25200BCEAE7 /* Theme.swift */; };
 		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
@@ -23,8 +27,6 @@
 		BDD29A5E2C22E5D00023BA06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BDD29A5D2C22E5D00023BA06 /* Localizable.xcstrings */; };
 		BDD29A5F2C22E5D00023BA06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BDD29A5D2C22E5D00023BA06 /* Localizable.xcstrings */; };
 		BDD29A602C22E5D00023BA06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BDD29A5D2C22E5D00023BA06 /* Localizable.xcstrings */; };
-		BDD29A662C22F1D70023BA06 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = BDD29A652C22F1D70023BA06 /* HorizonCalendar */; };
-		BDD29A6B2C22F68A0023BA06 /* CalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = BDD29A6A2C22F68A0023BA06 /* CalendarView */; };
 		BDD366FC2C1DC6F900B1BBE7 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FD2C1DC93500B1BBE7 /* ChoosePromptView.swift */; };
 		BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FF2C1DCFF900B1BBE7 /* ChooseEmotionView.swift */; };
@@ -100,6 +102,10 @@
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtViewModel.swift; sourceTree = "<group>"; };
+		BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkStateManager.swift; sourceTree = "<group>"; };
+		BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalManager.swift; sourceTree = "<group>"; };
+		BD5E843B2C25B25200BCEAE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
@@ -163,8 +169,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDD29A662C22F1D70023BA06 /* HorizonCalendar in Frameworks */,
-				BDD29A6B2C22F68A0023BA06 /* CalendarView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +190,16 @@
 				BD3EFF182C202E1B0032F304 /* DateHelpers.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BD5680352C25D6DE00F8F1EF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */,
+				BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */,
+				BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		BD9A79852C21ACB0009C6401 /* TabBar */ = {
@@ -338,6 +352,7 @@
 		BDD6ACC62C1A07A200B9A85A /* thoughtful */ = {
 			isa = PBXGroup;
 			children = (
+				BD5680352C25D6DE00F8F1EF /* ViewModels */,
 				BD3EFF172C202E070032F304 /* Utils */,
 				BDA72AA62C1F42A800856810 /* Tips */,
 				BDD3670E2C1E926300B1BBE7 /* Views */,
@@ -366,6 +381,7 @@
 				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
 				BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */,
 				BDD367152C1E934B00B1BBE7 /* GratitudeQuestions.swift */,
+				BD5E843B2C25B25200BCEAE7 /* Theme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -436,8 +452,6 @@
 			);
 			name = Thoughtful;
 			packageProductDependencies = (
-				BDD29A652C22F1D70023BA06 /* HorizonCalendar */,
-				BDD29A6A2C22F68A0023BA06 /* CalendarView */,
 			);
 			productName = thoughtful;
 			productReference = BDD6ACC42C1A07A200B9A85A /* Thoughtful.app */;
@@ -496,8 +510,6 @@
 			);
 			mainGroup = BDD6ACBB2C1A07A200B9A85A;
 			packageReferences = (
-				BDD29A642C22F1D70023BA06 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
-				BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			productRefGroup = BDD6ACC52C1A07A200B9A85A /* Products */;
 			projectDirPath = "";
@@ -583,15 +595,19 @@
 				BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
+				BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
 				BDD6ACF42C1A095200B9A85A /* ThoughtCardView.swift in Sources */,
+				BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */,
 				BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
 				BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */,
 				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
+				BD56803D2C25DDCB00F8F1EF /* ModalManager.swift in Sources */,
+				BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */,
 				BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */,
 				BDD367162C1E934B00B1BBE7 /* GratitudeQuestions.swift in Sources */,
 				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,
@@ -1004,38 +1020,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		BDD29A642C22F1D70023BA06 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AllanJuenemann/CalendarView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		BDD29A652C22F1D70023BA06 /* HorizonCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BDD29A642C22F1D70023BA06 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
-			productName = HorizonCalendar;
-		};
-		BDD29A6A2C22F68A0023BA06 /* CalendarView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BDD29A692C22F68A0023BA06 /* XCRemoteSwiftPackageReference "CalendarView" */;
-			productName = CalendarView;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDD6ACBC2C1A07A200B9A85A /* Project object */;
 }

@@ -8,22 +8,18 @@
 import SwiftUI
 
 struct ThoughtDetailForm: View {
-    @EnvironmentObject var dlvm: DeeplinkViewModel
+    @State var thoughtVm: ThoughtViewModel = .init()
+    @EnvironmentObject var deeplinkManager: DeeplinkStateManager
+    @EnvironmentObject var modalManager: ModalManager
 
     @ObservedObject var thought: Thought
 
     //    If the user clicks cancel
     @State var originalThought: Thought = .init()
 
-    //    Date Created
-    @Binding var date: Date
-
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
-    @Environment(\.modelContext) var modelContext;
-
-    //    @State var showPromptModal: Bool = false
-    @State var showEmotionModal: Bool = false
+    @Environment(\.modelContext) var context;
 
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
@@ -32,9 +28,8 @@ struct ThoughtDetailForm: View {
 
     var editMode: Bool = false
 
-    init(thought: Thought, date: Binding<Date>, editMode: Bool = false) {
+    init(thought: Thought, editMode: Bool = false) {
         self.thought = thought
-        _date = date
         self.editMode = editMode
     }
 
@@ -51,7 +46,7 @@ struct ThoughtDetailForm: View {
             if photo != nil {
                 Image(uiImage: photo!)
                     .resizable()
-                    .frame(height: 200)
+                    .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
 
@@ -69,20 +64,11 @@ struct ThoughtDetailForm: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(.cardAttribute)
                 }
-            //            }
-            //            .sheet(isPresented: $showPromptModal) {
-            //                ZStack {
-            //                    Color.background.ignoresSafeArea()
-            //                    ChoosePromptView(prompt: $prompt)
-            //                        .padding()
-            //                        .presentationDetents([.medium])
-            //                }.ignoresSafeArea(edges: .bottom)
-            //            }
 
             if thought.emotionExists {
                 ThoughtCardAttrbuteView(
                     icon: Image(thought.emotion!.getIcon()),
-                    text: thought.emotion!.description.capitalized,
+                    text: thought.emotion!.rawValue.capitalized,
                     backgroundColor: thought.emotion!.getColor(),
                     foregroundColor: .black.opacity(0.6),
                     shadowColor: thought.emotion!.getColor()
@@ -92,27 +78,13 @@ struct ThoughtDetailForm: View {
             // Toolbar !
             ToolbarView(
                 thought: thought,
-                showEmotionModal: $showEmotionModal,
-                focusedField: _focusedField
+                showEmotionModal: $modalManager.emotionSelect
             )
             .padding(.vertical, 20)
 
             Spacer()
         }
-        .onAppear {
-            originalThought = Thought(
-                thought_prompt: thought.thought_prompt,
-                thought_response: thought.thought_response,
-                date_created: thought.date_created,
-                location: thought.location,
-                music: thought.music,
-                emotion: thought.emotion
-            )
-
-            //            Set the original photos
-            originalThought.photos = thought.photos
-        }
-        .sheet(isPresented: $showEmotionModal) {
+        .sheet(isPresented: $modalManager.emotionSelect) {
             ZStack {
                 Color.background.ignoresSafeArea()
                 ChooseEmotionView(
@@ -137,20 +109,34 @@ struct ThoughtDetailForm: View {
                     //                    Set back the thought as the original thought
                     handleCancel()
 
-//                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
-                    dlvm.reset()
+                    //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    deeplinkManager.reset()
                     dismiss()
                 }
             }
 
             ToolbarItem {
                 Button(confirmationText) {
-                    handleAdd()
+                    handleSubmit()
 
-                    //                    Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
-                    dlvm.reset()
+                    //  Have to reset DeepLinkViewModel everytime you add or cancel or else future thoughts will have dlvm's previous residue
+                    deeplinkManager.reset()
                 }.disabled(isSubmittingDisabled)
             }
+        }
+        .onAppear {
+            // Set the originalThought to be the Thought passed through
+            originalThought = Thought(
+                thought_prompt: thought.thought_prompt,
+                thought_response: thought.thought_response,
+                date_created: thought.date_created,
+                location: thought.location,
+                music: thought.music,
+                emotion: thought.emotion
+            )
+
+            //            Set the original photos
+            originalThought.photos = thought.photos
         }
         .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
@@ -169,12 +155,14 @@ struct ThoughtDetailForm: View {
         .background(Color.background)
         .onAppear {
             focusedField = .response
+            thoughtVm.context = context
         }
     }
 }
 
 extension ThoughtDetailForm {
     func handleCancel() {
+        //        The reason we check if its not editMode and init the original thought is so that when the user cancels, it will set it to its' default new Thought values
         if !editMode {
             originalThought = .init()
         }
@@ -189,24 +177,15 @@ extension ThoughtDetailForm {
         thought.location = originalThought.location
     }
 
-    func handleAdd() {
-        print("Adding new thought")
-        //        thought.thought_prompt = prompt
-        thought.date_created = date
-        //        thought.thought_response = response
-        //
-        //        if emotion != nil {
-        //            thought.emotion = emotion
-        //        }
-
-        modelContext.insert(thought)
-
+    func handleSubmit() {
+        print("Adding/saving new thought")
+        thoughtVm.insert(thought)
         dismiss()
     }
 }
 
 #Preview {
     NavigationStack {
-        ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now), date: .constant(Date.now))
+        ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now))
     }
 }

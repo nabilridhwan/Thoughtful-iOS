@@ -15,7 +15,7 @@ enum Emotion: String, Codable, CaseIterable {
     case happy
     case awesome
 
-    var description: String {
+    var rawValue: String {
         switch self {
         case .terrible: return "terrible"
         case .bad: return "bad"
@@ -24,6 +24,20 @@ enum Emotion: String, Codable, CaseIterable {
         case .awesome: return "awesome"
         }
     }
+
+    init?(rawValue: String) {
+        switch rawValue {
+        case "terrible": self = .terrible
+        case "bad": self = .bad
+        case "okay": self = .okay
+        case "happy": self = .happy
+        case "awesome": self = .awesome
+        default: return nil
+        }
+    }
+
+//    var description: String {
+//    }
 
     func getColor() -> Color {
         switch self {

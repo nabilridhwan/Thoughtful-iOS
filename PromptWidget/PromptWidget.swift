@@ -34,7 +34,7 @@ struct SimpleEntry: TimelineEntry {
 
 func getUrlWithEmotion(_ emotion: Emotion) -> URL {
     return URL(
-        string: "thoughtful://add?prompt=Share what it is that makes you feel this way, in this moment&emotion=\(emotion.description)"
+        string: "thoughtful://add?prompt=Share what it is that makes you feel this way, in this moment&emotion=\(emotion.rawValue)"
     )!
 }
 
@@ -62,7 +62,7 @@ struct PromptWidgetEntryView: View {
                     Link(destination: getUrlWithEmotion(e),
                          label: {
                              Label {
-                                 Text(e.description)
+                                 Text(e.rawValue)
                              } icon: {
                                  Image(e.getIcon())
                                      .resizable()

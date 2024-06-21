@@ -9,9 +9,8 @@ import SwiftUI
 import TipKit
 
 struct ChoosePromptView: View {
-    @State var date: Date = .now
     @State var currentTab: String = "choose_prompt"
-    @State var showCustomPrompt: Bool = false
+    @EnvironmentObject var modalManager: ModalManager
 
     @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
@@ -55,7 +54,7 @@ struct ChoosePromptView: View {
 
                 ScrollView {
                     Button {
-                        showCustomPrompt = true
+                        modalManager.customPrompt = true
                         addCustomPromptTip.invalidate(reason: .actionPerformed)
                         newThought.thought_prompt = ""
                     } label: {
@@ -81,12 +80,11 @@ struct ChoosePromptView: View {
             .tag("choose_prompt")
 
             ThoughtDetailForm(
-                thought: newThought,
-                date: $date
+                thought: newThought
             )
             .tag("add_thought")
         }
-        .alert("Add Custom Prompt", isPresented: $showCustomPrompt) {
+        .alert("Add Custom Prompt", isPresented: $modalManager.customPrompt) {
             Button("Cancel", role: .cancel) {
                 newThought.thought_prompt = ""
             }

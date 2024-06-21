@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct ThoughtDetailView: View {
+    @State var thoughtVm: ThoughtViewModel = .init()
+
     @ObservedObject var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
 
-    //    State for showing the confirm delete option
-    @State var isPresentingConfirm: Bool = false
-    @State var isPresentingEdit: Bool = false
-
-    var emotionExists: Bool {
-        thought.emotion != nil
-    }
+    @EnvironmentObject var modalManager: ModalManager
 
     var relativeDateCreated: String {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
@@ -32,7 +28,7 @@ struct ThoughtDetailView: View {
                 if photo != nil {
                     Image(uiImage: photo!)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .transition(
@@ -52,11 +48,11 @@ struct ThoughtDetailView: View {
 
                 //            https://developer.apple.com/documentation/foundation/date/relativeformatstyle
 
-                if emotionExists {
+                if thought.emotionExists {
                     Text("Emotion")
                         .font(.caption2)
                         .foregroundStyle(.primary.opacity(0.5))
-                    ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                    ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.rawValue.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
                 } else {
                     Text("How were you feeling?")
                         .font(.caption2)
@@ -81,8 +77,6 @@ struct ThoughtDetailView: View {
                             .padding()
                             .background(e.getColor(), in: RoundedRectangle(cornerRadius: 14)
                                 .stroke(lineWidth: 2))
-
-                            //                            ThoughtCardAttrbuteView(icon: Image(e.getIcon()), text: e.description.capitalized, backgroundColor: e.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: e.getColor())
                         }
                     }
                 }
@@ -103,16 +97,19 @@ struct ThoughtDetailView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit") {
-                    isPresentingEdit = true
+                    modalManager.edit = true
                 }
             }
 
             ToolbarItem(placement: .primaryAction) {
                 Button("Delete", role: .destructive) {
-                    isPresentingConfirm = true
+                    modalManager.confirmDelete = true
 
                 }.foregroundStyle(.red)
             }
+        }
+        .onAppear {
+            thoughtVm.context = context
         }
         .task {
             DispatchQueue.main.async {
@@ -132,19 +129,18 @@ struct ThoughtDetailView: View {
                 }
             }
         }
-        .sheet(isPresented: $isPresentingEdit) {
+        .sheet(isPresented: $modalManager.edit) {
             NavigationStack {
                 ThoughtDetailForm(
                     thought: thought,
-                    date: .constant(Date.now),
                     editMode: true
                 )
             }
         }
-        .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
+        .confirmationDialog("Are you sure?", isPresented: $modalManager.confirmDelete) {
             Button("Delete", role: .destructive) {
                 dismiss()
-                context.delete(thought)
+                thoughtVm.delete(thought)
             }
         } message: {
             Text("Are you sure? You cannot undo this action")

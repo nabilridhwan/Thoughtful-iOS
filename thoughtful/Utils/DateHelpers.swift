@@ -31,24 +31,24 @@ enum DateHelpers {
         return date1 > date2
     }
 
-    static func findFirstDateOfTheWeek() -> Date {
+    static func findFirstDateOfTheWeek(_ date: Date) -> Date {
         let calendar = Calendar.current
-        let weekday = calendar.component(.weekday, from: Date.now)
+        let weekday = calendar.component(.weekday, from: date)
         let daysToSubtract = weekday - calendar.firstWeekday
-        return calendar.date(byAdding: .day, value: -daysToSubtract, to: Date.now)!
+        return calendar.date(byAdding: .day, value: -daysToSubtract, to: date)!
     }
 
-    static func findLastDateOfTheWeek() -> Date {
+    static func findLastDateOfTheWeek(_ date: Date) -> Date {
         let calendar = Calendar.current
-        let weekday = calendar.component(.weekday, from: Date.now)
+        let weekday = calendar.component(.weekday, from: date)
         let daysToAdd = (calendar.firstWeekday + 6 - weekday) % 7
-        return calendar.date(byAdding: .day, value: daysToAdd, to: Date.now)!
+        return calendar.date(byAdding: .day, value: daysToAdd, to: date)!
     }
 
-    static func getDatesForWeek() -> [Date] {
+    static func getDatesForWeek(_ date: Date) -> [Date] {
         let calendar = Calendar.current
-        let firstDateOfTheWeek = findFirstDateOfTheWeek()
-        let lastDateOfTheWeek = findLastDateOfTheWeek()
+        let firstDateOfTheWeek = findFirstDateOfTheWeek(date)
+        let lastDateOfTheWeek = findLastDateOfTheWeek(date)
 
         var dates: [Date] = Array(repeating: Date(), count: 7)
 
