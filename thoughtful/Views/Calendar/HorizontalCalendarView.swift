@@ -21,6 +21,7 @@ struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date
 
     @State var dateForWeekDates: Date = .now
+    @State var thoughtVm: ThoughtViewModel = .init()
 
     @Namespace var rectNs;
 
@@ -53,7 +54,7 @@ struct HorizontalCalendarView: View {
             ForEach(weekDates, id: \.hashValue) {
                 date in
 
-                let hasThoughts = fetchNumberOfThoughtsForDate(for: date) > 0
+                let hasThoughts = thoughtVm.fetchNumberOfThoughtsForDate(for: date) > 0
 
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {
@@ -114,25 +115,11 @@ struct HorizontalCalendarView: View {
             .foregroundStyle(.primary.opacity(0.5))
             .labelStyle(.iconOnly)
         }
+        .onAppear {
+            thoughtVm.context = context
+        }
 
         .frame(maxHeight: 50)
-    }
-}
-
-extension HorizontalCalendarView {
-    func fetchNumberOfThoughtsForDate(for date: Date) -> Int {
-        let fetchDescriptor = FetchDescriptor<Thought>(
-            predicate: Thought.predicate(searchDate: date),
-            sortBy: [
-                SortDescriptor(\.date_created, order: .reverse),
-            ]
-        )
-
-        do {
-            return try context.fetchCount(fetchDescriptor)
-        } catch {
-            return 0
-        }
     }
 }
 
