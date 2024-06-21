@@ -14,6 +14,9 @@
         }
       }
     },
+    "A single in-app purchase that unlocks features such as reminders, iCloud integration, Recap, and more..." : {
+
+    },
     "A widget to add a Thought from your home screen!" : {
 
     },
@@ -173,7 +176,7 @@
     "Thoughtful" : {
 
     },
-    "Thoughtful Powerpack" : {
+    "Thoughtful Premium" : {
 
     },
     "Time" : {
@@ -189,9 +192,6 @@
 
     },
     "Type your reply..." : {
-
-    },
-    "Unlock features such as reminders, iCloud integration, Recap and more..." : {
 
     },
     "We use this name to greet you! Try replacing it with \"good looking 😉\"" : {

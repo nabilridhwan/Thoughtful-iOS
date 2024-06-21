@@ -47,7 +47,7 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading) {
             Text("Settings")
                 .font(.title)
                 .bold()
@@ -58,30 +58,40 @@ struct SettingsView: View {
                     Image(.logoPremium)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
+                        .frame(width: 80, height: 80)
+                        .shadow(radius: 20)
+
+                    Text("Coming Soon")
+                        .font(.headline)
 
                     Text("Thoughtful Premium")
                         .font(.title2)
                         .bold()
 
                     Text("A single in-app purchase that unlocks features such as reminders, iCloud integration, Recap, and more...")
-
+                        .font(.subheadline)
                         .opacity(0.6)
                         .multilineTextAlignment(.center)
-
-                    Text("Coming Soon")
-                        .font(.caption)
-                        .opacity(0.5)
 
                     //                Button("Find out more"){
                     //
                     //                }
                 }
-                .shadow(color: .logoBackground.opacity(0.5), radius: 30)
+                .shadow(
+                    color: .logoBackground.opacity(0.5),
+                    radius: 50
+                )
                 .frame(maxWidth: .infinity)
                 .padding()
-                .listRowBackground(RoundedRectangle(cornerRadius: 24)
-                    .foregroundStyle(.logoBorder))
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(LinearGradient(
+                            gradient: Gradient(colors: [Color.gradient1, Color.gradient2]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ).opacity(0.9))
+                        .foregroundStyle(.logoBorder)
+                )
 
                 Section(header: Text("Name")) {
                     VStack(alignment: .leading) {
@@ -93,17 +103,17 @@ struct SettingsView: View {
                     }
                 }
 
-//                Section(header: Text("[Upcoming] Features")){
-//                    VStack(alignment: .leading){
-//
-//                        Toggle("Recap", isOn: $enableRecap)
-//                            .help("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
-//                            .disabled(true)
-//                        Text("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
-//                            .font(.caption)
-//                            .foregroundStyle(.secondary)
-//                    }
-//                }
+                //                Section(header: Text("[Upcoming] Features")){
+                //                    VStack(alignment: .leading){
+                //
+                //                        Toggle("Recap", isOn: $enableRecap)
+                //                            .help("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
+                //                            .disabled(true)
+                //                        Text("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
+                //                            .font(.caption)
+                //                            .foregroundStyle(.secondary)
+                //                    }
+                //                }
 
                 Section(header: Text("Customization")) {
                     VStack(alignment: .leading) {
@@ -171,7 +181,7 @@ struct SettingsView: View {
                 //                }
                 //            }
 
-//                Add empty spacer at the bottom without list background
+                //                Add empty spacer at the bottom without list background
                 Rectangle()
                     .frame(height: 80)
                     .opacity(0)
