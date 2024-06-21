@@ -35,6 +35,14 @@ class ThoughtViewModel {
         }
     }
 
+    func delete(_ thought: Thought) {
+        context?.delete(thought)
+    }
+
+    func insert(_ thought: Thought) {
+        context?.insert(thought)
+    }
+
     // Fetch number of thoughts for date
     func fetchNumberOfThoughtsForDate(for date: Date) -> Int {
         let fetchDescriptor = FetchDescriptor<Thought>(

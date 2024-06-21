@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ThoughtDetailView: View {
+    @State var thoughtVm: ThoughtViewModel = .init()
+
     @ObservedObject var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
@@ -112,6 +114,9 @@ struct ThoughtDetailView: View {
                 }.foregroundStyle(.red)
             }
         }
+        .onAppear {
+            thoughtVm.context = context
+        }
         .task {
             DispatchQueue.main.async {
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
@@ -141,7 +146,7 @@ struct ThoughtDetailView: View {
         .confirmationDialog("Are you sure?", isPresented: $modalManager.confirmDelete) {
             Button("Delete", role: .destructive) {
                 dismiss()
-                context.delete(thought)
+                thoughtVm.delete(thought)
             }
         } message: {
             Text("Are you sure? You cannot undo this action")

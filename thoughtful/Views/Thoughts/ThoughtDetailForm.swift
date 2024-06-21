@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ThoughtDetailForm: View {
+    @State var thoughtVm: ThoughtViewModel = .init()
     @EnvironmentObject var deeplinkManager: DeeplinkStateManager
     @EnvironmentObject var modalManager: ModalManager
 
@@ -18,7 +19,7 @@ struct ThoughtDetailForm: View {
 
     @Environment(\.dismiss) var dismiss;
     //    Model Context for Thoughts (SwiftData)
-    @Environment(\.modelContext) var modelContext;
+    @Environment(\.modelContext) var context;
 
     //    For handling what 'Next' button does, check out the binding with the TextField and also the onSubmit
     @FocusState private var focusedField: Field?
@@ -154,6 +155,7 @@ struct ThoughtDetailForm: View {
         .background(Color.background)
         .onAppear {
             focusedField = .response
+            thoughtVm.context = context
         }
     }
 }
@@ -177,7 +179,7 @@ extension ThoughtDetailForm {
 
     func handleSubmit() {
         print("Adding/saving new thought")
-        modelContext.insert(thought)
+        thoughtVm.insert(thought)
         dismiss()
     }
 }
