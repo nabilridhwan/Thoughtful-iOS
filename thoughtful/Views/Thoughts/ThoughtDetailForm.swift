@@ -32,19 +32,6 @@ struct ThoughtDetailForm: View {
     init(thought: Thought, editMode: Bool = false) {
         self.thought = thought
         self.editMode = editMode
-
-        // Set the originalThought to be the Thought passed through
-        originalThought = Thought(
-            thought_prompt: thought.thought_prompt,
-            thought_response: thought.thought_response,
-            date_created: thought.date_created,
-            location: thought.location,
-            music: thought.music,
-            emotion: thought.emotion
-        )
-
-        //            Set the original photos
-        originalThought.photos = thought.photos
     }
 
     var isSubmittingDisabled: Bool {
@@ -147,6 +134,20 @@ struct ThoughtDetailForm: View {
                     dlvm.reset()
                 }.disabled(isSubmittingDisabled)
             }
+        }
+        .onAppear {
+            // Set the originalThought to be the Thought passed through
+            originalThought = Thought(
+                thought_prompt: thought.thought_prompt,
+                thought_response: thought.thought_response,
+                date_created: thought.date_created,
+                location: thought.location,
+                music: thought.music,
+                emotion: thought.emotion
+            )
+
+            //            Set the original photos
+            originalThought.photos = thought.photos
         }
         .onChange(of: thought.photos) { _, newValue in
             if !newValue.isEmpty {
