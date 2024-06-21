@@ -36,18 +36,18 @@ class ThoughtViewModel {
         }
     }
 
-//    func fetchNumberOfThoughtsForDate(for date: Date) -> Int {
-//        let fetchDescriptor = FetchDescriptor<Thought>(
-//            predicate: Thought.predicate(searchDate: date),
-//            sortBy: [
-//                SortDescriptor(\.date_created, order: .reverse),
-//            ]
-//        )
-//
-//        do {
-//            return try context.fetchCount(fetchDescriptor)
-//        } catch {
-//            return 0
-//        }
-//    }
+    func fetchNumberOfThoughtsForDate(for date: Date) -> Int {
+        let fetchDescriptor = FetchDescriptor<Thought>(
+            predicate: Thought.predicate(searchDate: date),
+            sortBy: [
+                SortDescriptor(\.date_created, order: .reverse),
+            ]
+        )
+
+        do {
+            return try context?.fetchCount(fetchDescriptor) ?? 0
+        } catch {
+            return 0
+        }
+    }
 }

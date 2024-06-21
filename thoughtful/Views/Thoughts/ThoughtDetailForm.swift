@@ -77,8 +77,7 @@ struct ThoughtDetailForm: View {
             // Toolbar !
             ToolbarView(
                 thought: thought,
-                showEmotionModal: $modalManager.emotionSelect,
-                focusedField: _focusedField
+                showEmotionModal: $modalManager.emotionSelect
             )
             .padding(.vertical, 20)
 

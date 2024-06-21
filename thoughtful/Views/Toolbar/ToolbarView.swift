@@ -11,7 +11,6 @@ import SwiftUI
 struct ToolbarView: View {
     @ObservedObject var thought: Thought
     @Binding var showEmotionModal: Bool
-    @FocusState var focusedField: Field?
 
     @State var showPhotosPicker: Bool = false
     @State var photosPickerItem: PhotosPickerItem?
