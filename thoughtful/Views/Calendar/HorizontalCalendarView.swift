@@ -19,21 +19,29 @@ import SwiftUI
 struct HorizontalCalendarView: View {
     @Environment(\.modelContext) var context: ModelContext
     @Binding var selectedDate: Date
+
+    @State var dateForWeekDates: Date = .now
+
     @Namespace var rectNs;
 
-    var weekDates: [Date] {
-        DateHelpers.getDatesForWeek(selectedDate)
+    @State var weekDates: [Date] = DateHelpers.getDatesForWeek(.now)
+
+    init(selectedDate sd: Binding<Date>) {
+        _selectedDate = sd
+        dateForWeekDates = selectedDate
+        weekDates = DateHelpers.getDatesForWeek(dateForWeekDates)
     }
 
     var body: some View {
         HStack {
             Button {
-                guard let date = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -7, to: selectedDate) else {
+                guard let date = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -7, to: dateForWeekDates) else {
                     return
                 }
 
                 withAnimation {
-                    selectedDate = date
+                    dateForWeekDates = date
+                    weekDates = DateHelpers.getDatesForWeek(date)
                 }
 
             } label: {
@@ -91,12 +99,13 @@ struct HorizontalCalendarView: View {
             }
 
             Button {
-                guard let date = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 7, to: selectedDate) else {
+                guard let date = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 7, to: dateForWeekDates) else {
                     return
                 }
 
                 withAnimation {
-                    selectedDate = date
+                    dateForWeekDates = date
+                    weekDates = DateHelpers.getDatesForWeek(date)
                 }
 
             } label: {
