@@ -17,7 +17,7 @@ struct ThoughtCardView: View {
     @AppStorage("hideImagesInCard") private var hideImagesInCard: Bool = false
 
     var cardColor: Color {
-        decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+        decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.2) : .card
     }
 
     var dateLabel: String {

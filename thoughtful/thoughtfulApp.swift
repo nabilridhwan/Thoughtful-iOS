@@ -12,6 +12,7 @@ import TipKit
 @main
 struct thoughtfulApp: App {
     @StateObject var dlvm = DeeplinkViewModel()
+    @AppStorage("theme") var theme: Theme = .system
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -29,6 +30,7 @@ struct thoughtfulApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(theme.getColorScheme())
                 .modelContainer(sharedModelContainer)
                 .environmentObject(dlvm)
                 .task {

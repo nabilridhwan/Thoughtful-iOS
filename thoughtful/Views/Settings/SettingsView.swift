@@ -16,6 +16,8 @@ struct SettingsView: View {
 
     @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
 
+    @AppStorage("theme") private var theme: Theme = .system
+
     @AppStorage("hideImagesInCard") private var hideImagesInCard: Bool = false
 
     @AppStorage("enableRecap") private var enableRecap: Bool = true
@@ -93,13 +95,21 @@ struct SettingsView: View {
                         .foregroundStyle(.logoBorder)
                 )
 
-                Section(header: Text("Name")) {
+                Section(header: Text("App Settings")) {
                     VStack(alignment: .leading) {
                         TextField("Name", text: $userName)
                             .help("Enable to display cards in grayscale, turning off emotional color cues.")
                         Text("We use this name to greet you! Try replacing it with \"good looking 😉\"")
                             .font(.caption)
                             .foregroundStyle(.secondary)
+                    }
+
+                    VStack(alignment: .leading) {
+                        Picker("Theme", selection: $theme) {
+                            ForEach(Theme.allCases) {
+                                Text($0.rawValue.capitalized)
+                            }
+                        }
                     }
                 }
 

@@ -12,6 +12,7 @@
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5E3D132C1F318700DA84CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367222C1E961000B1BBE7 /* SwiftUI.framework */; };
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
+		BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E843B2C25B25200BCEAE7 /* Theme.swift */; };
 		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
@@ -100,6 +101,7 @@
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		BD5E843B2C25B25200BCEAE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				BDD6ACF12C1A07BC00B9A85A /* Thought.swift */,
 				BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */,
 				BDD367152C1E934B00B1BBE7 /* GratitudeQuestions.swift */,
+				BD5E843B2C25B25200BCEAE7 /* Theme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
+				BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
 				BDE843AA2C1D7D670046C2A4 /* ThoughtDetailView.swift in Sources */,
