@@ -79,8 +79,10 @@ struct ThoughtCardView: View {
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .task {
-            DispatchQueue.main.async {
-                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
+            if !thought.photos.isEmpty {
+                DispatchQueue.main.async {
+                    let loadedPhoto = UIImage(data: thought.photos[0])
+
                     withAnimation {
                         self.photo = loadedPhoto
                     }
