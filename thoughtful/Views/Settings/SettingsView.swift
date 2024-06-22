@@ -14,6 +14,14 @@ enum Day: String, CaseIterable {
 struct SettingsView: View {
     @AppStorage("userName") private var userName: String = ""
 
+    @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
+
+    @AppStorage("theme") private var theme: Theme = .system
+
+    @AppStorage("hideImagesInCard") private var hideImagesInCard: Bool = false
+
+    @AppStorage("enableRecap") private var enableRecap: Bool = true
+
     @AppStorage("remindersEnabled") private var remindersEnabled: Bool = false
 
     @State private var selectedDays: [Day] = []
@@ -41,13 +49,116 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading) {
             Text("Settings")
                 .font(.title)
                 .bold()
+                .padding()
+
             List {
-                Section(header: Text("Name")) {
-                    TextField("Name", text: $userName)
+                VStack(alignment: .center, spacing: 10) {
+                    Image(.logoPremium)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 80, height: 80)
+                        .shadow(radius: 20)
+
+                    Text("Coming Soon")
+                        .font(.headline)
+
+                    Text("Thoughtful Premium")
+                        .font(.title2)
+                        .bold()
+
+                    Text("A single in-app purchase that unlocks features such as reminders, iCloud integration, Recap, and more...")
+                        .font(.subheadline)
+                        .opacity(0.6)
+                        .multilineTextAlignment(.center)
+
+                    //                Button("Find out more"){
+                    //
+                    //                }
+                }
+                .shadow(
+                    color: .logoBackground.opacity(0.5),
+                    radius: 50
+                )
+                .frame(maxWidth: .infinity)
+                .padding()
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(LinearGradient(
+                            gradient: Gradient(colors: [Color.gradient1, Color.gradient2]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ).opacity(0.9))
+                        .foregroundStyle(.logoBorder)
+                )
+
+                Section(header: Text("App Settings")) {
+                    VStack(alignment: .leading) {
+                        TextField("Name", text: $userName)
+                            .help("Enable to display cards in grayscale, turning off emotional color cues.")
+                        Text("We use this name to greet you! Try replacing it with \"good looking 😉\"")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    VStack(alignment: .leading) {
+                        Picker("Theme", selection: $theme) {
+                            ForEach(Theme.allCases) {
+                                Text($0.rawValue.capitalized)
+                            }
+                        }
+                    }
+                }
+
+                //                Section(header: Text("[Upcoming] Features")){
+                //                    VStack(alignment: .leading){
+                //
+                //                        Toggle("Recap", isOn: $enableRecap)
+                //                            .help("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
+                //                            .disabled(true)
+                //                        Text("Recap will remind you everyday to look back on your Thoughts from yesterday. To remind you to be grateful!")
+                //                            .font(.caption)
+                //                            .foregroundStyle(.secondary)
+                //                    }
+                //                }
+
+                Section(header: Text("Customization")) {
+                    VStack(alignment: .leading) {
+                        Toggle("Emotion Card Decolorization", isOn: $decolorizeCards)
+                            .help("Enable to display cards in grayscale, turning off emotional color cues.")
+                        Text("Enable to display cards in grayscale, turning off emotional color cues.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    VStack(alignment: .leading) {
+                        Toggle("Hide images in card", isOn: $hideImagesInCard)
+                            .help("Enable to hide images in card, showing only text content")
+                        Text("Enable to hide images in card, showing only text content")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                Section(header: Text("Open Source Attributions")) {
+                    Text("MingCute Icons")
+//                    Text("CalendarView")
+//                    Text("HorizonCalendar")
+                }
+
+                Section(header: Text("Support")) {
+                    Link(destination: URL(string: "mailto:nabridhwan@gmail.com")!
+                    ) {
+                        Label("Email", systemImage: "envelope.fill")
+                    }
+
+                    Link(destination: URL(string: "https://www.nabilridhwan.com")!
+                    ) {
+                        Label("Website", systemImage: "globe")
+                    }
                 }
 
                 //            Section(header: Text("Reminders"), footer: Text(displayReminderString())) {
@@ -79,12 +190,19 @@ struct SettingsView: View {
                 //                        }
                 //                }
                 //            }
+
+                //                Add empty spacer at the bottom without list background
+                Rectangle()
+                    .frame(height: 80)
+                    .opacity(0)
+                    .listRowBackground(Rectangle().opacity(0))
             }
-            .listStyle(.grouped)
+            //            .listStyle(.grouped)
             .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.interactively)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
+        //        .padding()
         .foregroundStyle(.primary)
         .background(Color.background)
     }

@@ -12,8 +12,12 @@ var dateFormatter = DateFormatter()
 struct ThoughtCardView: View {
     let thought: Thought
 
+    @AppStorage("decolorizeCards") private var decolorizeCards: Bool = false
+
+    @AppStorage("hideImagesInCard") private var hideImagesInCard: Bool = false
+
     var cardColor: Color {
-        thought.emotionExists ? thought.emotion!.getColor().opacity(0.1) : .card
+        decolorizeCards ? .card : thought.emotionExists ? thought.emotion!.getColor().opacity(0.2) : .card
     }
 
     var dateLabel: String {
@@ -24,13 +28,14 @@ struct ThoughtCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            if photo != nil {
+            if photo != nil && !hideImagesInCard {
                 Image(uiImage: photo!)
                     .resizable()
-                    .frame(height: 200)
+                    .aspectRatio(contentMode: .fit)
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 24)
+                        RoundedRectangle(cornerRadius: 12)
                     )
+                    .transition(.scale.combined(with: .opacity))
             }
 
             Text(thought.thought_prompt)
@@ -54,7 +59,10 @@ struct ThoughtCardView: View {
                     }
 
                     if thought.emotionExists {
-                        ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.description.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                        ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.rawValue.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                            .transition(
+                                .scale.combined(with: .opacity)
+                            )
                     }
                 }
 
@@ -71,12 +79,10 @@ struct ThoughtCardView: View {
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .task {
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.photo = loadedPhoto
-                        }
+                    withAnimation {
+                        self.photo = loadedPhoto
                     }
                 }
             }

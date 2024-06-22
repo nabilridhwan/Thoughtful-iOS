@@ -9,10 +9,8 @@ import SwiftUI
 import TipKit
 
 struct ChoosePromptView: View {
-    @State var date: Date = .now
     @State var currentTab: String = "choose_prompt"
-    @State var showCustomPrompt: Bool = false
-    @Environment(\.dismiss) var dismiss;
+    @EnvironmentObject var modalManager: ModalManager
 
     @State var newThought: Thought = .init(thought_prompt: "", thought_response: "", date_created: Date.now)
 
@@ -25,6 +23,28 @@ struct ChoosePromptView: View {
         }
     }
 
+    //    Empty constructor
+    init() {}
+
+    //    Constructor for deeplink
+    init(prompt: String, emotion: Emotion?) {
+        newThought.thought_prompt = prompt
+        newThought.emotion = emotion
+
+        print("Using deeplink constructor for ChoosePromptView")
+        print("New Thought Prompt: \(prompt)")
+        print("New Thought Emotion: \(emotion)")
+        print("Current Tab: \(currentTab)")
+
+        if !prompt.isEmpty {
+            _currentTab = State(initialValue: "add_thought")
+        }
+    }
+
+    func changeTab() {
+        currentTab = "add_thought"
+    }
+
     var body: some View {
         TabView(selection: $currentTab) {
             VStack(alignment: .leading) {
@@ -34,7 +54,7 @@ struct ChoosePromptView: View {
 
                 ScrollView {
                     Button {
-                        showCustomPrompt = true
+                        modalManager.customPrompt = true
                         addCustomPromptTip.invalidate(reason: .actionPerformed)
                         newThought.thought_prompt = ""
                     } label: {
@@ -59,20 +79,25 @@ struct ChoosePromptView: View {
             }
             .tag("choose_prompt")
 
-            AddNewThoughtView(
-                thought: $newThought,
-                date: $date
+            ThoughtDetailForm(
+                thought: newThought
             )
             .tag("add_thought")
         }
-        .alert("Add Custom Prompt", isPresented: $showCustomPrompt) {
+        .alert("Add Custom Prompt", isPresented: $modalManager.customPrompt) {
             Button("Cancel", role: .cancel) {
                 newThought.thought_prompt = ""
             }
-            Button("OK") {}
+            Button("OK") {
+                currentTab = "add_thought"
+            }
 
             TextField("Type your custom prompt", text: $newThought.thought_prompt)
                 .lineLimit(3, reservesSpace: true)
+        }
+        .onAppear {
+            print("On Appear Choose Prompt View")
+            print("New Thought Prompt: \(newThought.thought_prompt)")
         }
         .ignoresSafeArea(edges: .bottom)
         .multilineTextAlignment(.leading)

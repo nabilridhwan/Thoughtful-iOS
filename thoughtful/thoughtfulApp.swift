@@ -11,6 +11,10 @@ import TipKit
 
 @main
 struct thoughtfulApp: App {
+    @AppStorage("theme") var theme: Theme = .system
+    @StateObject var dlmgr = DeeplinkStateManager()
+    @StateObject var mmgr = ModalManager()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Thought.self,
@@ -27,7 +31,10 @@ struct thoughtfulApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(theme.getColorScheme())
                 .modelContainer(sharedModelContainer)
+                .environmentObject(dlmgr)
+                .environmentObject(mmgr)
                 .task {
                     try? Tips.configure([
                         .datastoreLocation(.applicationDefault),

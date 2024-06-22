@@ -1,0 +1,220 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "A single in-app purchase that unlocks features such as reminders, iCloud integration, Recap, and more..." : {
+
+    },
+    "A widget to add a Thought from your home screen!" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add Custom Prompt" : {
+
+    },
+    "Add how you're feeling" : {
+
+    },
+    "Add Thought" : {
+
+    },
+    "App Settings" : {
+
+    },
+    "Are you sure?" : {
+
+    },
+    "Are you sure? You cannot undo this action" : {
+
+    },
+    "CalendarView" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Choose a prompt" : {
+
+    },
+    "Coming Soon" : {
+
+    },
+    "Continue" : {
+
+    },
+    "Created" : {
+
+    },
+    "Custom Prompt" : {
+
+    },
+    "Customization" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Edit" : {
+
+    },
+    "Email" : {
+
+    },
+    "Emotion" : {
+
+    },
+    "Emotion Card Decolorization" : {
+
+    },
+    "Emotion Check-In" : {
+
+    },
+    "Enable daily reminders to keep your thoughts flowing." : {
+
+    },
+    "Enable Reminders" : {
+
+    },
+    "Enable to display cards in grayscale, turning off emotional color cues." : {
+
+    },
+    "Enable to hide images in card, showing only text content" : {
+
+    },
+    "Good Afternoon," : {
+
+    },
+    "Good Evening," : {
+
+    },
+    "Good Morning," : {
+
+    },
+    "Hide images in card" : {
+
+    },
+    "Home" : {
+
+    },
+    "HorizonCalendar" : {
+
+    },
+    "How are you feeling?" : {
+
+    },
+    "How were you feeling?" : {
+
+    },
+    "In our fast-paced world, it's easy to overlook the beauty of life. With Thoughtful, we'll help you rediscover it, one step at a time." : {
+
+    },
+    "Looks like your mind is clear! Jot down your thoughts while they're fresh. Remember, you can't go back in time!" : {
+
+    },
+    "MingCute Icons" : {
+
+    },
+    "Mood Check" : {
+
+    },
+    "Name" : {
+
+    },
+    "Next Week" : {
+
+    },
+    "No Thoughts?" : {
+
+    },
+    "OK" : {
+
+    },
+    "Open Photos" : {
+
+    },
+    "Open Source Attributions" : {
+
+    },
+    "Previous Week" : {
+
+    },
+    "Select an emotion to express and reflect on your current mood" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Stay Inspired Daily" : {
+
+    },
+    "Support" : {
+
+    },
+    "Tap here to add a new Thought" : {
+
+    },
+    "Tap here to add your own custom prompt" : {
+
+    },
+    "Tap here to tag how you're feeling" : {
+
+    },
+    "Tap to log your current mood with our emotion buttons" : {
+
+    },
+    "Theme" : {
+
+    },
+    "Thoughtful" : {
+
+    },
+    "Thoughtful Premium" : {
+
+    },
+    "Time" : {
+
+    },
+    "Time to reflect and grow" : {
+
+    },
+    "Type your custom prompt" : {
+
+    },
+    "Type your name here" : {
+
+    },
+    "Type your reply..." : {
+
+    },
+    "We use this name to greet you! Try replacing it with \"good looking 😉\"" : {
+
+    },
+    "We use your name for a more personalised touch!" : {
+
+    },
+    "Website" : {
+
+    },
+    "Welcome to" : {
+
+    },
+    "What's your name?" : {
+
+    }
+  },
+  "version" : "1.0"
+}

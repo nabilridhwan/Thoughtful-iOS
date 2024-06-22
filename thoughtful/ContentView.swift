@@ -13,7 +13,7 @@ struct ContentView: View {
     @AppStorage("doneOnboarding") private var doneOnboarding: Bool = false
 
     @State var selectedTab: Int = 0
-    @State var showAddNewThought: Bool = false
+    @EnvironmentObject private var modalManager: ModalManager
 
     var body: some View {
         NavigationStack {
@@ -23,10 +23,8 @@ struct ContentView: View {
                 )
             } else {
                 TabView(selection: $selectedTab) {
-                    HomeView(
-                        isAddThoughtPresented: $showAddNewThought
-                    )
-                    .tag(0)
+                    HomeView()
+                        .tag(0)
 
                     EmptyView()
                         .tag(1)
@@ -40,7 +38,7 @@ struct ContentView: View {
                 .overlay(alignment: .bottom) {
                     CustomTabBarView(
                         selectedTab: $selectedTab,
-                        showAddModal: $showAddNewThought
+                        showAddModal: $modalManager.addThought
                     )
                 }
                 .onChange(of: selectedTab) { _, _ in
@@ -64,6 +62,9 @@ struct ContentView: View {
     ContentView()
         .modelContainer(SampleData.shared.modelContainer)
         .task {
+            // MARK: UNCOMMENT THE LINE BELOW TO FORCEFULLY SHOW TIPS
+
+//            try? Tips.resetDatastore()
             try? Tips.configure([
                 .datastoreLocation(.applicationDefault),
             ])

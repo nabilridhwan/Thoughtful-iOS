@@ -52,18 +52,8 @@ struct ChooseEmotionView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 50, height: 50)
 
-                                Text(e.description.capitalized)
-
-                                //                        if e == emotion {
-                                //                            Label(e.description.capitalized, systemImage: "checkmark")
-                                //                        } else {
-                                //                            Image(.sad)
-                                //                                .resizable()
-                                //                                .foregroundStyle(.black)
-                                //                                .frame(width: 20, height: 20)
-                                //                            Label(e.description, image: .sad)
-
-                                //                            Text(e.description.capitalized)
+                                Text(e.rawValue.capitalized)
+                                    .font(.caption)
                             }
                         }
                         .padding()

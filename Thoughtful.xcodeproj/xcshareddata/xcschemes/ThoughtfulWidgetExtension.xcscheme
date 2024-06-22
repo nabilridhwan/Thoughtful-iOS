@@ -44,6 +44,30 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD6ACD32C1A07A300B9A85A"
+               BuildableName = "ThoughtfulTests.xctest"
+               BlueprintName = "ThoughtfulTests"
+               ReferencedContainer = "container:Thoughtful.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDB1A2B72C23CBE30085B933"
+               BuildableName = "ThoughtfulUITests.xctest"
+               BlueprintName = "ThoughtfulUITests"
+               ReferencedContainer = "container:Thoughtful.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
