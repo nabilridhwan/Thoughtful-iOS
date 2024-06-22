@@ -51,6 +51,7 @@ struct ChoosePromptView: View {
                 Text("Choose a prompt")
                     .font(.title)
                     .bold()
+                    .padding()
 
                 ScrollView {
                     Button {
@@ -110,4 +111,6 @@ struct ChoosePromptView: View {
 
 #Preview {
     ChoosePromptView()
+        .environmentObject(ModalManager())
+        .environmentObject(DeeplinkStateManager())
 }

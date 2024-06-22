@@ -71,7 +71,6 @@ struct HomeView: View {
                         prompt: deeplinkManager.prompt,
                         emotion: deeplinkManager.emotion
                     )
-                    .padding()
                 }
             }
         }
@@ -183,5 +182,7 @@ extension HomeView {
     NavigationStack {
         HomeView()
             .modelContainer(SampleData.shared.modelContainer)
+            .environmentObject(ModalManager())
+            .environmentObject(DeeplinkStateManager())
     }
 }
