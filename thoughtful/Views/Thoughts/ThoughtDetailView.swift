@@ -143,6 +143,7 @@ struct ThoughtDetailView: View {
                     editMode: true
                 )
             }
+            .interactiveDismissDisabled()
         }
         .confirmationDialog("Are you sure?", isPresented: $modalManager.confirmDelete) {
             Button("Delete", role: .destructive) {
