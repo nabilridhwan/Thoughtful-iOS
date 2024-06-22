@@ -16,6 +16,13 @@ is NOT YET available in the Apple App Store. Thoughtful (Flutter) will be discon
 
 <img src="./docs/Promo iOS 3.png" style="" alt="Thoughtful Logo">
 
+## Revenue Model
+
+Thoughtful is a **freemium revenue model** app. While the core features are free, we offer additional Premium features
+available through in-app purchases.
+
+Contributions are highly valued and will be listed under "Open Source Attributions" within the app.
+
 ## Features
 
 - Daily prompts to reflect on positive moments
