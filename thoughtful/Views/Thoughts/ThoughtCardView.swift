@@ -84,7 +84,7 @@ struct ThoughtCardView: View {
                     return
                 }
 
-                DispatchQueue.main.async {
+                DispatchQueue.global(qos: .background).async {
                     let loadedPhoto = UIImage(data: photo)
 
                     withAnimation {

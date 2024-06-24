@@ -112,7 +112,7 @@ struct ThoughtDetailView: View {
             thoughtVm.context = context
         }
         .task {
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 guard let photo = thought.photo else {
                     return
                 }
@@ -125,7 +125,7 @@ struct ThoughtDetailView: View {
             }
         }
         .onChange(of: thought.photos) { _, photos in
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 if photos.isEmpty {
                     withAnimation {
                         self.photo = nil
