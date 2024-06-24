@@ -11,6 +11,9 @@ import SwiftUI
 struct ThoughtDetailView: View {
     @State var thoughtVm: ThoughtViewModel = .init()
 
+    @StateObject private var arp: AudioRecordPlayback = .init()
+    @State private var timeRemaining: TimeInterval = 0
+
     @ObservedObject var thought: Thought
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var context
@@ -19,6 +22,7 @@ struct ThoughtDetailView: View {
 
     @State var audioSession: AVAudioSession?
     @State var audioPlayer: AVAudioPlayer?
+    @State var isPlaying: Bool = false
 
     var relativeDateCreated: String {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
@@ -26,7 +30,7 @@ struct ThoughtDetailView: View {
 
     @State var photo: UIImage? = nil
 
-    func playAudio() {
+    private func playAudio() {
         guard let fileName = thought.audioFileName else {
             print("No audio")
             return
@@ -35,14 +39,6 @@ struct ThoughtDetailView: View {
         let url = AudioRecordPlayback.getFileURL().appendingPathComponent(fileName)
 
         do {
-            audioSession = AVAudioSession.sharedInstance()
-
-            do {
-                try audioSession?.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-            } catch let error as NSError {
-                print("audioSession error: \(error.localizedDescription)")
-            }
-
             let isReachable = try url.checkResourceIsReachable()
 
             if !isReachable {
@@ -52,13 +48,40 @@ struct ThoughtDetailView: View {
 
             print("URL is reachable: \(isReachable)")
 
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-
             print("Playing audio: \(url)")
-            audioPlayer?.play()
+            arp.playAudioFromURL(url)
+            isPlaying = true
         } catch {
             print("Can't play thought audio: \(error)")
         }
+    }
+
+    private func stopAudio() {
+        arp.stopPlaying()
+        isPlaying = false
+    }
+
+    private func startTimer() {
+        if let duration = thought.audioDuration {
+            timeRemaining = duration
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if timeRemaining > 0 {
+                    timeRemaining -= 1
+                } else {
+                    timer.invalidate()
+                }
+            }
+        }
+    }
+
+    private func resetTimer() {
+        timeRemaining = 0
+    }
+
+    private func formatTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 
     var body: some View {
@@ -92,12 +115,30 @@ struct ThoughtDetailView: View {
                         .font(.caption2)
                         .foregroundStyle(.primary.opacity(0.5))
 
-                    Text(thought.audioFileName ?? "")
-                    Text("\(thought.audioDuration)")
-                    Button {
-                        playAudio()
-                    } label: {
-                        Text("Play")
+                    HStack(alignment: .center) {
+                        Button {
+                            if arp.isPlaying {
+                                stopAudio()
+                                return
+                            }
+
+                            playAudio()
+                        } label: {
+                            if arp.isPlaying {
+                                Label("Stop", systemImage: "stop.fill")
+                                    .labelStyle(.iconOnly)
+                            } else {
+                                Label("Play", systemImage: "play.fill")
+                                    .labelStyle(.iconOnly)
+                            }
+                        }
+                        .frame(width: 40, height: 40)
+                        .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 24))
+
+                        Spacer()
+
+                        Text(formatTime(timeRemaining))
+                            .font(.caption)
                     }
                 }
 
@@ -164,6 +205,11 @@ struct ThoughtDetailView: View {
         .onAppear {
             thoughtVm.context = context
         }
+        .onAppear {
+            if let duration = thought.audioDuration {
+                timeRemaining = duration
+            }
+        }
         .task {
             DispatchQueue.global(qos: .background).async {
                 guard let photo = thought.photo else {
@@ -175,6 +221,17 @@ struct ThoughtDetailView: View {
                 withAnimation {
                     self.photo = loadedPhoto
                 }
+            }
+        }
+        .onChange(of: arp.isPlaying) { oldValue, newValue in
+            if oldValue == false, newValue == true {
+                startTimer()
+                return
+            }
+
+            if oldValue == true, newValue == false {
+                resetTimer()
+                return
             }
         }
         .onChange(of: thought.photos) { _, photos in
@@ -216,6 +273,12 @@ struct ThoughtDetailView: View {
         }
     }
 }
+
+// extension ThoughtDetailView: AVAudioPlayerDelegate {
+//    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+//        isPlaying = false
+//    }
+// }
 
 #Preview {
     NavigationStack {
