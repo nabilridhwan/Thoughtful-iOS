@@ -103,10 +103,14 @@ struct ThoughtDetailForm: View {
         }
         .task {
             DispatchQueue.main.async {
-                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    withAnimation {
-                        self.photo = loadedPhoto
-                    }
+                guard let photo = thought.photo else {
+                    return
+                }
+
+                let loadedPhoto = UIImage(data: photo)
+
+                withAnimation {
+                    self.photo = loadedPhoto
                 }
             }
         }
@@ -120,10 +124,14 @@ struct ThoughtDetailForm: View {
                     return
                 }
 
-                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    withAnimation {
-                        self.photo = loadedPhoto
-                    }
+                guard let photo = thought.photo else {
+                    return
+                }
+
+                let loadedPhoto = UIImage(data: photo)
+
+                withAnimation {
+                    self.photo = loadedPhoto
                 }
             }
         }

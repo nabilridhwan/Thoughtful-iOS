@@ -80,8 +80,12 @@ struct ThoughtCardView: View {
         }
         .task {
             if !thought.photos.isEmpty {
+                guard let photo = thought.photo else {
+                    return
+                }
+
                 DispatchQueue.main.async {
-                    let loadedPhoto = UIImage(data: thought.photos[0])
+                    let loadedPhoto = UIImage(data: photo)
 
                     withAnimation {
                         self.photo = loadedPhoto

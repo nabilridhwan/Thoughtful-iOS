@@ -32,6 +32,10 @@ class Thought: ObservableObject {
         music != nil
     }
 
+    var photo: Data? {
+        photos.isEmpty ? nil : photos.last
+    }
+
     // https://developer.apple.com/documentation/swiftdata/filtering-and-sorting-persistent-data#Define-a-filter-using-a-predicate
     static func predicate(searchDate: Date) -> Predicate<Thought> {
         let calendar = Calendar.autoupdatingCurrent

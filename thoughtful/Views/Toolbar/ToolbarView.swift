@@ -72,11 +72,10 @@ struct ToolbarView: View {
             Task {
                 // Check if newValue is optional, and if it isnt, load transferrable as Data.self
                 if let newValue,
-                   let data = try? await newValue.loadTransferable(type: Data.self)
+                   let data = try? await newValue.loadTransferable(type: Data.self),
+                   let image = UIImage(data: data)?.jpegData(compressionQuality: 0.1)
                 {
-                    if let image = UIImage(data: data)?.jpegData(compressionQuality: 0.1) {
-                        thought.photos = [image]
-                    }
+                    thought.photos = [image]
                 }
             }
         }
