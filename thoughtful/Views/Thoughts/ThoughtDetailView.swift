@@ -93,6 +93,7 @@ struct ThoughtDetailView: View {
                         .foregroundStyle(.primary.opacity(0.5))
 
                     Text(thought.audioFileName ?? "")
+                    Text("\(thought.audioDuration)")
                     Button {
                         playAudio()
                     } label: {

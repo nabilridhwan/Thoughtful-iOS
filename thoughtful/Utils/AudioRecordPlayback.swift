@@ -27,9 +27,11 @@ typealias AudioRecordingSession = [PlayableAudio]
 class AudioRecordPlayback: NSObject, ObservableObject {
     private var audioSession: AVAudioSession
     private var audioRecorder: AVAudioRecorder?
-    private var audioPlayer: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
+
     var filePath: URL?
     var fileName: String?
+    var fileDuration: TimeInterval?
 
     var isRecording: Bool {
         audioRecorder != nil && audioRecorder!.isRecording
@@ -81,6 +83,8 @@ class AudioRecordPlayback: NSObject, ObservableObject {
             audioPlayer?.delegate = self
             audioPlayer?.play()
 
+            fileDuration = audioPlayer?.duration
+
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
@@ -93,6 +97,7 @@ class AudioRecordPlayback: NSObject, ObservableObject {
     func stopPlaying() {
         audioPlayer?.stop()
         audioPlayer = nil
+        fileDuration = audioPlayer?.duration
     }
 
     static func getFileURL() -> URL {
@@ -128,6 +133,7 @@ class AudioRecordPlayback: NSObject, ObservableObject {
         print("Stopping recording")
         audioRecorder?.stop()
         audioRecorder = nil
+        fileDuration = audioPlayer?.duration
     }
 
     private func configureAudioSession() {

@@ -24,6 +24,15 @@ struct ThoughtCardView: View {
         thought.date_created.formatted(.relative(presentation: .named))
     }
 
+    func formatTimeInterval(_ interval: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+        formatter.unitsStyle = .positional
+
+        return formatter.string(from: interval) ?? "00:00"
+    }
+
     @State var photo: UIImage? = nil
 
     var body: some View {
@@ -49,21 +58,31 @@ struct ThoughtCardView: View {
                 .opacity(0.9)
 
             HStack {
-                if thought.locationExists || thought.musicExists || thought.emotionExists {
-                    if thought.locationExists {
-                        ThoughtCardAttrbuteView(icon: Image(systemName: "location.fill"), text: "Eunos")
-                    }
+                if thought.locationExists {
+                    ThoughtCardAttrbuteView(icon: Image(systemName: "location.fill"), text: "Eunos")
+                }
 
-                    if thought.musicExists {
-                        ThoughtCardAttrbuteView(icon: Image(systemName: "music.note"), text: "The Backseat Lovers - Pool House")
-                    }
+                if thought.musicExists {
+                    ThoughtCardAttrbuteView(icon: Image(systemName: "music.note"), text: "The Backseat Lovers - Pool House")
+                }
 
-                    if thought.emotionExists {
-                        ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.rawValue.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
-                            .transition(
-                                .scale.combined(with: .opacity)
-                            )
-                    }
+                if let audioDuration = thought.audioDuration {
+                    ThoughtCardAttrbuteView(
+                        icon: Image(systemName: "mic.fill"),
+                        text: formatTimeInterval(audioDuration),
+                        backgroundColor: .red.opacity(0.8),
+                        foregroundColor: .white
+                    )
+                    .transition(
+                        .scale.combined(with: .opacity)
+                    )
+                }
+
+                if thought.emotionExists {
+                    ThoughtCardAttrbuteView(icon: Image(thought.emotion!.getIcon()), text: thought.emotion!.rawValue.capitalized, backgroundColor: thought.emotion!.getColor(), foregroundColor: .black.opacity(0.6), shadowColor: thought.emotion!.getColor())
+                        .transition(
+                            .scale.combined(with: .opacity)
+                        )
                 }
 
                 Spacer()

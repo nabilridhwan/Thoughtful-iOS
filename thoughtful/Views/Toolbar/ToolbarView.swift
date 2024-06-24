@@ -83,6 +83,7 @@ struct ToolbarView: View {
         .onChange(of: sound.isRecording) { _, newValue in
             if newValue == false {
                 thought.audioFileName = sound.fileName
+                thought.audioDuration = sound.audioPlayer?.duration
             }
         }
         .frame(maxWidth: .infinity)
