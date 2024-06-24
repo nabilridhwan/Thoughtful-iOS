@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ToolbarView: View {
     @ObservedObject var thought: Thought
-    @StateObject var sound: AudioRecordPlayback = .init()
+    @StateObject var recorder: AudioRecorder = .init()
+    @StateObject var player: AudioPlayer = .init()
     @Binding var showEmotionModal: Bool
 
     @State var showPhotosPicker: Bool = false
@@ -55,23 +56,27 @@ struct ToolbarView: View {
 
             Button {
                 print("Record Audio")
-                sound.toggleRecording()
+                recorder.toggleRecording()
             } label: {
-                Label("Record Audio", systemImage: sound.isRecording ? "mic.fill" : "mic")
+                Label("Record Audio", systemImage: recorder.isRecording ? "mic.fill" : "mic")
                     .labelStyle(.iconOnly)
-                    .foregroundStyle(sound.isRecording ? .red : .primary)
+                    .foregroundStyle(recorder.isRecording ? .red : .primary)
             }
             .frame(maxWidth: .infinity)
 
             Button {
-                let url = sound.filePath
-                sound.playAudioFromURL(url!)
+                if player.isPlaying {
+                    player.stop()
+                    return
+                }
 
+                let url = recorder.filePath
+                player.play(url!)
             } label: {
-                Label("Play/Stp", systemImage: sound.isPlaying ? "stop.fill" : "play.fill")
+                Label("Play/Stop", systemImage: player.isPlaying ? "stop.fill" : "play.fill")
                     .labelStyle(.iconOnly)
             }
-            .disabled(sound.filePath == nil)
+            .disabled(recorder.filePath == nil)
             .frame(maxWidth: .infinity)
 
             PhotosPicker(selection: $photosPickerItem, matching: .images) {
@@ -80,10 +85,14 @@ struct ToolbarView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .onChange(of: sound.isRecording) { _, newValue in
+        .onChange(of: recorder.isRecording) { _, newValue in
             if newValue == false {
-                thought.audioFileName = sound.fileName
-                thought.audioDuration = sound.audioPlayer?.duration
+                thought.audioFileName = recorder.fileName
+
+                if let filePath = recorder.filePath {
+                    print("Recorder stopped. Filepath found")
+                    thought.audioDuration = player.duration(filePath)
+                }
             }
         }
         .frame(maxWidth: .infinity)

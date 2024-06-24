@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
-		BD27654C2C291C6000DBADEA /* AudioRecordPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27654B2C291C6000DBADEA /* AudioRecordPlayback.swift */; };
+		BD27654C2C291C6000DBADEA /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27654B2C291C6000DBADEA /* AudioRecorder.swift */; };
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */; };
 		BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */; };
@@ -18,6 +18,7 @@
 		BD5E3D162C1F318900DA84CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD367202C1E961000B1BBE7 /* WidgetKit.framework */; };
 		BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E843B2C25B25200BCEAE7 /* Theme.swift */; };
 		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
+		BD79957F2C29A17A00F447E1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */; };
 		BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
@@ -102,12 +103,13 @@
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
-		BD27654B2C291C6000DBADEA /* AudioRecordPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordPlayback.swift; sourceTree = "<group>"; };
+		BD27654B2C291C6000DBADEA /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtViewModel.swift; sourceTree = "<group>"; };
 		BD56803A2C25D71200F8F1EF /* DeeplinkStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkStateManager.swift; sourceTree = "<group>"; };
 		BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalManager.swift; sourceTree = "<group>"; };
 		BD5E843B2C25B25200BCEAE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
@@ -190,7 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				BD3EFF182C202E1B0032F304 /* DateHelpers.swift */,
-				BD27654B2C291C6000DBADEA /* AudioRecordPlayback.swift */,
+				BD27654B2C291C6000DBADEA /* AudioRecorder.swift */,
+				BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -596,7 +599,7 @@
 				BDE843B12C1DB41F0046C2A4 /* ThoughtDetailForm.swift in Sources */,
 				BDD3670B2C1E85CE00B1BBE7 /* HomeView.swift in Sources */,
 				BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */,
-				BD27654C2C291C6000DBADEA /* AudioRecordPlayback.swift in Sources */,
+				BD27654C2C291C6000DBADEA /* AudioRecorder.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
 				BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */,
@@ -612,6 +615,7 @@
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
 				BD56803D2C25DDCB00F8F1EF /* ModalManager.swift in Sources */,
 				BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */,
+				BD79957F2C29A17A00F447E1 /* AudioPlayer.swift in Sources */,
 				BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */,
 				BDD367162C1E934B00B1BBE7 /* GratitudeQuestions.swift in Sources */,
 				BDE843AC2C1D7D750046C2A4 /* SampleData.swift in Sources */,

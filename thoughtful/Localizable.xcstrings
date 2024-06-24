@@ -149,7 +149,7 @@
     "Play" : {
 
     },
-    "Play/Stp" : {
+    "Play/Stop" : {
 
     },
     "Previous Week" : {
@@ -165,6 +165,9 @@
 
     },
     "Stay Inspired Daily" : {
+
+    },
+    "Stop" : {
 
     },
     "Support" : {

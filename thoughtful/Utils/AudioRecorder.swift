@@ -1,5 +1,5 @@
 //
-//  AudioRecordPlayback.swift
+//  AudioRecorder.swift
 //  Thoughtful
 //
 //  Created by Nabil Ridhwan on 24/6/24.
@@ -8,23 +8,7 @@
 import AVFAudio
 import Foundation
 
-struct PlayableAudio {
-    var path: URL
-    var isPlayable: Bool = false
-    var duration: TimeInterval?
-    var currentTime: TimeInterval?
-
-    var audioPlayer: AVAudioPlayer
-
-    init(path: URL, audioPlayer: AVAudioPlayer) {
-        self.path = path
-        self.audioPlayer = audioPlayer
-    }
-}
-
-typealias AudioRecordingSession = [PlayableAudio]
-
-class AudioRecordPlayback: NSObject, ObservableObject {
+class AudioRecorder: NSObject, ObservableObject {
     private var audioSession: AVAudioSession
     private var audioRecorder: AVAudioRecorder?
     var audioPlayer: AVAudioPlayer?
@@ -68,38 +52,6 @@ class AudioRecordPlayback: NSObject, ObservableObject {
         }
     }
 
-    func playAudioFromURL(_ url: URL) {
-        if audioPlayer != nil {
-            stopPlaying()
-            return
-        }
-
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
-            audioPlayer?.play()
-
-            fileDuration = audioPlayer?.duration
-
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
-        } catch {
-            fatalError("Cant load file: \(error.localizedDescription)")
-            // couldn't load file :(
-        }
-    }
-
-    func stopPlaying() {
-        audioPlayer?.stop()
-        audioPlayer = nil
-        fileDuration = audioPlayer?.duration
-
-        DispatchQueue.main.async {
-            self.objectWillChange.send()
-        }
-    }
-
     static func getFileURL() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
@@ -108,13 +60,15 @@ class AudioRecordPlayback: NSObject, ObservableObject {
     private func startRecord() {
         let audioSettings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
+            AVSampleRateKey: 44100,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
+            AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
         ]
 
         let fileName = "recording-\(UUID().uuidString).m4a"
-        let audioFilepath = AudioRecordPlayback.getFileURL().appendingPathComponent(fileName)
+        let audioFilepath = AudioRecorder.getFileURL().appendingPathComponent(fileName)
+
+        // Set the file path and name
         filePath = audioFilepath
         self.fileName = fileName
 
@@ -150,24 +104,21 @@ class AudioRecordPlayback: NSObject, ObservableObject {
     }
 }
 
-extension AudioRecordPlayback: AVAudioRecorderDelegate {
+extension AudioRecorder: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_: AVAudioRecorder, successfully flag: Bool) {
         print("Finished recording: \(flag)")
-        if flag {
-            playAudioFromURL(filePath!)
-        }
         DispatchQueue.main.async {
             self.objectWillChange.send()
         }
     }
 }
 
-extension AudioRecordPlayback: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully _: Bool) {
-        audioPlayer = nil
-        DispatchQueue.main.async {
-            self.objectWillChange.send()
-        }
-        print("Finished playing: \(player.isPlaying)")
-    }
-}
+// extension AudioRecorder: AVAudioPlayerDelegate {
+//    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully _: Bool) {
+//        audioPlayer = nil
+//        DispatchQueue.main.async {
+//            self.objectWillChange.send()
+//        }
+//        print("Finished playing: \(player.isPlaying)")
+//    }
+// }

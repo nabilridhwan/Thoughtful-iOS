@@ -11,7 +11,7 @@ import SwiftUI
 struct ThoughtDetailView: View {
     @State var thoughtVm: ThoughtViewModel = .init()
 
-    @StateObject private var arp: AudioRecordPlayback = .init()
+    @StateObject private var player: AudioPlayer = .init()
     @State private var timeRemaining: TimeInterval = 0
 
     @ObservedObject var thought: Thought
@@ -22,7 +22,6 @@ struct ThoughtDetailView: View {
 
     @State var audioSession: AVAudioSession?
     @State var audioPlayer: AVAudioPlayer?
-    @State var isPlaying: Bool = false
 
     var relativeDateCreated: String {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
@@ -36,7 +35,7 @@ struct ThoughtDetailView: View {
             return
         }
 
-        let url = AudioRecordPlayback.getFileURL().appendingPathComponent(fileName)
+        let url = AudioRecorder.getFileURL().appendingPathComponent(fileName)
 
         do {
             let isReachable = try url.checkResourceIsReachable()
@@ -49,16 +48,14 @@ struct ThoughtDetailView: View {
             print("URL is reachable: \(isReachable)")
 
             print("Playing audio: \(url)")
-            arp.playAudioFromURL(url)
-            isPlaying = true
+            player.play(url)
         } catch {
             print("Can't play thought audio: \(error)")
         }
     }
 
     private func stopAudio() {
-        arp.stopPlaying()
-        isPlaying = false
+        player.stop()
     }
 
     private func startTimer() {
@@ -117,14 +114,14 @@ struct ThoughtDetailView: View {
 
                     HStack(alignment: .center) {
                         Button {
-                            if arp.isPlaying {
+                            if player.isPlaying {
                                 stopAudio()
                                 return
                             }
 
                             playAudio()
                         } label: {
-                            if arp.isPlaying {
+                            if player.isPlaying {
                                 Label("Stop", systemImage: "stop.fill")
                                     .labelStyle(.iconOnly)
                             } else {
@@ -223,7 +220,7 @@ struct ThoughtDetailView: View {
                 }
             }
         }
-        .onChange(of: arp.isPlaying) { oldValue, newValue in
+        .onChange(of: player.isPlaying) { oldValue, newValue in
             if oldValue == false, newValue == true {
                 startTimer()
                 return
