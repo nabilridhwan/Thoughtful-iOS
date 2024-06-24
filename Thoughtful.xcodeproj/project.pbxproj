@@ -19,6 +19,7 @@
 		BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E843B2C25B25200BCEAE7 /* Theme.swift */; };
 		BD790F692C22A76F00BC03DD /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD366FB2C1DC6F900B1BBE7 /* Emotion.swift */; };
 		BD79957F2C29A17A00F447E1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */; };
+		BD7995822C29A77800F447E1 /* AudioPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7995812C29A77800F447E1 /* AudioPlaybackView.swift */; };
 		BD9A79872C21ACBE009C6401 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */; };
 		BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */; };
 		BDA72AA52C1F429C00856810 /* AddThoughtTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */; };
@@ -110,6 +111,7 @@
 		BD56803C2C25DDCB00F8F1EF /* ModalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalManager.swift; sourceTree = "<group>"; };
 		BD5E843B2C25B25200BCEAE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		BD7995812C29A77800F447E1 /* AudioPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackView.swift; sourceTree = "<group>"; };
 		BD9A79862C21ACBE009C6401 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		BDA0ADC32C2011800034D2B1 /* MainOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		BDA72AA42C1F429C00856810 /* AddThoughtTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtTip.swift; sourceTree = "<group>"; };
@@ -208,6 +210,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		BD7995802C29A76300F447E1 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				BD7995812C29A77800F447E1 /* AudioPlaybackView.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		BD9A79852C21ACB0009C6401 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +256,7 @@
 		BDD3670E2C1E926300B1BBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD7995802C29A76300F447E1 /* Audio */,
 				BD9A79852C21ACB0009C6401 /* TabBar */,
 				BDA0ADC22C20116D0034D2B1 /* Onboarding */,
 				BDD367142C1E929700B1BBE7 /* Home */,
@@ -610,6 +621,7 @@
 				BD56803B2C25D71200F8F1EF /* DeeplinkStateManager.swift in Sources */,
 				BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
+				BD7995822C29A77800F447E1 /* AudioPlaybackView.swift in Sources */,
 				BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */,
 				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,

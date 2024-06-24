@@ -26,6 +26,8 @@ struct ThoughtDetailForm: View {
 
     @State var photo: UIImage?
 
+    @State var audioUrlFromThought: URL?
+
     var editMode: Bool = false
 
     init(thought: Thought, editMode: Bool = false) {
@@ -88,6 +90,11 @@ struct ThoughtDetailForm: View {
                 showEmotionModal: $modalManager.emotionSelect
             )
             .padding(.vertical, 20)
+
+            // If have audio
+            if thought.audioFileName != nil {
+                AudioPlaybackView(thought: thought)
+            }
 
             Spacer()
         }
@@ -219,5 +226,6 @@ extension ThoughtDetailForm {
 #Preview {
     NavigationStack {
         ThoughtDetailForm(thought: .init(thought_prompt: "What do you think about fans?", thought_response: "", date_created: Date.now))
+            .environmentObject(ModalManager())
     }
 }
