@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ToolbarView: View {
     @ObservedObject var thought: Thought
+    @StateObject var sound: AudioRecordPlayback = .init()
     @Binding var showEmotionModal: Bool
 
     @State var showPhotosPicker: Bool = false
@@ -52,19 +53,37 @@ struct ToolbarView: View {
             .frame(maxWidth: .infinity)
             .popoverTip(addEmotionTip)
 
-            //            Button {
-            //                print("Open Camera")
-            //            } label: {
-            //                Label("Open Camera", systemImage: "camera.fill")
-            //                    .labelStyle(.iconOnly)
-            //            }
-            //            .frame(maxWidth: .infinity)
+            Button {
+                print("Record Audio")
+                sound.toggleRecording()
+            } label: {
+                Label("Record Audio", systemImage: sound.isRecording ? "mic.fill" : "mic")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(sound.isRecording ? .red : .primary)
+            }
+            .frame(maxWidth: .infinity)
+
+            Button {
+                let url = sound.filePath
+                sound.playAudioFromURL(url!)
+
+            } label: {
+                Label("Play/Stp", systemImage: sound.isPlaying ? "stop.fill" : "play.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .disabled(sound.filePath == nil)
+            .frame(maxWidth: .infinity)
 
             PhotosPicker(selection: $photosPickerItem, matching: .images) {
                 Label("Open Photos", systemImage: "photo.fill")
                     .labelStyle(.iconOnly)
             }
             .frame(maxWidth: .infinity)
+        }
+        .onChange(of: sound.isRecording) { _, newValue in
+            if newValue == false {
+                thought.audioFileName = sound.fileName
+            }
         }
         .frame(maxWidth: .infinity)
         .foregroundStyle(.primary.opacity(0.5))
@@ -99,4 +118,5 @@ extension ToolbarView {
 #Preview {
     ToolbarView(thought: Thought(thought_prompt: "", thought_response: "", date_created: Date.now), showEmotionModal: .constant(false))
         .background(Color.background)
+        .environmentObject(ModalManager())
 }

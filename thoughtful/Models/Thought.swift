@@ -18,6 +18,8 @@ class Thought: ObservableObject {
     var music: String?
     var emotion: Emotion?
 
+    var audioFileName: String?
+
     @Attribute(.externalStorage) var photos: [Data] = []
 
     var emotionExists: Bool {
