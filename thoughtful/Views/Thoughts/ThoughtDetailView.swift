@@ -164,16 +164,20 @@ struct ThoughtDetailView: View {
             thoughtVm.context = context
         }
         .task {
-            DispatchQueue.main.async {
-                if !thought.photos.isEmpty, let loadedPhoto = UIImage(data: thought.photos[0]) {
-                    withAnimation {
-                        self.photo = loadedPhoto
-                    }
+            DispatchQueue.global(qos: .background).async {
+                guard let photo = thought.photo else {
+                    return
+                }
+
+                let loadedPhoto = UIImage(data: photo)
+
+                withAnimation {
+                    self.photo = loadedPhoto
                 }
             }
         }
         .onChange(of: thought.photos) { _, photos in
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 if photos.isEmpty {
                     withAnimation {
                         self.photo = nil
@@ -181,10 +185,14 @@ struct ThoughtDetailView: View {
                     return
                 }
 
-                if !photos.isEmpty, let loadedPhoto = UIImage(data: photos[0]) {
-                    withAnimation {
-                        self.photo = loadedPhoto
-                    }
+                guard let photo = thought.photo else {
+                    return
+                }
+
+                let loadedPhoto = UIImage(data: photo)
+
+                withAnimation {
+                    self.photo = loadedPhoto
                 }
             }
         }
