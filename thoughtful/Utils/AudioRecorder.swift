@@ -95,7 +95,7 @@ class AudioRecorder: NSObject, ObservableObject {
         do {
             // Set the audio session category and mode.
             // https://stackoverflow.com/a/65139199
-            try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+            try audioSession.setCategory(.record, mode: .default, options: .defaultToSpeaker)
             try audioSession.setMode(.videoRecording)
         } catch {
             print("Failed to set the audio session configuration")
