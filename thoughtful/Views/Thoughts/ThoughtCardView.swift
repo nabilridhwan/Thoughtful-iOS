@@ -66,10 +66,22 @@ struct ThoughtCardView: View {
                     ThoughtCardAttrbuteView(icon: Image(systemName: "music.note"), text: "The Backseat Lovers - Pool House")
                 }
 
-                if let audioDuration = thought.audioDuration {
+                if thought.audioFileName != nil, let audioDuration = thought.audioDuration {
                     ThoughtCardAttrbuteView(
                         icon: Image(systemName: "mic.fill"),
                         text: formatTimeInterval(audioDuration),
+                        backgroundColor: .red.opacity(0.8),
+                        foregroundColor: .white
+                    )
+                    .transition(
+                        .scale.combined(with: .opacity)
+                    )
+                }
+
+                if thought.audioFileName != nil && thought.audioDuration == nil {
+                    ThoughtCardAttrbuteView(
+                        icon: Image(systemName: "mic.fill"),
+                        text: "Audio",
                         backgroundColor: .red.opacity(0.8),
                         foregroundColor: .white
                     )
