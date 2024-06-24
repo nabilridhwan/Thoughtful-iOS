@@ -71,10 +71,6 @@ class AudioRecordPlayback: NSObject, ObservableObject {
     func playAudioFromURL(_ url: URL) {
         if audioPlayer != nil {
             stopPlaying()
-
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
             return
         }
 
@@ -98,6 +94,10 @@ class AudioRecordPlayback: NSObject, ObservableObject {
         audioPlayer?.stop()
         audioPlayer = nil
         fileDuration = audioPlayer?.duration
+
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
     }
 
     static func getFileURL() -> URL {
@@ -156,12 +156,18 @@ extension AudioRecordPlayback: AVAudioRecorderDelegate {
         if flag {
             playAudioFromURL(filePath!)
         }
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
     }
 }
 
 extension AudioRecordPlayback: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully _: Bool) {
         audioPlayer = nil
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
         print("Finished playing: \(player.isPlaying)")
     }
 }
