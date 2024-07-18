@@ -20,6 +20,7 @@ class Thought: ObservableObject {
 
     var audioFileName: String?
     var audioDuration: TimeInterval?
+    var audioTranscription: String?
 
     @Attribute(.externalStorage) var photos: [Data] = []
 

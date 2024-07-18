@@ -60,6 +60,9 @@ struct ThoughtDetailView: View {
                     AudioPlaybackView(thought: thought)
                 }
 
+                //     Show transcription
+                AudioTranscriptionView(transcript: thought.audioTranscription)
+
                 if thought.emotionExists {
                     Text("Emotion")
                         .font(.caption2)
