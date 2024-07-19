@@ -65,30 +65,32 @@ struct AudioPlaybackView: View {
     }
 
     var body: some View {
-        HStack(alignment: .center) {
-            Button {
-                if player.isPlaying {
-                    stopAudio()
-                    return
-                }
+        VStack {
+            HStack(alignment: .center) {
+                Button {
+                    if player.isPlaying {
+                        stopAudio()
+                        return
+                    }
 
-                playAudio()
-            } label: {
-                if player.isPlaying {
-                    Label("Stop", systemImage: "stop.fill")
-                        .labelStyle(.iconOnly)
-                } else {
-                    Label("Play", systemImage: "play.fill")
-                        .labelStyle(.iconOnly)
+                    playAudio()
+                } label: {
+                    if player.isPlaying {
+                        Label("Stop", systemImage: "stop.fill")
+                            .labelStyle(.iconOnly)
+                    } else {
+                        Label("Play", systemImage: "play.fill")
+                            .labelStyle(.iconOnly)
+                    }
                 }
+                .frame(width: 40, height: 40)
+                .background(Color.cardAttribute, in: RoundedRectangle(cornerRadius: 24))
+
+                Spacer()
+
+                Text(formatTime(timeRemaining))
+                    .font(.caption)
             }
-            .frame(width: 40, height: 40)
-            .background(Color.cardAttribute, in: RoundedRectangle(cornerRadius: 24))
-
-            Spacer()
-
-            Text(formatTime(timeRemaining))
-                .font(.caption)
         }
         .padding()
         .background(Color.card, in: RoundedRectangle(cornerRadius: 24))
@@ -108,6 +110,8 @@ struct AudioPlaybackView: View {
                 return
             }
         }
+
+        //
     }
 }
 
