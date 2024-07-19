@@ -5,6 +5,7 @@
 //  Created by Nabil Ridhwan on 15/6/24.
 //
 
+import AVFAudio
 import SwiftUI
 
 struct ThoughtDetailView: View {
@@ -15,6 +16,9 @@ struct ThoughtDetailView: View {
     @Environment(\.modelContext) var context
 
     @EnvironmentObject var modalManager: ModalManager
+
+    @State var audioSession: AVAudioSession?
+    @State var audioPlayer: AVAudioPlayer?
 
     var relativeDateCreated: String {
         thought.date_created.formatted(.relative(presentation: .named)).capitalized
@@ -47,6 +51,14 @@ struct ThoughtDetailView: View {
                 Divider()
 
                 //            https://developer.apple.com/documentation/foundation/date/relativeformatstyle
+
+                if thought.audioFileName != nil {
+                    Text("Audio")
+                        .font(.caption2)
+                        .foregroundStyle(.primary.opacity(0.5))
+
+                    AudioPlaybackView(thought: thought)
+                }
 
                 if thought.emotionExists {
                     Text("Emotion")
@@ -112,7 +124,7 @@ struct ThoughtDetailView: View {
             thoughtVm.context = context
         }
         .task {
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 guard let photo = thought.photo else {
                     return
                 }
@@ -125,7 +137,7 @@ struct ThoughtDetailView: View {
             }
         }
         .onChange(of: thought.photos) { _, photos in
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 if photos.isEmpty {
                     withAnimation {
                         self.photo = nil
@@ -168,6 +180,7 @@ struct ThoughtDetailView: View {
     NavigationStack {
         ThoughtDetailView(thought: SampleData.shared.thought)
     }
+    .environmentObject(ModalManager())
     .modelContext(SampleData.shared.context)
     .modelContainer(SampleData.shared.modelContainer)
 }
@@ -176,6 +189,7 @@ struct ThoughtDetailView: View {
     NavigationStack {
         ThoughtDetailView(thought: .init(thought_prompt: "Prompt", thought_response: "Response", date_created: Date.now))
     }
+    .environmentObject(ModalManager())
     .modelContext(SampleData.shared.context)
     .modelContainer(SampleData.shared.modelContainer)
 }

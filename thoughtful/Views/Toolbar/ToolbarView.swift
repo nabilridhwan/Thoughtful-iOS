@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ToolbarView: View {
     @ObservedObject var thought: Thought
+    @StateObject var recorder: AudioRecorder = .init()
+    @StateObject var player: AudioPlayer = .init()
     @Binding var showEmotionModal: Bool
 
     @State var showPhotosPicker: Bool = false
@@ -52,19 +54,46 @@ struct ToolbarView: View {
             .frame(maxWidth: .infinity)
             .popoverTip(addEmotionTip)
 
-            //            Button {
-            //                print("Open Camera")
-            //            } label: {
-            //                Label("Open Camera", systemImage: "camera.fill")
-            //                    .labelStyle(.iconOnly)
-            //            }
-            //            .frame(maxWidth: .infinity)
+            Button {
+                print("Record Audio")
+                recorder.toggleRecording()
+            } label: {
+                Label("Record Audio", systemImage: recorder.isRecording ? "mic.fill" : "mic")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(recorder.isRecording ? .red : .primary)
+            }
+            .frame(maxWidth: .infinity)
+
+//            Button {
+//                if player.isPlaying {
+//                    player.stop()
+//                    return
+//                }
+//
+//                let url = recorder.filePath
+//                player.play(url!)
+//            } label: {
+//                Label("Play/Stop", systemImage: player.isPlaying ? "stop.fill" : "play.fill")
+//                    .labelStyle(.iconOnly)
+//            }
+//            .disabled(recorder.filePath == nil)
+//            .frame(maxWidth: .infinity)
 
             PhotosPicker(selection: $photosPickerItem, matching: .images) {
                 Label("Open Photos", systemImage: "photo.fill")
                     .labelStyle(.iconOnly)
             }
             .frame(maxWidth: .infinity)
+        }
+        .onChange(of: recorder.isRecording) { _, newValue in
+            if newValue == false {
+                thought.audioFileName = recorder.fileName
+
+                if let filePath = recorder.filePath {
+                    print("Recorder stopped. Filepath found")
+                    thought.audioDuration = player.duration(filePath)
+                }
+            }
         }
         .frame(maxWidth: .infinity)
         .foregroundStyle(.primary.opacity(0.5))
@@ -98,4 +127,5 @@ extension ToolbarView {
 #Preview {
     ToolbarView(thought: Thought(thought_prompt: "", thought_response: "", date_created: Date.now), showEmotionModal: .constant(false))
         .background(Color.background)
+        .environmentObject(ModalManager())
 }
