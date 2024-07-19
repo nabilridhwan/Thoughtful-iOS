@@ -91,6 +91,10 @@ struct AudioPlaybackView: View {
                 Text(formatTime(timeRemaining))
                     .font(.caption)
             }
+
+            AudioTranscriptionView(transcript: thought.audioTranscription)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 10)
         }
         .padding()
         .background(Color.card, in: RoundedRectangle(cornerRadius: 24))

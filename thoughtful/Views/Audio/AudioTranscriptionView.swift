@@ -12,10 +12,12 @@ struct AudioTranscriptionView: View {
 
     var body: some View {
         if let t = transcript {
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
                 Text("Transcript")
-                    .bold()
-                    .font(.callout)
+                    .frame(maxWidth: .infinity)
+                    .font(.caption2)
+                    .foregroundStyle(.primary.opacity(0.5))
+
                 Text(t)
 
 //                Button("Set as response"){
@@ -24,12 +26,14 @@ struct AudioTranscriptionView: View {
 //                .buttonStyle(.borderedProminent)
 //                .frame(width: .infinity)
             }
+            .frame(maxWidth: .infinity)
             .padding()
-            .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 24))
+            .background(.cardAttribute)
+//            .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 24))
         }
     }
 }
 
 #Preview {
-    AudioTranscriptionView(transcript: "Sample transcription string lies over here!")
+    AudioTranscriptionView(transcript: "Hello there but what in the world is happening right here? Why is this not working")
 }

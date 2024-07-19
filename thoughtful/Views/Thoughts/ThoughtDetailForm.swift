@@ -98,9 +98,6 @@ struct ThoughtDetailForm: View {
                 AudioPlaybackView(thought: thought)
             }
 
-            //     Show transcription
-            AudioTranscriptionView(transcript: thought.audioTranscription)
-
             Spacer()
         }
         .onChange(of: thought.audioFileName) { _, newValue in
