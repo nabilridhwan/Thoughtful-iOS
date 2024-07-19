@@ -115,7 +115,7 @@ struct ThoughtCardView: View {
                     return
                 }
 
-                DispatchQueue.global(qos: .background).async {
+                await MainActor.run {
                     let loadedPhoto = UIImage(data: photo)
 
                     withAnimation {

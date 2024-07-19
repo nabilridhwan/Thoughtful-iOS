@@ -124,7 +124,7 @@ struct ThoughtDetailView: View {
             thoughtVm.context = context
         }
         .task {
-            DispatchQueue.global(qos: .background).async {
+            await MainActor.run {
                 guard let photo = thought.photo else {
                     return
                 }
