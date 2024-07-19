@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>The app requires Speech Recognition permission to transcribe voice recordings</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>The app will fuck you if you dont enable it</string>
+	<string>The app required the microphone for voice recordings</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

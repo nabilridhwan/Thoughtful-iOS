@@ -12,6 +12,8 @@ struct ThoughtDetailForm: View {
     @EnvironmentObject var deeplinkManager: DeeplinkStateManager
     @EnvironmentObject var modalManager: ModalManager
 
+    @ObservedObject var speechRecognizer: SpeechRecognizer = .init()
+
     @ObservedObject var thought: Thought
 
     //    If the user clicks cancel
@@ -96,7 +98,24 @@ struct ThoughtDetailForm: View {
                 AudioPlaybackView(thought: thought)
             }
 
+            //     Show transcription
+            AudioTranscriptionView(transcript: thought.audioTranscription)
+
             Spacer()
+        }
+        .onChange(of: thought.audioFileName) { _, newValue in
+            guard let fileName = newValue else {
+                print("Error transcribing in onChange")
+                return
+            }
+
+            let fileURL: URL = AudioRecorder.getFileURL().appending(path: fileName)
+
+            speechRecognizer.requestTranscribe(path: fileURL)
+        }
+        .onChange(of: speechRecognizer.transcript) {
+            _, newValue in
+            thought.audioTranscription = newValue
         }
         .sheet(isPresented: $modalManager.emotionSelect) {
             ZStack {

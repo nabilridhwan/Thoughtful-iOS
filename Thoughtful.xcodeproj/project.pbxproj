@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */; };
 		BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */; };
+		BD194DB22C491AEF00C65FD9 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD194DB12C491AEF00C65FD9 /* SpeechRecognizer.swift */; };
+		BD194DB42C49243B00C65FD9 /* AudioTranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD194DB32C49243A00C65FD9 /* AudioTranscriptionView.swift */; };
 		BD27654C2C291C6000DBADEA /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27654B2C291C6000DBADEA /* AudioRecorder.swift */; };
 		BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFF182C202E1B0032F304 /* DateHelpers.swift */; };
 		BD5680392C25D70200F8F1EF /* ThoughtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */; };
@@ -104,6 +106,8 @@
 /* Begin PBXFileReference section */
 		BD0B9B942C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCardAttrbuteView.swift; sourceTree = "<group>"; };
 		BD0B9B962C1B07CF00C811E8 /* EmptyThoughtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtsView.swift; sourceTree = "<group>"; };
+		BD194DB12C491AEF00C65FD9 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		BD194DB32C49243A00C65FD9 /* AudioTranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTranscriptionView.swift; sourceTree = "<group>"; };
 		BD27654B2C291C6000DBADEA /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		BD3EFF182C202E1B0032F304 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		BD5680382C25D70200F8F1EF /* ThoughtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				BD3EFF182C202E1B0032F304 /* DateHelpers.swift */,
 				BD27654B2C291C6000DBADEA /* AudioRecorder.swift */,
 				BD79957E2C29A17A00F447E1 /* AudioPlayer.swift */,
+				BD194DB12C491AEF00C65FD9 /* SpeechRecognizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BD7995812C29A77800F447E1 /* AudioPlaybackView.swift */,
+				BD194DB32C49243A00C65FD9 /* AudioTranscriptionView.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 				BD27654C2C291C6000DBADEA /* AudioRecorder.swift in Sources */,
 				BDD6ACCA2C1A07A200B9A85A /* ContentView.swift in Sources */,
 				BDA0ADC42C2011800034D2B1 /* MainOnboardingView.swift in Sources */,
+				BD194DB22C491AEF00C65FD9 /* SpeechRecognizer.swift in Sources */,
 				BD5E843C2C25B25200BCEAE7 /* Theme.swift in Sources */,
 				BD0B9B952C1B06EB00C811E8 /* ThoughtCardAttrbuteView.swift in Sources */,
 				BDD366FE2C1DC93500B1BBE7 /* ChoosePromptView.swift in Sources */,
@@ -622,6 +629,7 @@
 				BDD3670D2C1E86FD00B1BBE7 /* SettingsView.swift in Sources */,
 				BDE843AF2C1D99040046C2A4 /* ToolbarView.swift in Sources */,
 				BD7995822C29A77800F447E1 /* AudioPlaybackView.swift in Sources */,
+				BD194DB42C49243B00C65FD9 /* AudioTranscriptionView.swift in Sources */,
 				BD3EFF192C202E1B0032F304 /* DateHelpers.swift in Sources */,
 				BDD367002C1DCFF900B1BBE7 /* ChooseEmotionView.swift in Sources */,
 				BD0B9B972C1B07CF00C811E8 /* EmptyThoughtsView.swift in Sources */,
@@ -942,6 +950,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WB66W4QJ7C;
@@ -957,6 +966,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nabilridhwan.thoughtful.PromptWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -969,6 +979,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WB66W4QJ7C;
@@ -984,6 +995,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nabilridhwan.thoughtful.PromptWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
