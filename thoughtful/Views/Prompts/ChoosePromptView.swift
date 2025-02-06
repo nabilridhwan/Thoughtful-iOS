@@ -33,7 +33,7 @@ struct ChoosePromptView: View {
 
         print("Using deeplink constructor for ChoosePromptView")
         print("New Thought Prompt: \(prompt)")
-        print("New Thought Emotion: \(emotion)")
+        print("New Thought Emotion: \(String(describing: emotion))")
         print("Current Tab: \(currentTab)")
 
         if !prompt.isEmpty {

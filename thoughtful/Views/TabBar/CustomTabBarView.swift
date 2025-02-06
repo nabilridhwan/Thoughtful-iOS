@@ -144,10 +144,9 @@ struct CustomTabBarView: View {
     }
 }
 
-#Preview {
+#Preview("Custom Tab Bar View", traits: .sizeThatFitsLayout) {
     CustomTabBarView(
         selectedTab: .constant(0),
         showAddModal: .constant(false)
     )
-    .previewLayout(.sizeThatFits)
 }

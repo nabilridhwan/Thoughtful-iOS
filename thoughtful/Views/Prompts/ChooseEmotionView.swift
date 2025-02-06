@@ -12,15 +12,15 @@ struct ChooseEmotionView: View {
     @Environment(\.dismiss) var dismiss;
 
     func handleAddEmotion(_ e: Emotion) {
-        withAnimation {
-            //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
-            if emotion == e {
-                emotion = nil
-                return
-            }
-            //        set the emotion 'binding' to the value passed
-            emotion = e
+//        withAnimation {
+        //        If the incoming emotion is the same as the emotion selected, then it means the user is trying to deselect, hence set emotion to nil
+        if emotion == e {
+            emotion = nil
+            return
         }
+        //        set the emotion 'binding' to the value passed
+        emotion = e
+//        }
     }
 
     // Function to define the grid layout

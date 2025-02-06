@@ -77,13 +77,21 @@ struct ThoughtDetailForm: View {
                 }
 
             if thought.emotionExists {
-                ThoughtCardAttrbuteView(
-                    icon: Image(thought.emotion!.getIcon()),
-                    text: thought.emotion!.rawValue.capitalized,
-                    backgroundColor: thought.emotion!.getColor(),
-                    foregroundColor: .black.opacity(0.6),
-                    shadowColor: thought.emotion!.getColor()
-                )
+                HStack {
+                    ThoughtCardAttrbuteView(
+                        icon: Image(thought.emotion!.getIcon()),
+                        text: thought.emotion!.rawValue.capitalized,
+                        backgroundColor: thought.emotion!.getColor(),
+                        foregroundColor: .black.opacity(0.6),
+                        shadowColor: thought.emotion!.getColor()
+                    )
+
+                    Button {
+                        thought.emotion = nil
+                    } label: {
+                        Text("Remove")
+                    }
+                }
             }
 
             // Toolbar !

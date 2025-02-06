@@ -123,8 +123,10 @@ struct HorizontalCalendarView: View {
     }
 }
 
-#Preview {
+#Preview(
+    "Horizontal Calendar View",
+    traits: .sizeThatFitsLayout
+) {
     HorizontalCalendarView(selectedDate: .constant(Date.now))
-        .previewLayout(.sizeThatFits)
         .modelContainer(SampleData.shared.modelContainer)
 }
